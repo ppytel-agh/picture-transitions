@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "animation-generator", "anim
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "visual-tests", "visual-tests\visual-tests.vcxproj", "{382381D7-786B-43AA-87DB-39EB56FC1A0D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "automated-tests", "automated-tests\automated-tests.vcxproj", "{CBCD78EF-E325-4D1C-806A-BA65B51E6163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x64.Build.0 = Release|x64
 		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x86.ActiveCfg = Release|Win32
 		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x86.Build.0 = Release|Win32
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Debug|x64.ActiveCfg = Debug|x64
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Debug|x64.Build.0 = Debug|x64
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Debug|x86.Build.0 = Debug|Win32
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Release|x64.ActiveCfg = Release|x64
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Release|x64.Build.0 = Release|x64
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Release|x86.ActiveCfg = Release|Win32
+		{CBCD78EF-E325-4D1C-806A-BA65B51E6163}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
