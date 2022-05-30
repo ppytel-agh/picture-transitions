@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "animation-generator", "animation-generator\animation-generator.vcxproj", "{56D05C3B-92C2-44DE-9E5C-FF60C64C3977}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "visual-tests", "visual-tests\visual-tests.vcxproj", "{382381D7-786B-43AA-87DB-39EB56FC1A0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{56D05C3B-92C2-44DE-9E5C-FF60C64C3977}.Release|x64.Build.0 = Release|x64
 		{56D05C3B-92C2-44DE-9E5C-FF60C64C3977}.Release|x86.ActiveCfg = Release|Win32
 		{56D05C3B-92C2-44DE-9E5C-FF60C64C3977}.Release|x86.Build.0 = Release|Win32
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Debug|x64.ActiveCfg = Debug|x64
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Debug|x64.Build.0 = Debug|x64
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Debug|x86.Build.0 = Debug|Win32
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x64.ActiveCfg = Release|x64
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x64.Build.0 = Release|x64
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x86.ActiveCfg = Release|Win32
+		{382381D7-786B-43AA-87DB-39EB56FC1A0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
