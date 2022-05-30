@@ -1,7 +1,8 @@
 #include "visual-tests-app.h"
 
 bool VisualTestsApp::OnInit() {
-	wxFrame* mainFrame = new wxFrame(NULL, -1, "Visual Tests");
+	VisualTestsManager testsManager;
+	wxFrame* mainFrame = new VisualTestsFrame(testsManager.getTests(), testsManager.getNumberOfTests());
 	mainFrame->Show(true);
 	SetTopWindow(mainFrame);
 	return true;
