@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include;$(WXWIN)/include/msvc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/lib/vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include;$(WXWIN)/include/msvc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/lib/vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include;$(WXWIN)/include/msvc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/lib/vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include;$(WXWIN)/include/msvc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/lib/vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
