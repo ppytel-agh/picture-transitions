@@ -148,10 +148,12 @@
   <ItemGroup>
     <ClCompile Include="animation-generator-app.cpp" />
     <ClCompile Include="misc.cpp" />
+    <ClCompile Include="norm-calc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h" />
     <ClInclude Include="misc.h" />
+    <ClInclude Include="norm-calc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
