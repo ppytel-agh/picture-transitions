@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
+    <IncludePath>../animation-generator-lib;$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
     <LibraryPath>$(WXWIN)\lib\vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
+    <IncludePath>../animation-generator-lib;$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
     <LibraryPath>$(WXWIN)\lib\vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
+    <IncludePath>../animation-generator-lib;$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
     <LibraryPath>$(WXWIN)\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
+    <IncludePath>../animation-generator-lib;$(WXWIN)\include;$(WXWIN)\include\msvc;$(IncludePath)</IncludePath>
     <LibraryPath>$(WXWIN)\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -160,6 +160,11 @@
     <ClInclude Include="visual-tests-app.h" />
     <ClInclude Include="visual-tests-frame.h" />
     <ClInclude Include="visual-tests-manager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\animation-generator-lib\animation-generator-lib.vcxproj">
+      <Project>{2bc4ca2c-3b09-4d96-8fae-1bc66b42ba60}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

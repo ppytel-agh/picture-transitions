@@ -7,11 +7,11 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unittests
 {
-	TEST_CLASS(unittests)
+	TEST_CLASS(configtests)
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(MiscClass)
 		{
 			Misc misc;
 			Assert::AreEqual(1, misc.action());
