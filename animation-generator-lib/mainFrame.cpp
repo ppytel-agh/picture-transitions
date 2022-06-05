@@ -86,7 +86,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	menuSizer->Add( separator3, 1, wxEXPAND | wxALL, 5 );
 
-	loadInitFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkÄ™ poczÄ…tkowÄ…"), wxDefaultPosition, wxDefaultSize, 0 );
+	loadInitFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkê pocz¹tkow¹"), wxDefaultPosition, wxDefaultSize, 0 );
 	loadInitFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 	loadInitFrameButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
 
@@ -98,7 +98,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	menuSizer->Add( separator4, 1, wxEXPAND | wxALL, 5 );
 
-	loadLastFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkÄ™ koÅ„cowÄ…"), wxDefaultPosition, wxDefaultSize, 0 );
+	loadLastFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkê koñcow¹"), wxDefaultPosition, wxDefaultSize, 0 );
 	loadLastFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 	loadLastFrameButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
 
@@ -114,7 +114,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	textSizer = new wxBoxSizer( wxHORIZONTAL );
 
 	textSizer->SetMinSize( wxSize( -1,10 ) );
-	choiceText = new wxStaticText( this, wxID_ANY, wxT("Rodzaj przejÅ›cia                 Liczba klatek\n"), wxDefaultPosition, wxSize( -1,15 ), 0 );
+	choiceText = new wxStaticText( this, wxID_ANY, wxT("Rodzaj przejscia                 Liczba klatek\n"), wxDefaultPosition, wxSize( -1,15 ), 0 );
 	choiceText->Wrap( -1 );
 	choiceText->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 
@@ -126,7 +126,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* choiceSizer;
 	choiceSizer = new wxBoxSizer( wxHORIZONTAL );
 
-	wxString chooseTransitionChoices[] = { wxT("Wjazd obrazu z lewej strony"), wxT("Wjazd obrazu z prawej strony"), wxT("Wjazd obrazu z gÃ³ry"), wxT("Wjazd obrazu z doÅ‚u"), wxT("Box wchodzÄ…cy"), wxT("Box wychodzÄ…cy"), wxT("Åšciemnienie / RozjaÅ›nienie"), wxT("Zmiana wartoÅ›ci kanaÅ‚u alfa"), wxT("ObrÃ³t kartki w pionie"), wxT("ObrÃ³t kartki w poziomie"), wxT("Okiennica"), wxEmptyString };
+	wxString chooseTransitionChoices[] = { wxT("Wjazd obrazu z lewej strony"), wxT("Wjazd obrazu z prawej strony"), wxT("Wjazd obrazu z góry"), wxT("Wjazd obrazu z do³u"), wxT("Box wchodz¹cy"), wxT("Box wychodz¹cy"), wxT("Œciemnienie / Rozjaœnienie"), wxT("Zmiana wartoœci kana³u alfa"), wxT("Obrót kartki w pionie"), wxT("Obrót kartki w poziomie"), wxT("Okiennica"), wxEmptyString };
 	int chooseTransitionNChoices = sizeof( chooseTransitionChoices ) / sizeof( wxString );
 	chooseTransition = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, chooseTransitionNChoices, chooseTransitionChoices, 0 );
 	chooseTransition->SetSelection( 11 );
@@ -149,7 +149,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	menuSizer->Add( separator6, 1, wxEXPAND | wxALL, 5 );
 
-	generateFrame = new wxButton( this, wxID_ANY, wxT("Generuj klatki poÅ›rednie"), wxDefaultPosition, wxDefaultSize, 0 );
+	generateFrame = new wxButton( this, wxID_ANY, wxT("Generuj klatki poœrednie"), wxDefaultPosition, wxDefaultSize, 0 );
 	generateFrame->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 	generateFrame->SetBackgroundColour( wxColour( 179, 83, 219 ) );
 
@@ -178,7 +178,7 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	sceneSizer->Add( slider, 0, wxEXPAND, 5 );
 
-	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animacjÄ™"), wxDefaultPosition, wxDefaultSize, 0 );
+	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animacjê"), wxDefaultPosition, wxDefaultSize, 0 );
 	saveAnimation->SetBackgroundColour( wxColour( 179, 83, 219 ) );
 
 	sceneSizer->Add( saveAnimation, 0, 0, 5 );
