@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
+#include "mainFrame.h"
 
 class AnimationGeneratorApp : public wxApp {
 public:
