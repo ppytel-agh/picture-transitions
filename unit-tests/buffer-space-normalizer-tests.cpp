@@ -27,11 +27,11 @@ namespace unittests
 			}
 		}
 		TEST_METHOD(pixelToPointInner)
-		{			
+		{
 			BufferSpaceNormalizer spaceNormalizer(5, 4);
-			Assert::AreEqual(BufferPoint{ -0.8f, 0.75f }, spaceNormalizer.pixelToPoint({0, 0}));
-			Assert::AreEqual(BufferPoint{ 0.0f, 0.25f}, spaceNormalizer.pixelToPoint({ 1, 2 }));
-			Assert::AreEqual(BufferPoint{ 0.8f, -0.75f}, spaceNormalizer.pixelToPoint({ 3, 4 }));
+			Assert::AreEqual(BufferPoint{ -0.8f, 0.75f }, spaceNormalizer.pixelToPoint({ 0, 0 }));
+			Assert::AreEqual(BufferPoint{ 0.0f, 0.25f }, spaceNormalizer.pixelToPoint({ 1, 2 }));
+			Assert::AreEqual(BufferPoint{ 0.8f, -0.75f }, spaceNormalizer.pixelToPoint({ 3, 4 }));
 		}
 
 		TEST_METHOD(pixelToPointOuter)
@@ -43,26 +43,34 @@ namespace unittests
 			Assert::AreEqual(BufferPoint{ -1.6f, 0.25f }, spaceNormalizer.pixelToPoint({ 1, -2 }));
 		}
 
-		/*TEST_METHOD(pixelToPointOutOfBounds)
+		TEST_METHOD(pointToPixelInner)
 		{
-			BufferSpaceNormalizer spaceNormalizer(3, 3);
-			Assert::AreEqual(BufferPoint{ 2.0f, 0.0f }, spaceNormalizer.pixelToPoint({ 0, 3 }));
-			Assert::AreEqual(BufferPoint{ 0.0f, 2.0f }, spaceNormalizer.pixelToPoint({ -2, 0 }));
-		}*/
+			BufferSpaceNormalizer spaceNormalizer(5, 4);
+			Assert::AreEqual(BufferPixel{ 0,0 }, spaceNormalizer.pointToPixel({ -0.8f, 0.75f }));
+			Assert::AreEqual(BufferPixel{ 1,2 }, spaceNormalizer.pointToPixel({ 0.0f, 0.25f }));
+			Assert::AreEqual(BufferPixel{ 3,4 }, spaceNormalizer.pointToPixel({ 0.8f, -0.75f }));
+		}
 
-		//TEST_METHOD(evenBufferSize)
-		//{
-		//	BufferSpaceNormalizer spaceNormalizer(2, 2);
-		//	//by default 
-		//	Assert::AreEqual(BufferPoint{ 2.0f, 0.0f }, spaceNormalizer.pixelToPoint({ 0, 4 }));
+		TEST_METHOD(pointToPixelOuter)
+		{
+			BufferSpaceNormalizer spaceNormalizer(5, 4);
+			Assert::AreEqual(BufferPixel{ 4,3 }, spaceNormalizer.pointToPixel({ 0.4f, -1.25f }));
+			Assert::AreEqual(BufferPixel{ 2,5 }, spaceNormalizer.pointToPixel({ 1.2f, -0.25f }));
+			Assert::AreEqual(BufferPixel{ -1,0 }, spaceNormalizer.pointToPixel({ -0.8f, 1.25f }));
+			Assert::AreEqual(BufferPixel{ 1,-2 }, spaceNormalizer.pointToPixel({ -1.6f, 0.25f }));
+		}
 
-		//}
+		TEST_METHOD(pointToPixelSlightTilt) {
+			BufferSpaceNormalizer spaceNormalizer(5, 4);
+			//topleft
+			Assert::AreEqual(BufferPixel{ 0, 0 }, spaceNormalizer.pointToPixel({ -0.999999f, 0.999990f }));
+			//bottomright
+			Assert::AreEqual(BufferPixel{ 3, 4 }, spaceNormalizer.pointToPixel({ 0.999999f, -0.999999f }));
+			//middle slightly down
+			Assert::AreEqual(BufferPixel{ 2, 2 }, spaceNormalizer.pointToPixel({ 0.0f, -0.000001f }));
+			//middle slightly up
+			Assert::AreEqual(BufferPixel{ 1, 2 }, spaceNormalizer.pointToPixel({ 0.0f, 0.000001f }));
+		}
 
-		//TEST_METHOD(zeroSizeBuffer) {
-		//	BufferSpaceNormalizer spaceNormalizer(1, 2);
-		//	BufferSpaceNormalizer spaceNormalizer(2, 1);
-		//}
-
-		
 	};
 }
