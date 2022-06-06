@@ -34,6 +34,15 @@ namespace unittests
 			Assert::AreEqual(BufferPoint{ 0.8f, -0.75f}, spaceNormalizer.pixelToPoint({ 3, 4 }));
 		}
 
+		TEST_METHOD(pixelToPointOuter)
+		{
+			BufferSpaceNormalizer spaceNormalizer(5, 4);
+			Assert::AreEqual(BufferPoint{ 0.4f, -1.25f }, spaceNormalizer.pixelToPoint({ 4, 3 }));
+			Assert::AreEqual(BufferPoint{ 1.2f, -0.25f }, spaceNormalizer.pixelToPoint({ 2, 5 }));
+			Assert::AreEqual(BufferPoint{ -0.8f, 1.25f }, spaceNormalizer.pixelToPoint({ -1, 0 }));
+			Assert::AreEqual(BufferPoint{ -1.6f, 0.25f }, spaceNormalizer.pixelToPoint({ 1, -2 }));
+		}
+
 		/*TEST_METHOD(pixelToPointOutOfBounds)
 		{
 			BufferSpaceNormalizer spaceNormalizer(3, 3);
