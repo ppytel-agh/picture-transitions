@@ -24,6 +24,9 @@
     <ClCompile Include="norms-calculator-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="buffer-space-normalizer-tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
