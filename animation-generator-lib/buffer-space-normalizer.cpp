@@ -2,17 +2,11 @@
 
 BufferSpaceNormalizer::BufferSpaceNormalizer(unsigned int w, unsigned int h): width(w), height(h), pixelWidth(0.0f), pixelHeight(0.0f)
 {
-    if (this->width > 1) {//prevent miscalculations
-        this->pixelWidth = 2.0f / (this->width - 1);
+    if (this->width > 0) {//prevent miscalculations
+        this->pixelWidth = 2.0f / this->width;
     }
-    else {
-        this->pixelWidth = 4.0f;
-    }
-    if (this->height > 1) {//prevent miscalculations
-        this->pixelHeight = 2.0f / (this->height - 1);
-    }
-    else {
-        this->pixelHeight = 4.0f;
+    if (this->height > 0) {//prevent miscalculations
+        this->pixelHeight = 2.0f / this->height;
     }
     this->centralPixel = { int(this->height-1) / 2, int(this->width-1) / 2 };
     this->centralPixelPoint = this->pixelToPoint(centralPixel);
@@ -20,8 +14,8 @@ BufferSpaceNormalizer::BufferSpaceNormalizer(unsigned int w, unsigned int h): wi
 
 BufferPoint BufferSpaceNormalizer::pixelToPoint(BufferPixel px)
 {
-    float x = -1.0f + px.j * this->pixelWidth;
-    float y = 1.0f - px.i * this->pixelHeight;
+    float x = -1.0f + (0.5f + px.j) * this->pixelWidth;
+    float y = 1.0f - (0.5f + px.i) * this->pixelHeight;
     return BufferPoint{ x, y };
 }
 

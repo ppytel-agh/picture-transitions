@@ -1,7 +1,11 @@
 #include "buffer-point.h"
 
+#define EPSILON 0.000001f
+
 bool BufferPoint::operator==(const BufferPoint& bp) const {
-	return (bp.x == this->x) && (bp.y == this->y);
+	float diffX = fabs(bp.x - this->x);
+	float diffY = fabs(bp.y - this->y);
+	return (diffX < EPSILON) && (diffY < EPSILON);
 }
 
 std::wstring ToString(const BufferPoint& bp) {
