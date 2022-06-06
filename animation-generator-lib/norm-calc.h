@@ -6,4 +6,5 @@ public:
 	float getNorm(unsigned int);
 private:
 	unsigned int max;
+	float delta;
 };
