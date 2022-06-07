@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 #include "mainFrame.h"
+#include "animation-generator-app.h"
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -22,7 +23,6 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	wxBoxSizer* previewSizer;
 	previewSizer = new wxBoxSizer( wxVERTICAL );
-
 
 	menuSizer->Add( previewSizer, 1, wxEXPAND, 5 );
 
@@ -76,7 +76,6 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	resetButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
 
 	logSizer->Add( resetButton, 0, wxALL, 5 );
-
 
 	menuSizer->Add( logSizer, 1, wxEXPAND, 5 );
 
@@ -183,7 +182,6 @@ mainFrame::mainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	sceneSizer->Add( saveAnimation, 0, 0, 5 );
 
-
 	mainSizer->Add( sceneSizer, 1, wxEXPAND, 5 );
 
 
@@ -230,5 +228,4 @@ mainFrame::~mainFrame()
 	slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( mainFrame::onScroll ), NULL, this );
 	slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( mainFrame::onScroll ), NULL, this );
 	saveAnimation->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( mainFrame::onAnimationSave ), NULL, this );
-
 }

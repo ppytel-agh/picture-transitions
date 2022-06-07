@@ -2,7 +2,6 @@
 
 #include <wx/wx.h>
 #include <memory>
-
 #include "mainFrame.h"
 
 class AnimationGeneratorApp : public wxApp 
@@ -15,16 +14,17 @@ public:
 
 class Frame : public mainFrame
 {
+
+public:
+	void onReset(wxCommandEvent& event) override;
+	void onLoadInitFrame(wxCommandEvent& event) override;
+	void onLoadLastFrame(wxCommandEvent& event) override;
+	void onTransitionChoice(wxCommandEvent& event) override;
+	void onFrameRateEnter(wxCommandEvent& event) override;
+	void onGenerateFrame(wxCommandEvent& event) override;
+	void onScroll(wxScrollEvent& event) override;
+	void onAnimationSave(wxCommandEvent& event) override;
+
+public:
 	Frame(wxWindow* parent);
-
-protected:
-	void onReset(wxCommandEvent& event);
-	void onLoadInitFrame(wxCommandEvent& event);
-	void onLoadLastFrame(wxCommandEvent& event);
-	void onTransitionChoice(wxCommandEvent& event);
-	void onFrameRateEnter(wxCommandEvent& event);
-	void onGenerateFrame(wxCommandEvent& event);
-	void onScroll(wxScrollEvent& event);
-	void onAnimationSave(wxCommandEvent& event);
-
 };

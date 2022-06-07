@@ -2,7 +2,7 @@
 
 bool AnimationGeneratorApp::OnInit() 
 {
-	wxFrame* frame = new mainFrame(NULL);
+	wxFrame* frame = new Frame(NULL);
 	frame->Show(true);
 	SetTopWindow(frame);
 	return true;
@@ -26,14 +26,21 @@ void Frame::onReset(wxCommandEvent& event)
 
 void Frame::onLoadInitFrame(wxCommandEvent& event)
 {
-	std::shared_ptr<wxFileDialog> WxOpenFileDialog1(new wxFileDialog(this, _("Choose a file"), _(" "), _("render"), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp")));
+	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN|wxFD_FILE_MUST_EXIST));
 
-
+	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
+	{
+	}
 }
 
 void Frame::onLoadLastFrame(wxCommandEvent& event)
 {
-	// TODO: Implement onLoadLastFrame
+	wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+
+	if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
+	{
+	}
+
 }
 
 void Frame::onTransitionChoice(wxCommandEvent& event)
@@ -58,6 +65,8 @@ void Frame::onScroll(wxScrollEvent& event)
 
 void Frame::onAnimationSave(wxCommandEvent& event)
 {
-	// TODO: Implement onAnimationSave
+	wxFileDialog WxSaveAnimationDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT));
+
 }
+
 
