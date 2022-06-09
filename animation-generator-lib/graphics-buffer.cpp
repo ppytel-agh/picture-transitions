@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "graphics-buffer.h"
 
 GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour = {}) : size{size}
@@ -74,3 +75,7 @@ void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLef
 	// co z tymi rogami?
 }
 
+=======
+#include "graphics-buffer.h"
+
+>>>>>>> dcc71a2c2c0e944523ef9139a2e01a94376265b4
