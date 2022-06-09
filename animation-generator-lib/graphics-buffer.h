@@ -4,7 +4,7 @@
 #include <vector>
 
 struct Pixel {
-	unsigned int red, green, blue;
+	unsigned char red, green, blue;
 };
 
 struct Size {
