@@ -28,8 +28,8 @@ public:
 	bool isIndexValid(unsigned int i) const;
 	GraphicsBuffer createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour = {}) const;
 	void blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size);
-	std::vector<unsigned int> getSubpixelValues() const;
-	void setSubpixelValues(const std::vector<unsigned int>& newValues, unsigned int offset = 0);
+	std::vector<unsigned char> getSubpixelValues() const;
+	void setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset = 0);
 private:
 	Size size;
 	Pixel* pixels;
