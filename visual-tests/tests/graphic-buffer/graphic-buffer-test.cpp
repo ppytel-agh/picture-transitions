@@ -5,7 +5,6 @@ void GraphicBufferTest::initializeUI(wxFrame* parentFrame)
 {
 	wxFrame* simpleFrame = new wxFrame(parentFrame, wxID_ANY, "przykladowy test");
 
-	unsigned char* subpixels = reinterpret_cast<unsigned char*>(sourcebmp);
 	simpleFrame->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	wxBoxSizer* mainSizer;
 	mainSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -15,7 +14,7 @@ void GraphicBufferTest::initializeUI(wxFrame* parentFrame)
 	simpleFrame->Layout();
 	simpleFrame->Show();
 
-	wxImage image(150, 100 , subpixels);
+	wxImage image(150, 100 , sourcebmp.data(), true);
 	wxBitmap memoryBitmap(image);
 	wxMemoryDC memDC;
 	memDC.SelectObject(memoryBitmap);
