@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tests\animation-generator-ui-test\animation-generator-ui-test.cpp" />
     <ClCompile Include="tests\example-test\example-test.cpp" />
     <ClCompile Include="visual-tests-app.cpp" />
     <ClCompile Include="visual-tests-frame.cpp" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="abstract-visual-test.h" />
+    <ClInclude Include="tests\animation-generator-ui-test\animation-generator-ui-test.h" />
     <ClInclude Include="tests\example-test\example-test.h" />
     <ClInclude Include="visual-test-record.h" />
     <ClInclude Include="visual-tests-app.h" />
