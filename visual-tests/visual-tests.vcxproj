@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests\example-test\example-test.cpp" />
+    <ClCompile Include="tests\graphic-buffer\graphic-buffer-test.cpp" />
     <ClCompile Include="visual-tests-app.cpp" />
     <ClCompile Include="visual-tests-frame.cpp" />
     <ClCompile Include="visual-tests-manager.cpp" />
@@ -156,6 +157,8 @@
   <ItemGroup>
     <ClInclude Include="abstract-visual-test.h" />
     <ClInclude Include="tests\example-test\example-test.h" />
+    <ClInclude Include="tests\graphic-buffer\graphic-buffer-test.h" />
+    <ClInclude Include="tests\graphic-buffer\sourcebmp.h" />
     <ClInclude Include="visual-test-record.h" />
     <ClInclude Include="visual-tests-app.h" />
     <ClInclude Include="visual-tests-frame.h" />
