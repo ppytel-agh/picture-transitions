@@ -1,40 +1,22 @@
 #include "graphics-buffer.h"
 
-GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour = {}) : size{ size }
-{
-	//zainicjuj pamiÍÊ dla pikseli
-	//w pÍtli ustaw wartoúÊ kaødego piksela na kolor poczπtkowy
-	pixels[0] = initialColour;
-
-	/*
-		0. (0, 0, 0)
-		1.
-		2.
-		3.
-		4.
-		5.
-		...
-
-
-	*/
-
-	// czy powinienem uwzglÍdniaÊ lewy gÛrny rÛg?
+GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour) : size{ size }, pixels{ std::make_unique<Pixel[]>(size.width * size.height) }
+{	
+	for (unsigned int i = 0; i < size.width * size.height; i++)
+	{
+		this->pixels[i] = initialColour;
+	}
 }
 
 GraphicsBuffer::GraphicsBuffer(const GraphicsBuffer& buffer)
 {
 	size = buffer.size;
-	pixels = buffer.pixels;//èLE - kaødy bufor jest ekskluzywny
+	//pixels = buffer.pixels;//èLE - kaødy bufor jest ekskluzywny
 }
 
 GraphicsBuffer::GraphicsBuffer(GraphicsBuffer&&)
 {
 	//to siÍ przyda do funkcji, ktÛre generujπ jakiú bufor
-}
-
-GraphicsBuffer::~GraphicsBuffer()
-{
-	//trzeba zwolniÊ pamiÍÊ bufora
 }
 
 bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
@@ -62,7 +44,7 @@ unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset off
 	else return tmp.blue;
 }
 
-GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour = {}) const
+GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour) const
 {
 	// jak ten lewy gÛrny rÛg ≥πczy siÍ z tym bufferem?
 	//top left to jest wspÛ≥rzÍdna piksela instancji, ktÛry bÍdzie stanowi≥ lewy gÛrny piksel wycinka
@@ -74,15 +56,16 @@ GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pix
 std::vector<unsigned char> GraphicsBuffer::getSubpixelValues() const
 {
 	//to ma zrobiÊ kopiÍ ca≥ej tablicy pikseli
-	return std::vector<unsigned char> {pixels->red, pixels->green, pixels->blue};
+	//return std::vector<unsigned char> {pixels->red, pixels->green, pixels->blue};
+	return std::vector<unsigned char>{};
 }
 
-void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset = 0)
+void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset)
 {
 	//to ma docelowo byÊ uøywane przez kod, ktÛry wykonuje operacje piksel po pikselu
-	pixels->red = newValues[0];
+	/*pixels->red = newValues[0];
 	pixels->green = newValues[1];
-	pixels->blue = newValues[2];
+	pixels->blue = newValues[2];*/
 }
 
 void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size)

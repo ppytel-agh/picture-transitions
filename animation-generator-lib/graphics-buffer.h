@@ -23,7 +23,7 @@ public:
 	GraphicsBuffer(Size size, Pixel initialColour = {});
 	GraphicsBuffer(const GraphicsBuffer&);
 	GraphicsBuffer(GraphicsBuffer&&);
-	~GraphicsBuffer();
+	~GraphicsBuffer() = default;
 
 	bool operator==(const GraphicsBuffer&) const;
 	unsigned int getSubpixelIndex(BufferPixel px, SubpixelOffset offset) const;

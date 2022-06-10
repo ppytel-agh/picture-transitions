@@ -36,7 +36,7 @@ namespace unittests
 			GraphicsBuffer source({ 150, 100 });
 			source.setSubpixelValues(sourcebmp);
 			GraphicsBuffer expectedResult({ 150, 100 });
-			source.setSubpixelValues(testcase1bmp);
+			expectedResult.setSubpixelValues(testcase1bmp);
 			GraphicsBuffer section = source.createSection({17, 19}, {87, 54});
 			Assert::IsTrue(section == expectedResult);
 		}
@@ -45,25 +45,25 @@ namespace unittests
 			GraphicsBuffer source({ 150, 100 });
 			source.setSubpixelValues(sourcebmp);
 			GraphicsBuffer expectedResult({ 150, 100 });
-			source.setSubpixelValues(testcase2bmp);
+			expectedResult.setSubpixelValues(testcase2bmp);
 			GraphicsBuffer section = source.createSection({ -18, -27 }, {95, 63}, {0, 255, 255});
 			Assert::IsTrue(section == expectedResult);
 		}
 
 		TEST_METHOD(blit1Test) {
-			GraphicsBuffer source({ 150, 100 });
+			GraphicsBuffer source({ 150, 100 }, {255, 0, 0});
 			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 });
-			source.setSubpixelValues(testcase3bmp);
+			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
+			expectedResult.setSubpixelValues(testcase3bmp);
 			source.blit(source, { -7, 7 }, { 25,44 }, { 86, 54 });
 			Assert::IsTrue(source == expectedResult);
 		}
 
 		TEST_METHOD(blit2Test) {
-			GraphicsBuffer source({ 150, 100 });
+			GraphicsBuffer source({ 150, 100 }, { 255, 0, 0 });
 			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 });
-			source.setSubpixelValues(testcase4bmp);
+			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
+			expectedResult.setSubpixelValues(testcase4bmp);
 			source.blit(source, { 0,0 }, { -47, -36 }, { 150, 100 });
 			Assert::IsTrue(source == expectedResult);
 		}
