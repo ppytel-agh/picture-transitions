@@ -57,12 +57,12 @@ GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pix
 	return tmp;
 }
 
-std::vector<unsigned int> GraphicsBuffer::getSubpixelValues() const
+std::vector<unsigned char> GraphicsBuffer::getSubpixelValues() const
 {
-	return std::vector<unsigned int> {pixels->red, pixels->green, pixels->blue};
+	return std::vector<unsigned char> {pixels->red, pixels->green, pixels->blue};
 }
 
-void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned int>& newValues, unsigned int offset = 0)
+void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset = 0)
 {
 	pixels->red = newValues[0];
 	pixels->green = newValues[1];
