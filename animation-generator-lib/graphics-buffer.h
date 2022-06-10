@@ -2,6 +2,7 @@
 
 #include "buffer-pixel.h"
 #include <vector>
+#include <memory>
 
 struct Pixel {
 	unsigned char red, green, blue;
@@ -21,8 +22,8 @@ class GraphicsBuffer {
 public:
 	GraphicsBuffer(Size size, Pixel initialColour = {});
 	GraphicsBuffer(const GraphicsBuffer&);
-	// GraphicsBuffer(GraphicsBuffer&&);
-	~GraphicsBuffer() = default;
+	GraphicsBuffer(GraphicsBuffer&&);
+	~GraphicsBuffer();
 
 	bool operator==(const GraphicsBuffer&) const;
 	unsigned int getSubpixelIndex(BufferPixel px, SubpixelOffset offset) const;
@@ -33,5 +34,5 @@ public:
 
 private:
 	Size size;
-	Pixel* pixels;
+	std::unique_ptr<Pixel[]> pixels;
 };
