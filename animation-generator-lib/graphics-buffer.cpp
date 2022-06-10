@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 #include "graphics-buffer.h"
 
-GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour = {}) : size{size}
+GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour = {}) : size{ size }
 {
 	pixels[0] = initialColour;
-	
+
 	/*
 		0. (0, 0, 0)
 		1.
@@ -14,7 +13,7 @@ GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour = {}) : size{size}
 		5.
 		...
 
-	
+
 	*/
 
 	// czy powinienem uwzglêdniaæ lewy górny róg?
@@ -29,13 +28,13 @@ GraphicsBuffer::GraphicsBuffer(const GraphicsBuffer& buffer)
 bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
 {
 	if (size.width != buffer.size.width ||
-			size.height != buffer.size.height) return false;
+		size.height != buffer.size.height) return false;
 
 	for (unsigned int i = 0; i < size.width * size.height; i++)
 	{
 		if (pixels[i].red != buffer.pixels[i].red ||
-				pixels[i].green != buffer.pixels[i].red ||
-				pixels[i].blue != buffer.pixels[i].blue) return false;
+			pixels[i].green != buffer.pixels[i].red ||
+			pixels[i].blue != buffer.pixels[i].blue) return false;
 	}
 }
 
@@ -65,8 +64,8 @@ std::vector<unsigned int> GraphicsBuffer::getSubpixelValues() const
 
 void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned int>& newValues, unsigned int offset = 0)
 {
-	pixels->red= newValues[0];
-	pixels->green= newValues[1];
+	pixels->red = newValues[0];
+	pixels->green = newValues[1];
 	pixels->blue = newValues[2];
 }
 
@@ -74,8 +73,3 @@ void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLef
 {
 	// co z tymi rogami?
 }
-
-=======
-#include "graphics-buffer.h"
-
->>>>>>> dcc71a2c2c0e944523ef9139a2e01a94376265b4
