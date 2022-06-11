@@ -152,7 +152,7 @@
     <ClCompile Include="buffer-space-normalizer.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="norm-calc.cpp" />
-    <ClCompile Include="SimpleAnimationGenerator.cpp" />
+    <ClCompile Include="simple-animation-generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-frame-filler-interface.h" />
@@ -163,7 +163,7 @@
     <ClInclude Include="generate-animation-interface.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="norm-calc.h" />
-    <ClInclude Include="SimpleAnimationGenerator.h" />
+    <ClInclude Include="simple-animation-generator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

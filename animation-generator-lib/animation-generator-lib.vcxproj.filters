@@ -33,7 +33,7 @@
     <ClCompile Include="buffer-pixel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleAnimationGenerator.cpp">
+    <ClCompile Include="simple-animation-generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +62,7 @@
     <ClInclude Include="animation-frame-filler-interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleAnimationGenerator.h">
+    <ClInclude Include="simple-animation-generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
