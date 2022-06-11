@@ -159,6 +159,7 @@
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
     <ClInclude Include="misc.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
