@@ -8,12 +8,14 @@
 
 class Model {
 public:
+	void reset();
 	void setStartKeyframe(GraphicsBuffer&&);
 	GraphicsBuffer getStartKeyframe() const;
 	std::pair<unsigned int, unsigned int> getStartKeyframeSize() const;
 	void setEndKeyframe(GraphicsBuffer&&);
 	GraphicsBuffer getEndKeyframe() const;
 	std::pair<unsigned int, unsigned int> getEndKeyframeSize() const;
+	void setAnimationFrames(std::vector<GraphicsBuffer>&&);
 	unsigned int getNumberOfAnimationFrames() const;
 	GraphicsBuffer getAnimationFrame(unsigned int) const;
 	std::vector<GraphicsBuffer> getAllAnimationFrames() const;

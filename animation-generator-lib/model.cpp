@@ -1,5 +1,12 @@
 #include "model.h"
 
+void Model::reset()
+{
+	this->startKeyframe = nullptr;
+	this->endKeyframe = nullptr;
+	this->animationFrames = nullptr;
+}
+
 void Model::setStartKeyframe(GraphicsBuffer&& newStartKeyframe)
 {
 	this->startKeyframe = newStartKeyframe;
@@ -48,6 +55,11 @@ std::pair<unsigned int, unsigned int> Model::getEndKeyframeSize() const
 	else {
 		return this->endKeyframe->getSize();
 	}
+}
+
+void Model::setAnimationFrames(std::vector<GraphicsBuffer>&& newAnimationFrames)
+{
+	this->animationFrames = newAnimationFrames;
 }
 
 unsigned int Model::getNumberOfAnimationFrames() const
