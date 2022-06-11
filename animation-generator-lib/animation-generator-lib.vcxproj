@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animation-generator-app.cpp" />
+    <ClCompile Include="animation-generator-ui.cpp" />
     <ClCompile Include="buffer-pixel.cpp" />
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h" />
+    <ClInclude Include="animation-generator-ui.h" />
     <ClInclude Include="buffer-pixel.h" />
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
