@@ -150,6 +150,7 @@
     <ClCompile Include="buffer-pixel.cpp" />
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
+    <ClCompile Include="generate-animation-simple.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="norm-calc.cpp" />
   </ItemGroup>
