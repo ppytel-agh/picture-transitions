@@ -1,0 +1,2 @@
+#include "SimpleAnimationGenerator.h"
+
