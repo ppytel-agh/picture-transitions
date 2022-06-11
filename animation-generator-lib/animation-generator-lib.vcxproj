@@ -151,6 +151,7 @@
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
     <ClCompile Include="misc.cpp" />
+    <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
   </ItemGroup>
   <ItemGroup>
