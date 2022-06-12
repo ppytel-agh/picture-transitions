@@ -1,5 +1,9 @@
 #pragma once
 
+#include <string>
+#include <optional>
+#include <functional>
+
 #include "animation-generator-app.h"
 
 class AnimationGeneratorUI 
@@ -9,12 +13,12 @@ class AnimationGeneratorUI
 public:
 	AnimationGeneratorUI();
 
-	void addMessage(std::string&);
-	void setStartKeyframePreview(wxImage&);
-	void setEndKeyframePreview(wxImage&);
-	void resetAction();
-	void generateAnimationAction();
-	void showPreviewAction();
-	void saveAnimationAction();
+	void addMessage(wxFrame&, std::string&);
+	void setStartKeyframePreview(wxFrame&, wxImage&);
+	void setEndKeyframePreview(wxFrame&, wxImage&);
+	void resetAction(wxFrame&);
+	void generateAnimationAction(wxFrame&);
+	void showPreviewAction(wxFrame&);
+	void saveAnimationAction(wxFrame&);
 };
 

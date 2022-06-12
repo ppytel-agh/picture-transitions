@@ -5,37 +5,37 @@ AnimationGeneratorUI::AnimationGeneratorUI()
 	ui = new Frame(NULL);
 }
 
-void AnimationGeneratorUI::addMessage(std::string& text)
+void AnimationGeneratorUI::addMessage(wxFrame& frame, std::string& text)
 {
 
 }
 
-void AnimationGeneratorUI::setStartKeyframePreview(wxImage& img)
+void AnimationGeneratorUI::setStartKeyframePreview(wxFrame& frame, wxImage& img)
 {
 
 }
 
-void AnimationGeneratorUI::setEndKeyframePreview(wxImage& img)
+void AnimationGeneratorUI::setEndKeyframePreview(wxFrame& frame, wxImage& img)
 {
 
 }
 
-void AnimationGeneratorUI::resetAction()
+void AnimationGeneratorUI::resetAction(wxFrame& frame)
 {
 
 }
 
-void AnimationGeneratorUI::generateAnimationAction()
+void AnimationGeneratorUI::generateAnimationAction(wxFrame& frame)
 {
 
 }
 
-void AnimationGeneratorUI::showPreviewAction()
+void AnimationGeneratorUI::showPreviewAction(wxFrame& frame)
 {
 
 }
 
-void AnimationGeneratorUI::saveAnimationAction()
+void AnimationGeneratorUI::saveAnimationAction(wxFrame& frame)
 {
 
 }

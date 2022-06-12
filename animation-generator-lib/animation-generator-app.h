@@ -24,11 +24,6 @@ public:
 	void onGenerateFrame(wxCommandEvent& event) override;
 	void onScroll(wxScrollEvent& event) override;
 	void onAnimationSave(wxCommandEvent& event) override;
-	
-	void addMessage();
-	void setStartKeyframePreview(wxImage&);
-	void setEndKeyframePreview(wxImage&);
-	void saveAnimationAction();
 
 public:
 	Frame(wxWindow* parent);
