@@ -161,9 +161,6 @@
   <ItemGroup>
     <ClInclude Include="abstract-visual-test.h" />
     <ClInclude Include="tests\animation-generator-ui-test\animation-generator-ui-test.h" />
-    <ClInclude Include="tests\animation-generator-ui-test\endkeyframe.h" />
-    <ClInclude Include="tests\animation-generator-ui-test\interframe.h" />
-    <ClInclude Include="tests\animation-generator-ui-test\startkeyframe.h" />
     <ClInclude Include="tests\blit-tests\blit-tests.h" />
     <ClInclude Include="tests\converter-test\converter-test.h" />
     <ClInclude Include="tests\example-test\example-test.h" />

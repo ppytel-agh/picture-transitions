@@ -126,14 +126,19 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* choiceSizer;
 	choiceSizer = new wxBoxSizer( wxHORIZONTAL );
 
-	wxString chooseTransitionChoices[] = { wxT("example")};// { wxT("Wjazd obrazu z lewej strony"), wxT("Wjazd obrazu z prawej strony"), wxT("Wjazd obrazu z góry"), wxT("Wjazd obrazu z dołu"), wxT("Box wchodzący"), wxT("Box wychodzący"), wxT("Ściemnienie / Rozjaśnienie"), wxT("Zmiana wartości kanału alfa"), wxT("Obrót kartki w pionie"), wxT("Obrót kartki w poziomie"), wxT("Okiennica"), wxEmptyString };
+	transitionDropdownSizer = new wxBoxSizer( wxVERTICAL );
+
+	wxString chooseTransitionChoices[] = { wxT("example") };
 	int chooseTransitionNChoices = sizeof( chooseTransitionChoices ) / sizeof( wxString );
 	chooseTransition = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, chooseTransitionNChoices, chooseTransitionChoices, 0 );
-	chooseTransition->SetSelection( 11 );
+	chooseTransition->SetSelection( 0 );
 	chooseTransition->SetFont( wxFont( 9, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 	chooseTransition->SetBackgroundColour( wxColour( 230, 230, 230 ) );
 
-	choiceSizer->Add( chooseTransition, 0, wxALL, 5 );
+	transitionDropdownSizer->Add( chooseTransition, 0, wxALL, 5 );
+
+
+	choiceSizer->Add( transitionDropdownSizer, 1, wxEXPAND, 5 );
 
 	frameRate = new wxTextCtrl( this, wxID_ANY, wxT("3"), wxDefaultPosition, wxDefaultSize, 0 );
 	frameRate->SetBackgroundColour( wxColour( 230, 230, 230 ) );

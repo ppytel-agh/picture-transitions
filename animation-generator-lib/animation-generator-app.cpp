@@ -2,7 +2,7 @@
 
 bool AnimationGeneratorApp::OnInit()
 {
-	AnimationGeneratorUIActions actions;
+	AnimationGeneratorUIActions actions{};
 	this->mainFrame = new AnimationGeneratorMainFrame(nullptr, { "dupa" }, actions);
 	this->mainFrame->Show(true);
 	SetTopWindow(this->mainFrame);

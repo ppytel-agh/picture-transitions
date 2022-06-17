@@ -86,14 +86,5 @@
     <ClInclude Include="tests\converter-test\converter-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tests\animation-generator-ui-test\endkeyframe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tests\animation-generator-ui-test\interframe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tests\animation-generator-ui-test\startkeyframe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
