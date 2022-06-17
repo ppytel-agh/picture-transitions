@@ -7,6 +7,7 @@ VisualTestsManager::VisualTestsManager() {
 		VisualTestRecord{"test kompatybilnosci bufora gragicznego", new GraphicBufferTest()},
 		VisualTestRecord{"test wycinka", new SectionsTest()},
 		VisualTestRecord{"test blitowania", new BlitTests()},
+		VisualTestRecord{"test UI", new AnimationGeneratorUITest()},
 	};
 
 	this->numberOfTests = testsList.size();
