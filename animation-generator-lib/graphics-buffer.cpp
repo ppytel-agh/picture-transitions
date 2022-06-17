@@ -25,15 +25,26 @@ GraphicsBuffer::GraphicsBuffer(GraphicsBuffer&& bufferToMove) : size{ bufferToMo
 
 bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
 {
-	if (size.width != buffer.size.width ||
-		size.height != buffer.size.height) return false;
-
-	for (unsigned int i = 0; i < size.width * size.height; i++)
-	{
-		if (pixels[i].red != buffer.pixels[i].red ||
-			pixels[i].green != buffer.pixels[i].red ||
-			pixels[i].blue != buffer.pixels[i].blue) return false;
+	if (size.width != buffer.size.width) {
+		return false;
 	}
+	if (size.height != buffer.size.height) {
+		return false;
+	}
+
+	for (unsigned int i = 0; i < this->size.getNumberOfPixels(); i++)
+	{
+		if (pixels[i].red != buffer.pixels[i].red) {
+			return false;
+		}
+		if (pixels[i].green != buffer.pixels[i].green) {
+			return false;
+		}
+		if (pixels[i].blue != buffer.pixels[i].blue) {
+			return false;
+		}
+	}
+	return true;
 }
 
 unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset offset) const
@@ -59,17 +70,36 @@ GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pix
 
 std::vector<unsigned char> GraphicsBuffer::getSubpixelValues() const
 {
-	//to ma zrobiæ kopiê ca³ej tablicy pikseli
-	//return std::vector<unsigned char> {pixels->red, pixels->green, pixels->blue};
-	return std::vector<unsigned char>{};
+	std::vector<unsigned char> subpixelValues;
+	for (int i = 0; i < this->size.getNumberOfPixels(); i++) {
+		subpixelValues.push_back(this->pixels[i].red);
+		subpixelValues.push_back(this->pixels[i].green);
+		subpixelValues.push_back(this->pixels[i].blue);
+	}
+	return subpixelValues;
 }
 
 void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset)
 {
-	//to ma docelowo byæ u¿ywane przez kod, który wykonuje operacje piksel po pikselu
-	/*pixels->red = newValues[0];
-	pixels->green = newValues[1];
-	pixels->blue = newValues[2];*/
+	for (int i = 0; i < newValues.size(); i++) {
+		int j = i + offset;
+		int pixel = j / 3;
+		int subpixel = j % 3;
+		if (pixel >= this->size.getNumberOfPixels()) {
+			break;
+		}
+		switch (subpixel) {
+		case 0:
+			this->pixels[pixel].red = newValues[i];
+			break;
+		case 1:
+			this->pixels[pixel].green = newValues[i];
+			break;
+		case 2:
+			this->pixels[pixel].blue = newValues[i];
+			break;
+		}
+	}
 }
 
 Size GraphicsBuffer::getSize() const

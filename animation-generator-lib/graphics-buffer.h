@@ -6,6 +6,12 @@
 
 struct Pixel {
 	unsigned char red, green, blue;
+	Pixel& operator=(const Pixel& rPixel) {
+		this->red = rPixel.red;
+		this->green = rPixel.green;
+		this->blue = rPixel.blue;
+		return *this;
+	};
 };
 
 struct Size {
