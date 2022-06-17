@@ -66,7 +66,5 @@ void Frame::onScroll(wxScrollEvent& event)
 void Frame::onAnimationSave(wxCommandEvent& event)
 {
 	wxFileDialog WxSaveAnimationDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT));
-
 }
-
 
