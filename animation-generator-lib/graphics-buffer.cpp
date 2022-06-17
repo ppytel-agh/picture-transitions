@@ -168,75 +168,65 @@ Size GraphicsBuffer::calculateVisibleFrame(BufferPixel topLeft, Size size) const
 	return viewFrame;
 }
 
+void GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
+{
+	if (topLeft.i < 0) {
+		size.height += topLeft.i;
+		topLeft.i = 0;
+	}
+	if (topLeft.j < 0) {
+		size.width += topLeft.j;
+		topLeft.j = 0;
+	}
+	if (topLeft.j + size.width > this->size.width) {
+		int xDiff = this->size.width - topLeft.j;
+		if (xDiff < 0) {
+			size.width = 0;
+		}
+		else {
+			size.width = xDiff;
+		}
+	}
+	if (topLeft.i + size.height > this->size.height) {
+		int yDiff = this->size.height - topLeft.i;
+		if (yDiff < 0) {
+			size.height = 0;
+		}
+		else {
+			size.height = yDiff;
+		}
+	}
+}
+
 void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size)
 {
-	BufferPixel actualDestionationTopLeft = destinationTopLeft;
-	BufferPixel actualSourceTopLeft = sourceTopLeft;
-	Size actualSize = size;
-	if (sourceTopLeft.i < 0) {
-		actualDestionationTopLeft.i -= sourceTopLeft.i;
-		actualSize.height += sourceTopLeft.i;
-		actualSourceTopLeft.i = 0;
-	}
-	if (actualDestionationTopLeft.i >= this->size.height) {
-		return;
-	}
-	if (actualSize.height <= 0) {
-		return;
-	}
-	if (sourceTopLeft.j < 0) {
-		actualDestionationTopLeft.j -= sourceTopLeft.j;
-		actualSize.width += sourceTopLeft.j;
-		actualSourceTopLeft.j = 0;
-	}
-	if (actualDestionationTopLeft.j >= this->size.width) {
-		return;
-	}
-	if (actualSize.width <= 0) {
-		return;
-	}
-	if (actualSize.width > source.size.width) {
-		actualSize.width = source.size.width;
-	}
-	if (actualSize.height > source.size.height) {
-		actualSize.height = source.size.height;
-	}
-	if (actualDestionationTopLeft.i < 0) {
-		actualSize.height += actualDestionationTopLeft.i;
-		actualDestionationTopLeft.i = 0;
-	}
-	if (actualDestionationTopLeft.j < 0) {
-		actualSize.width += actualDestionationTopLeft.j;
-		actualDestionationTopLeft.j = 0;
-	}
+	BufferPixel sourceSectionTopLeft = sourceTopLeft;
+	Size sourceSectionSize = size;
+	source.adjustFrame(sourceSectionTopLeft, sourceSectionSize);
+	GraphicsBuffer sourceSection = source.createSection(sourceSectionTopLeft, sourceSectionSize);
 
-	BufferPixel actualSourceTopLeft = sourceTopLeft;
-	Size sourceViewframe = source.calculateVisibleFrame(sourceTopLeft, size);
-	Size destinationViewFrame = this->calculateVisibleFrame(destinationTopLeft, size);
-	Size copiedFrame = destinationViewFrame;
+	BufferPixel copyToTopLeft = destinationTopLeft;
+	Size copiedSize = sourceSectionSize;
+	this->adjustFrame(copyToTopLeft, copiedSize);
 
+	BufferPixel sectionCopiedTopLeft{};
 	if (destinationTopLeft.i < 0) {
-		actualDestionationTopLeft.i = 0;
+		sectionCopiedTopLeft.i = -destinationTopLeft.i;
 	}
 	if (destinationTopLeft.j < 0) {
-		actualDestionationTopLeft.j = 0;
+		sectionCopiedTopLeft.i = -destinationTopLeft.j;
 	}
-	BufferPixel actualSourceTopLeft = sourceTopLeft;
-	if (sourceTopLeft.i < 0) {
-		actualSourceTopLeft.i = 0;
-	}
-	if (sourceTopLeft.j < 0) {
-		actualSourceTopLeft.j = 0;
-	}
-	if (sourceViewframe.width < destinationViewFrame.width) {
-		copiedFrame.width = sourceViewframe.width;
-	}
-	if (sourceViewframe.height < destinationViewFrame.height) {
-		copiedFrame.height = sourceViewframe.height;
-	}
-	for (int i = 0; i < copiedFrame.height; i++) {
-		for (int j = 0; j < copiedFrame.width; j++) {
+	sourceSection.adjustFrame(sectionCopiedTopLeft, copiedSize);
 
+	for (int i = 0; i < copiedSize.height; i++) {
+		for (int j = 0; j < copiedSize.width; j++) {
+			BufferPixel destionationPixel = copyToTopLeft;
+			destionationPixel.i += i;
+			destionationPixel.j += j;
+			BufferPixel sourcePixel = sectionCopiedTopLeft;
+			sourcePixel.i += i;
+			sourcePixel.j += j;
+			this->pixels[this->getPixelIndex(destionationPixel)] = sourceSection.pixels[sourceSection.getPixelIndex(sourcePixel)];
 		}
 	}
 }

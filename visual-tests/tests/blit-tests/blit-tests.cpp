@@ -2,9 +2,10 @@
 
 void BlitTests::initializeUI(wxFrame* parentFrame)
 {
-	wxImage source("tests/sections-test/testsource.bmp");
-	wxImage expected("tests/sections-test/testcase3.bmp");
-	wxImage expected2("tests/sections-test/testcase4.bmp");
+	wxImage::AddHandler(new wxPNGHandler);
+	wxImage source("tests/blit-tests/testsource.png");
+	wxImage expected("tests/blit-tests/testcase3.bmp");
+	wxImage expected2("tests/blit-tests/testcase4.bmp");
 
 
 	GraphicsBuffer sourceBuffer({ static_cast<unsigned int>(source.GetWidth()), static_cast<unsigned int>(source.GetHeight()) });
@@ -39,7 +40,7 @@ void BlitTests::initializeUI(wxFrame* parentFrame)
 		}
 	}
 
-	wxFrame* simpleFrame = new wxFrame(parentFrame, wxID_ANY, "test wycinka", wxDefaultPosition, wxSize(200, 500));
+	wxFrame* simpleFrame = new wxFrame(parentFrame, wxID_ANY, "test wycinka", wxDefaultPosition, wxSize(500, 500));
 
 	simpleFrame->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	wxBoxSizer* mainSizer;

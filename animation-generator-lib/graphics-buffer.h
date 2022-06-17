@@ -47,4 +47,5 @@ private:
 	Size size;
 	std::unique_ptr<Pixel[]> pixels;
 	Size calculateVisibleFrame(BufferPixel, Size) const;
+	void adjustFrame(BufferPixel&, Size&) const;
 };
