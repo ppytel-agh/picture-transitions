@@ -42,6 +42,9 @@
     <ClCompile Include="tests\blit-tests\blit-tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\converter-test\converter-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="visual-tests-app.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\blit-tests\blit-tests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\converter-test\converter-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\animation-generator-ui-test\endkeyframe.h">

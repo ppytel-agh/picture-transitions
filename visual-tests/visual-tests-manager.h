@@ -7,6 +7,7 @@
 #include "tests/graphic-buffer/graphic-buffer-test.h"
 #include "tests/sections-test/sections-test.h"
 #include "tests/blit-tests/blit-tests.h"
+#include "tests/converter-test/converter-test.h"
 #include "tests/animation-generator-ui-test/animation-generator-ui-test.h"
 
 class VisualTestsManager {
