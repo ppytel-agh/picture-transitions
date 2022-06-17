@@ -1,18 +1,18 @@
 #pragma once
 
 #include <string>
-#include <optional>
+#include <vector>
 #include <functional>
+#include <wx/wx.h>
 
-#include "animation-generator-app.h"
+struct AnimationGeneratorUIActions {
+
+};
 
 class AnimationGeneratorUI 
 {
-	Frame* ui;
-
 public:
-	AnimationGeneratorUI();
-
+	AnimationGeneratorUI(std::vector<std::string>, AnimationGeneratorUIActions, wxFrame*);
 	void addMessage(wxFrame&, std::string&);
 	void setStartKeyframePreview(wxFrame&, wxImage&);
 	void setEndKeyframePreview(wxFrame&, wxImage&);
@@ -20,5 +20,7 @@ public:
 	void generateAnimationAction(wxFrame&);
 	void showPreviewAction(wxFrame&);
 	void saveAnimationAction(wxFrame&);
+private:
+	AnimationGeneratorUIActions actions;
 };
 
