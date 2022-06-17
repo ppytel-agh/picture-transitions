@@ -16,9 +16,10 @@ namespace unittests
 	public:
 		TEST_METHOD(initialization) {
 			GraphicsBuffer buffer({ 2, 1 }, { 127, 0, 68 });
-			Assert::AreEqual(2, buffer.GetSize().width);
-			Assert::AreEqual(1, buffer.GetSize().height);
-			Assert::AreEqual({ 127, 0, 68, 127, 0, 68 }, buffer.getSubpixelValues());
+			Assert::AreEqual(static_cast<unsigned int>(2), buffer.GetSize().width);
+			Assert::AreEqual(static_cast<unsigned int>(1), buffer.GetSize().height);
+			std::vector<unsigned char> expectedValues{ 127, 0, 68, 127, 0, 68 };
+			Assert::IsTrue(buffer.getSubpixelValues() == expectedValues);
 		}
 		TEST_METHOD(copyModification) {
 			GraphicsBuffer buffer({ 2, 2 });
@@ -65,12 +66,14 @@ namespace unittests
 		TEST_METHOD(puttedSubpixelsOffset) {
 			GraphicsBuffer buffer({ 2, 1 }, {128, 0, 255});
 			buffer.setSubpixelValues({ 64, 20 }, 2);
-			Assert::AreEqual({ 128, 0, 64, 20, 0, 255 }, buffer.getSubpixelValues());
+			std::vector<unsigned char> expectedValues{ 128, 0, 64, 20, 0, 255 };
+			Assert::IsTrue(buffer.getSubpixelValues() == expectedValues);
 		}
 		TEST_METHOD(puttedSubpixelsOverflow) {
 			GraphicsBuffer buffer({ 1, 1 });
 			buffer.setSubpixelValues({ 64, 20, 5, 102, 206 }, 5);
-			Assert::AreEqual({ 64, 20, 5 }, buffer.getSubpixelValues());
+			std::vector<unsigned char> expectedValues{ 64, 20, 5 };
+			Assert::IsTrue(buffer.getSubpixelValues() == expectedValues);
 		}
 		TEST_METHOD(comparisonTest) {
 			{

@@ -68,6 +68,16 @@ void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValu
 	pixels->blue = newValues[2];*/
 }
 
+Size GraphicsBuffer::GetSize() const
+{
+	return this->size;
+}
+
+bool GraphicsBuffer::IsEmpty() const
+{
+	return (this->size.width == 0) || (this->size.height == 0);
+}
+
 void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size)
 {
 	// co z tymi rogami?

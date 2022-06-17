@@ -31,7 +31,8 @@ public:
 	void blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size);
 	std::vector<unsigned char> getSubpixelValues() const;
 	void setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset = 0);
-
+	Size GetSize() const;
+	bool IsEmpty() const;
 private:
 	Size size;
 	std::unique_ptr<Pixel[]> pixels;
