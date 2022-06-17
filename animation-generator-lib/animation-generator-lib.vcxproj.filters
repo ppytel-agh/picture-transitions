@@ -33,10 +33,7 @@
     <ClCompile Include="buffer-pixel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mainFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="animation-generator-ui.cpp">
+    <ClCompile Include="graphics-buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,10 +56,7 @@
     <ClInclude Include="buffer-pixel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mainFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animation-generator-ui.h">
+    <ClInclude Include="graphics-buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

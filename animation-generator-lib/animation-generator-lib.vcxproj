@@ -75,8 +75,8 @@
     <LibraryPath>$(WXWIN)/lib/vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;C:\wxWidgets-3.1.5\include\msvc;C:\wxWidgets-3.1.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)/vc_x64_lib;$(WXWIN)/lib/vc_x64_lib;C:\wxWidgets-3.1.5\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;$(WXWIN)/include/msvc;$(WXWIN)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/vc_x64_lib;$(WXWIN)/lib/vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
@@ -147,21 +147,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animation-generator-app.cpp" />
-    <ClCompile Include="animation-generator-ui.cpp" />
     <ClCompile Include="buffer-pixel.cpp" />
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
-    <ClCompile Include="mainFrame.cpp" />
+    <ClCompile Include="graphics-buffer.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="norm-calc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h" />
-    <ClInclude Include="animation-generator-ui.h" />
     <ClInclude Include="buffer-pixel.h" />
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
-    <ClInclude Include="mainFrame.h" />
+    <ClInclude Include="graphics-buffer.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="norm-calc.h" />
   </ItemGroup>
