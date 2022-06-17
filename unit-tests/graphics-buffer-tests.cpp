@@ -96,23 +96,5 @@ namespace unittests
 			GraphicsBuffer b({ 5, 4 }, { 255, 255, 254 });
 			Assert::IsFalse(a == b);
 		}
-
-		/*TEST_METHOD(blit1Test) {
-			GraphicsBuffer source({ 150, 100 }, { 255, 0, 0 });
-			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
-			expectedResult.setSubpixelValues(testcase3bmp);
-			source.blit(source, { -7, 7 }, { 25,44 }, { 86, 54 });
-			Assert::IsTrue(source == expectedResult);
-		}
-
-		TEST_METHOD(blit2Test) {
-			GraphicsBuffer source({ 150, 100 }, { 255, 0, 0 });
-			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
-			expectedResult.setSubpixelValues(testcase4bmp);
-			source.blit(source, { 0,0 }, { -47, -36 }, { 150, 100 });
-			Assert::IsTrue(source == expectedResult);
-		}*/
 	};
 }

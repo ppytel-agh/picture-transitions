@@ -67,7 +67,7 @@ unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset off
 }
 
 GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour) const
-{	
+{
 	BufferPixel destionationStart{};
 	Size sectionOverlapSize = size;
 	if (topLeft.j + size.width > this->size.width) {
@@ -135,8 +135,55 @@ bool GraphicsBuffer::isEmpty() const
 	return (this->size.width == 0) || (this->size.height == 0);
 }
 
+Size GraphicsBuffer::calculateVisibleFrame(BufferPixel topLeft, Size size) const
+{
+	BufferPixel actualSourceTopLeft = topLeft;
+	Size viewFrame = size;
+	if (topLeft.i < 0) {
+		viewFrame.height += topLeft.i;
+		actualSourceTopLeft.i = 0;
+	}
+	if (topLeft.j < 0) {
+		viewFrame.width += topLeft.j;
+		actualSourceTopLeft.j = 0;
+	}
+	if (actualSourceTopLeft.j + size.width > this->size.width) {
+		int xDiff = this->size.width - actualSourceTopLeft.j;
+		if (xDiff < 0) {
+			viewFrame.width = 0;
+		}
+		else {
+			viewFrame.width = xDiff;
+		}
+	}
+	if (actualSourceTopLeft.i + size.height > this->size.height) {
+		int yDiff = this->size.height - actualSourceTopLeft.i;
+		if (yDiff < 0) {
+			viewFrame.height = 0;
+		}
+		else {
+			viewFrame.height = yDiff;
+		}
+	}
+	return viewFrame;
+}
+
 void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size)
 {
-	// co z tymi rogami?
-	//w instancji przesuwasz siê na pozycjê destinationTopLeft i wklejasz tam piksele pobrane z source od pozycji sourceTopLeft; piksele które nie mieszcz¹ siê w instancji trzeba zignorowaæ
+	BufferPixel actualSourceTopLeft = sourceTopLeft;
+	Size sourceViewframe = source.calculateVisibleFrame(sourceTopLeft, size);
+	Size destinationViewFrame = this->calculateVisibleFrame(destinationTopLeft, size);
+	Size copiedFrame = destinationViewFrame;
+	BufferPixel actualDestionationTopLeft = destinationTopLeft;
+	if (sourceViewframe.width < destinationViewFrame.width) {
+		copiedFrame.width = sourceViewframe.width;
+	}
+	if (sourceViewframe.height < destinationViewFrame.height) {
+		copiedFrame.height = sourceViewframe.height;
+	}
+	for (int i = 0; i < copiedFrame.height; i++) {
+		for (int j = 0; j < copiedFrame.width; j++) {
+
+		}
+	}
 }

@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tests\blit-tests\blit-tests.cpp" />
     <ClCompile Include="tests\example-test\example-test.cpp" />
     <ClCompile Include="tests\graphic-buffer\graphic-buffer-test.cpp" />
     <ClCompile Include="tests\sections-test\sections-test.cpp" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="abstract-visual-test.h" />
+    <ClInclude Include="tests\blit-tests\blit-tests.h" />
     <ClInclude Include="tests\example-test\example-test.h" />
     <ClInclude Include="tests\graphic-buffer\graphic-buffer-test.h" />
     <ClInclude Include="tests\graphic-buffer\sourcebmp.h" />
