@@ -14,6 +14,7 @@ public:
 	*/
 	int j;
 	bool operator==(const BufferPixel& bpx) const;
+	BufferPixel operator+(BufferPixel&) const;
 };
 
 std::wstring ToString(const BufferPixel& bpx);
