@@ -168,13 +168,16 @@ Size GraphicsBuffer::calculateVisibleFrame(BufferPixel topLeft, Size size) const
 	return viewFrame;
 }
 
-void GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
+BufferPixel GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
 {
+	BufferPixel adjustment{};
 	if (topLeft.i < 0) {
+		adjustment.i = -topLeft.i;
 		size.height += topLeft.i;
 		topLeft.i = 0;
 	}
 	if (topLeft.j < 0) {
+		adjustment.j = -topLeft.j;
 		size.width += topLeft.j;
 		topLeft.j = 0;
 	}
@@ -196,59 +199,29 @@ void GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
 			size.height = yDiff;
 		}
 	}
+	return adjustment;
 }
 
 void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size)
 {
-	int destinationRightBar = this->size.width;
-	if (destinationTopLeft.j + size.width < destinationRightBar) {
-		destinationRightBar = destinationTopLeft.j + size.width;
-	}
-	if (destinationTopLeft.j - sourceTopLeft.j + size.width < destinationRightBar) {
-		destinationRightBar = destinationTopLeft.j - sourceTopLeft.j + size.width;
-	}
-	if (destinationRightBar <= 0) {
-		return;
-	}
-	int destinationBottomBar = this->size.height;
-	if (destinationTopLeft.i + size.height < destinationBottomBar) {
-		destinationBottomBar = destinationTopLeft.j + size.height;
-	}
-	if (destinationTopLeft.i - sourceTopLeft.i + size.height < destinationBottomBar) {
-		destinationBottomBar = destinationTopLeft.j - sourceTopLeft.j + size.height;
-	}
-	if (destinationBottomBar <= 0) {
-		return;
-	}
-	int destinationLeftBar = 0;
-	int sourceXOffset = 0;
-	if (destinationTopLeft.j - sourceTopLeft.j > destinationLeftBar) {
-		destinationLeftBar = destinationTopLeft.j - sourceTopLeft.j;
-	}
-	if (destinationTopLeft.j > destinationLeftBar) {
-		destinationLeftBar = destinationTopLeft.j;
-		sourceXOffset = sourceTopLeft.j;
-	}
-	if (destinationLeftBar >= this->size.width) {
-		return;
-	}
-	int destinationTopBar = 0;
-	int sourceYOffset = 0;
-	if (destinationTopLeft.i - sourceTopLeft.i > destinationTopBar) {
-		destinationTopBar = destinationTopLeft.i - sourceTopLeft.i;
-	}
-	if (destinationTopLeft.i > destinationTopBar) {
-		destinationTopBar = destinationTopLeft.i;
-		sourceYOffset = sourceTopLeft.i;
-	}
-	if (destinationTopBar >= this->size.height) {
-		return;
-	}
-	for (int i = destinationTopBar; i < destinationBottomBar; i++) {
-		for (int j = destinationLeftBar; j < destinationRightBar; j++) {
-			int sourceI = (i - destinationTopBar) + sourceYOffset;
-			int sourceJ = (j - destinationLeftBar) + sourceXOffset;
-			this->pixels[this->getPixelIndex({ i, j })] = source.pixels[source.getPixelIndex({sourceI, sourceJ})];
+	BufferPixel sourceSectionTopLeft = sourceTopLeft;
+	Size sourceSectionSize = size;
+	BufferPixel sourceAdjustment = source.adjustFrame(sourceSectionTopLeft, sourceSectionSize);
+	GraphicsBuffer sourceSection = source.createSection(sourceSectionTopLeft, sourceSectionSize);
+
+	BufferPixel copyToTopLeft = destinationTopLeft + sourceAdjustment;	
+	Size copiedSize = sourceSectionSize;
+	BufferPixel destinationAdjustment = this->adjustFrame(copyToTopLeft, copiedSize);
+
+	for (int i = 0; i < copiedSize.height; i++) {
+		for (int j = 0; j < copiedSize.width; j++) {
+			BufferPixel destionationPixel = copyToTopLeft;
+			destionationPixel.i += i;
+			destionationPixel.j += j;
+			BufferPixel sourcePixel = destinationAdjustment;
+			sourcePixel.i += i;
+			sourcePixel.j += j;
+			this->pixels[this->getPixelIndex(destionationPixel)] = sourceSection.pixels[sourceSection.getPixelIndex(sourcePixel)];
 		}
 	}
 }
