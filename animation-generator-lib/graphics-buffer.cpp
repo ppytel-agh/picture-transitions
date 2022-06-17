@@ -135,39 +135,6 @@ bool GraphicsBuffer::isEmpty() const
 	return (this->size.width == 0) || (this->size.height == 0);
 }
 
-Size GraphicsBuffer::calculateVisibleFrame(BufferPixel topLeft, Size size) const
-{
-	BufferPixel actualSourceTopLeft = topLeft;
-	Size viewFrame = size;
-	if (topLeft.i < 0) {
-		viewFrame.height += topLeft.i;
-		actualSourceTopLeft.i = 0;
-	}
-	if (topLeft.j < 0) {
-		viewFrame.width += topLeft.j;
-		actualSourceTopLeft.j = 0;
-	}
-	if (actualSourceTopLeft.j + size.width > this->size.width) {
-		int xDiff = this->size.width - actualSourceTopLeft.j;
-		if (xDiff < 0) {
-			viewFrame.width = 0;
-		}
-		else {
-			viewFrame.width = xDiff;
-		}
-	}
-	if (actualSourceTopLeft.i + size.height > this->size.height) {
-		int yDiff = this->size.height - actualSourceTopLeft.i;
-		if (yDiff < 0) {
-			viewFrame.height = 0;
-		}
-		else {
-			viewFrame.height = yDiff;
-		}
-	}
-	return viewFrame;
-}
-
 BufferPixel GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
 {
 	BufferPixel adjustment{};
@@ -176,10 +143,18 @@ BufferPixel GraphicsBuffer::adjustFrame(BufferPixel& topLeft, Size& size) const
 		size.height += topLeft.i;
 		topLeft.i = 0;
 	}
+	else if (topLeft.i > this->size.height) {
+		adjustment.i = this->size.height - topLeft.i;
+		topLeft.i = this->size.height;
+	}
 	if (topLeft.j < 0) {
 		adjustment.j = -topLeft.j;
 		size.width += topLeft.j;
 		topLeft.j = 0;
+	}
+	else if (topLeft.j > this->size.width) {
+		adjustment.j = this->size.width - topLeft.j;
+		topLeft.j = this->size.width;
 	}
 	if (topLeft.j + size.width > this->size.width) {
 		int xDiff = this->size.width - topLeft.j;
@@ -209,7 +184,7 @@ void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLef
 	BufferPixel sourceAdjustment = source.adjustFrame(sourceSectionTopLeft, sourceSectionSize);
 	GraphicsBuffer sourceSection = source.createSection(sourceSectionTopLeft, sourceSectionSize);
 
-	BufferPixel copyToTopLeft = destinationTopLeft + sourceAdjustment;	
+	BufferPixel copyToTopLeft = destinationTopLeft + sourceAdjustment;
 	Size copiedSize = sourceSectionSize;
 	BufferPixel destinationAdjustment = this->adjustFrame(copyToTopLeft, copiedSize);
 
