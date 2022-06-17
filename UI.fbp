@@ -921,7 +921,7 @@
                                         <property name="minimum_size"></property>
                                         <property name="name">transitionDropdownSizer</property>
                                         <property name="orient">wxVERTICAL</property>
-                                        <property name="permission">none</property>
+                                        <property name="permission">public</property>
                                         <object class="sizeritem" expanded="0">
                                             <property name="border">5</property>
                                             <property name="flag">wxALL</property>
