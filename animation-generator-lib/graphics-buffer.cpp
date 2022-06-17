@@ -215,12 +215,12 @@ void GraphicsBuffer::blit(const GraphicsBuffer& source, BufferPixel sourceTopLef
 	Size copiedSize = sourceSectionSize;
 	this->adjustFrame(copyToTopLeft, copiedSize);
 
-	BufferPixel sectionCopiedTopLeft;
+	BufferPixel sectionCopiedTopLeft{};
 	if (destinationTopLeft.i < 0) {
-		sectionCopiedTopLeft.i = -destinationTopLeft.i;
+		sectionCopiedTopLeft.i -= destinationTopLeft.i;
 	}
 	if (destinationTopLeft.j < 0) {
-		sectionCopiedTopLeft.i = -destinationTopLeft.j;
+		sectionCopiedTopLeft.j -= destinationTopLeft.j;
 	}
 	sourceSection.adjustFrame(sectionCopiedTopLeft, copiedSize);
 
