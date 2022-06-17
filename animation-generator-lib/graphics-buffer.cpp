@@ -34,13 +34,15 @@ bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
 
 	for (unsigned int i = 0; i < this->size.getNumberOfPixels(); i++)
 	{
-		if (pixels[i].red != buffer.pixels[i].red) {
+		Pixel leftPixel = this->pixels[i];
+		Pixel rightPixel = buffer.pixels[i];
+		if (leftPixel.red != rightPixel.red) {
 			return false;
 		}
-		if (pixels[i].green != buffer.pixels[i].green) {
+		if (leftPixel.green != rightPixel.green) {
 			return false;
 		}
-		if (pixels[i].blue != buffer.pixels[i].blue) {
+		if (leftPixel.blue != rightPixel.blue) {
 			return false;
 		}
 	}
@@ -65,20 +67,24 @@ unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset off
 }
 
 GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour) const
-{
-	if (topLeft.i >= this->size.height || topLeft.j >= this->size.width) {
-		return GraphicsBuffer({ 0, 0 });
-	}
+{	
+	BufferPixel destionationStart{};
 	Size sectionOverlapSize = size;
 	if (topLeft.j + size.width > this->size.width) {
 		sectionOverlapSize.width = this->size.width - topLeft.j;
 	}
+	if (topLeft.j < 0) {
+		destionationStart.j = -topLeft.j;
+	}
 	if (topLeft.i + size.height > this->size.height) {
 		sectionOverlapSize.height = this->size.height - topLeft.i;
 	}
+	if (topLeft.i < 0) {
+		destionationStart.i = -topLeft.i;
+	}
 	GraphicsBuffer buffer(size, sectionBackgroundColour);
-	for (int i = 0; i < sectionOverlapSize.height; i++) {
-		for (int j = 0; j < sectionOverlapSize.width; j++) {
+	for (int i = destionationStart.i; i < sectionOverlapSize.height; i++) {
+		for (int j = destionationStart.j; j < sectionOverlapSize.width; j++) {
 			buffer.pixels[buffer.getPixelIndex({ i, j })] = this->pixels[this->getPixelIndex({ topLeft.i + i, topLeft.j + j })];
 		}
 	}

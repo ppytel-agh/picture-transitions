@@ -5,6 +5,7 @@ void SectionsTest::initializeUI(wxFrame* parentFrame)
 	wxImage::AddHandler(new wxPNGHandler);
 	wxImage source("tests/sections-test/testsource.png");
 	wxImage expected("tests/sections-test/testcase1.png");
+	wxImage expected2("tests/sections-test/testcase2.png");
 
 	GraphicsBuffer sourceBuffer({ static_cast<unsigned int>(source.GetWidth()), static_cast<unsigned int>(source.GetHeight()) });
 	{
@@ -26,6 +27,16 @@ void SectionsTest::initializeUI(wxFrame* parentFrame)
 		}
 	}
 
+	GraphicsBuffer section2Buffer = sourceBuffer.createSection({ -18, -27 }, { 95, 63 }, { 255, 255, 0});
+	Size bufferSize2 = section2Buffer.getSize();
+	wxImage section2(bufferSize2.width, bufferSize2.height);
+	{
+		std::vector<unsigned char> subpixels = section2Buffer.getSubpixelValues();
+		for (int i = 0; i < subpixels.size(); i++) {
+			section2.GetData()[i] = subpixels[i];
+		}
+	}
+
 	wxFrame* simpleFrame = new wxFrame(parentFrame, wxID_ANY, "test wycinka", wxDefaultPosition, wxSize(200, 500));
 
 	simpleFrame->SetSizeHints(wxDefaultSize, wxDefaultSize);
@@ -37,6 +48,11 @@ void SectionsTest::initializeUI(wxFrame* parentFrame)
 	mainSizer->Add(expectedPanel);
 	wxPanel* actualPanel = new wxPanel(simpleFrame, wxID_ANY, wxDefaultPosition, wxSize(90, 60));
 	mainSizer->Add(actualPanel);
+
+	wxPanel* expectedPanel2 = new wxPanel(simpleFrame, wxID_ANY, wxDefaultPosition, wxSize(100, 70));
+	mainSizer->Add(expectedPanel2);
+	wxPanel* actualPanel2 = new wxPanel(simpleFrame, wxID_ANY, wxDefaultPosition, wxSize(100, 70));
+	mainSizer->Add(actualPanel2);
 
 	simpleFrame->SetSizer(mainSizer);
 	simpleFrame->Layout();
@@ -64,5 +80,21 @@ void SectionsTest::initializeUI(wxFrame* parentFrame)
 		memDC.SelectObject(memoryBitmap);
 		wxClientDC dc(actualPanel);
 		dc.Blit(0, 0, 87, 54, &memDC, 0, 0);
+	}
+
+	{
+		wxBitmap memoryBitmap(expected2);
+		wxMemoryDC memDC;
+		memDC.SelectObject(memoryBitmap);
+		wxClientDC dc(expectedPanel2);
+		dc.Blit(0, 0, 95, 63, &memDC, 0, 0);
+	}
+
+	{
+		wxBitmap memoryBitmap(section2);
+		wxMemoryDC memDC;
+		memDC.SelectObject(memoryBitmap);
+		wxClientDC dc(actualPanel2);
+		dc.Blit(0, 0, 95, 63, &memDC, 0, 0);
 	}
 }

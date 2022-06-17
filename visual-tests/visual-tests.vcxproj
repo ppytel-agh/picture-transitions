@@ -160,6 +160,7 @@
     <ClInclude Include="tests\example-test\example-test.h" />
     <ClInclude Include="tests\graphic-buffer\graphic-buffer-test.h" />
     <ClInclude Include="tests\graphic-buffer\sourcebmp.h" />
+    <ClInclude Include="tests\graphic-buffer\testcase1bmp.h" />
     <ClInclude Include="tests\sections-test\sections-test.h" />
     <ClInclude Include="visual-test-record.h" />
     <ClInclude Include="visual-tests-app.h" />

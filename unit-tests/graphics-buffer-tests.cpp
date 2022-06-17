@@ -97,25 +97,7 @@ namespace unittests
 			Assert::IsFalse(a == b);
 		}
 
-		TEST_METHOD(section1Test) {
-			GraphicsBuffer source({ 150, 100 });
-			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 87, 54 });
-			expectedResult.setSubpixelValues(testcase1bmp);
-			GraphicsBuffer section = source.createSection({ 17, 19 }, { 87, 54 });
-			Assert::IsTrue(section == expectedResult);
-		}
-
-		TEST_METHOD(section2Test) {
-			GraphicsBuffer source({ 150, 100 });
-			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 });
-			expectedResult.setSubpixelValues(testcase2bmp);
-			GraphicsBuffer section = source.createSection({ -18, -27 }, { 95, 63 }, { 0, 255, 255 });
-			Assert::IsTrue(section == expectedResult);
-		}
-
-		TEST_METHOD(blit1Test) {
+		/*TEST_METHOD(blit1Test) {
 			GraphicsBuffer source({ 150, 100 }, { 255, 0, 0 });
 			source.setSubpixelValues(sourcebmp);
 			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
@@ -131,6 +113,6 @@ namespace unittests
 			expectedResult.setSubpixelValues(testcase4bmp);
 			source.blit(source, { 0,0 }, { -47, -36 }, { 150, 100 });
 			Assert::IsTrue(source == expectedResult);
-		}
+		}*/
 	};
 }
