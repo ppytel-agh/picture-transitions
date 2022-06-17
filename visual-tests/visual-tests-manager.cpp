@@ -5,6 +5,7 @@ VisualTestsManager::VisualTestsManager() {
 	std::initializer_list<VisualTestRecord> testsList{
 		VisualTestRecord{"przyk³adowy test", new ExampleTest()},
 		VisualTestRecord{"test kompatybilnosci bufora gragicznego", new GraphicBufferTest()},
+		VisualTestRecord{"test wycinka", new SectionsTest()},
 	};
 
 	this->numberOfTests = testsList.size();
