@@ -4,7 +4,7 @@
 #include <vector>
 #include <functional>
 #include <wx/wx.h>
-#include "animation-generator-main-frame.h"
+#include "animation_generator_main_frame.h"
 
 class AnimationGeneratorUI
 {

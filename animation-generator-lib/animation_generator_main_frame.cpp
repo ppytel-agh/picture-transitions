@@ -1,4 +1,4 @@
-#include "animation-generator-main-frame.h"
+#include "animation_generator_main_frame.h"
 
 AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
 	:

@@ -39,10 +39,10 @@
     <ClCompile Include="animation-generator-gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animation-generator-main-frame.cpp">
+    <ClCompile Include="animation-generator-ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animation-generator-ui.cpp">
+    <ClCompile Include="animation_generator_main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,13 +71,13 @@
     <ClInclude Include="animation-generator-gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="animation-generator-main-frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="animation-generator-ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="animation-generator-ui-actions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation_generator_main_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
