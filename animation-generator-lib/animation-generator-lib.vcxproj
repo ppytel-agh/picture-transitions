@@ -153,6 +153,7 @@
     <ClCompile Include="graphics-buffer.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="norm-calc.cpp" />
+    <ClCompile Include="wxWidgets-buffer-converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="graphics-buffer.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="norm-calc.h" />
+    <ClInclude Include="wxWidgets-buffer-converter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
