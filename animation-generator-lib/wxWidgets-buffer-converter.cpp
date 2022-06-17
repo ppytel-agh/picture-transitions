@@ -2,7 +2,8 @@
 
 GraphicsBuffer WxWidgetsBufferConverter::convertWxImageToBuffer(const wxImage& wxIm)
 {
-    GraphicsBuffer buffer(wxIm.GetWidth(), wxIm.GetHeight());
+    Size bufferSize{ wxIm.GetWidth(), wxIm.GetHeight() };
+    GraphicsBuffer buffer(bufferSize);
     int noSubpixels = wxIm.GetWidth() * wxIm.GetHeight() * 3;
     std::vector<unsigned char> subpixels(noSubpixels);
     for (int i = 0; i < noSubpixels; i++) {
