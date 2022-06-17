@@ -10,6 +10,9 @@ struct Pixel {
 
 struct Size {
 	unsigned int width, height;
+	unsigned int getNumberOfPixels() const {
+		return this->width * this->height;
+	}
 };
 
 enum SubpixelOffset {
@@ -31,8 +34,8 @@ public:
 	void blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size);
 	std::vector<unsigned char> getSubpixelValues() const;
 	void setSubpixelValues(const std::vector<unsigned char>& newValues, unsigned int offset = 0);
-	Size GetSize() const;
-	bool IsEmpty() const;
+	Size getSize() const;
+	bool isEmpty() const;
 private:
 	Size size;
 	std::unique_ptr<Pixel[]> pixels;

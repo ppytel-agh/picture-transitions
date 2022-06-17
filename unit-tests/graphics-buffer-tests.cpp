@@ -16,8 +16,8 @@ namespace unittests
 	public:
 		TEST_METHOD(initialization) {
 			GraphicsBuffer buffer({ 2, 1 }, { 127, 0, 68 });
-			Assert::AreEqual(static_cast<unsigned int>(2), buffer.GetSize().width);
-			Assert::AreEqual(static_cast<unsigned int>(1), buffer.GetSize().height);
+			Assert::AreEqual(static_cast<unsigned int>(2), buffer.getSize().width);
+			Assert::AreEqual(static_cast<unsigned int>(1), buffer.getSize().height);
 			std::vector<unsigned char> expectedValues{ 127, 0, 68, 127, 0, 68 };
 			Assert::IsTrue(buffer.getSubpixelValues() == expectedValues);
 		}
@@ -31,40 +31,40 @@ namespace unittests
 		TEST_METHOD(emptyBuffer) {
 			{
 				GraphicsBuffer buffer({ 2, 2 });
-				Assert::IsFalse(buffer.IsEmpty());
+				Assert::IsFalse(buffer.isEmpty());
 			}
 			{
 				GraphicsBuffer buffer({ 2, 0 });
-				Assert::IsTrue(buffer.IsEmpty());
+				Assert::IsTrue(buffer.isEmpty());
 			}
 			{
 				GraphicsBuffer buffer({ 0, 2 });
-				Assert::IsTrue(buffer.IsEmpty());
+				Assert::IsTrue(buffer.isEmpty());
 			}
 		}
 		TEST_METHOD(moveSemantics) {
 			GraphicsBuffer buffer({ 2, 2 });
 			GraphicsBuffer copyOfOriginal(buffer);
 			GraphicsBuffer moved = std::move(buffer);
-			Assert::IsTrue(buffer.IsEmpty());
+			Assert::IsTrue(buffer.isEmpty());
 			Assert::IsFalse(copyOfOriginal == buffer);
 			Assert::IsTrue(moved == copyOfOriginal);
 		}
 		TEST_METHOD(receivedSubpixelsCopyModification) {
-			GraphicsBuffer buffer({ 2, 2 }, {0, 0, 0});
+			GraphicsBuffer buffer({ 2, 2 }, { 0, 0, 0 });
 			std::vector<unsigned char> subpixels = buffer.getSubpixelValues();
 			subpixels[0] = 128;
 			Assert::IsFalse(subpixels == buffer.getSubpixelValues());
 		}
 		TEST_METHOD(puttedSubpixelsCopyModification) {
 			GraphicsBuffer buffer({ 2, 1 });
-			std::vector<unsigned char> subpixels{ 128, 0, 128, 128, 0, 128};
+			std::vector<unsigned char> subpixels{ 128, 0, 128, 128, 0, 128 };
 			buffer.setSubpixelValues(subpixels);
 			subpixels[0] = 255;
 			Assert::IsTrue(subpixels == buffer.getSubpixelValues());
 		}
 		TEST_METHOD(puttedSubpixelsOffset) {
-			GraphicsBuffer buffer({ 2, 1 }, {128, 0, 255});
+			GraphicsBuffer buffer({ 2, 1 }, { 128, 0, 255 });
 			buffer.setSubpixelValues({ 64, 20 }, 2);
 			std::vector<unsigned char> expectedValues{ 128, 0, 64, 20, 0, 255 };
 			Assert::IsTrue(buffer.getSubpixelValues() == expectedValues);
@@ -112,7 +112,7 @@ namespace unittests
 		}
 
 		TEST_METHOD(blit1Test) {
-			GraphicsBuffer source({ 150, 100 }, {255, 0, 0});
+			GraphicsBuffer source({ 150, 100 }, { 255, 0, 0 });
 			source.setSubpixelValues(sourcebmp);
 			GraphicsBuffer expectedResult({ 150, 100 }, { 0, 0, 255 });
 			expectedResult.setSubpixelValues(testcase3bmp);

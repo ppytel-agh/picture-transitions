@@ -1,22 +1,26 @@
 #include "graphics-buffer.h"
 
-GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour) : size{ size }, pixels{ std::make_unique<Pixel[]>(size.width * size.height) }
-{	
-	for (unsigned int i = 0; i < size.width * size.height; i++)
+GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour) : size{ size }, pixels{ std::make_unique<Pixel[]>(size.getNumberOfPixels()) }
+{
+	for (unsigned int i = 0; i < size.getNumberOfPixels(); i++)
 	{
 		this->pixels[i] = initialColour;
 	}
 }
 
-GraphicsBuffer::GraphicsBuffer(const GraphicsBuffer& buffer)
+GraphicsBuffer::GraphicsBuffer(const GraphicsBuffer& buffer) : size{ buffer.size }, pixels{ std::make_unique<Pixel[]>(size.getNumberOfPixels()) }
 {
-	size = buffer.size;
-	//pixels = buffer.pixels;//èLE - kaødy bufor jest ekskluzywny
+	for (unsigned int i = 0; i < size.getNumberOfPixels(); i++)
+	{
+		this->pixels[i] = buffer.pixels[i];
+	}
 }
 
-GraphicsBuffer::GraphicsBuffer(GraphicsBuffer&&)
+GraphicsBuffer::GraphicsBuffer(GraphicsBuffer&& bufferToMove) : size{ bufferToMove.size }, pixels{ std::move(bufferToMove.pixels) }
 {
-	//to siÍ przyda do funkcji, ktÛre generujπ jakiú bufor
+	bufferToMove.size.width = 0;
+	bufferToMove.size.height = 0;
+	bufferToMove.pixels = nullptr;
 }
 
 bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
@@ -68,12 +72,12 @@ void GraphicsBuffer::setSubpixelValues(const std::vector<unsigned char>& newValu
 	pixels->blue = newValues[2];*/
 }
 
-Size GraphicsBuffer::GetSize() const
+Size GraphicsBuffer::getSize() const
 {
 	return this->size;
 }
 
-bool GraphicsBuffer::IsEmpty() const
+bool GraphicsBuffer::isEmpty() const
 {
 	return (this->size.width == 0) || (this->size.height == 0);
 }
