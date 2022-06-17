@@ -79,6 +79,7 @@ namespace unittests
 			std::vector<unsigned char> actualValues = buffer.getSubpixelValues();
 			Assert::IsTrue(actualValues == expectedValues);
 		}
+
 		TEST_METHOD(comparisonTest) {
 			{
 				GraphicsBuffer a({ 5, 5 });
@@ -90,17 +91,16 @@ namespace unittests
 				GraphicsBuffer b({ 5, 4 });
 				Assert::IsFalse(a == b);
 			}
-			{
-				GraphicsBuffer a({ 5, 5 }, { 255, 255, 255 });
-				GraphicsBuffer b({ 5, 4 }, { 255, 255, 254 });
-				Assert::IsFalse(a == b);
-			}
+
+			GraphicsBuffer a({ 5, 5 }, { 255, 255, 255 });
+			GraphicsBuffer b({ 5, 4 }, { 255, 255, 254 });
+			Assert::IsFalse(a == b);
 		}
 
 		TEST_METHOD(section1Test) {
 			GraphicsBuffer source({ 150, 100 });
 			source.setSubpixelValues(sourcebmp);
-			GraphicsBuffer expectedResult({ 150, 100 });
+			GraphicsBuffer expectedResult({ 87, 54 });
 			expectedResult.setSubpixelValues(testcase1bmp);
 			GraphicsBuffer section = source.createSection({ 17, 19 }, { 87, 54 });
 			Assert::IsTrue(section == expectedResult);

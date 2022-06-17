@@ -35,6 +35,7 @@ public:
 	~GraphicsBuffer() = default;
 
 	bool operator==(const GraphicsBuffer&) const;
+	unsigned int getPixelIndex(BufferPixel px) const;
 	unsigned int getSubpixelIndex(BufferPixel px, SubpixelOffset offset) const;
 	GraphicsBuffer createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour = {}) const;
 	void blit(const GraphicsBuffer& source, BufferPixel sourceTopLeft, BufferPixel destinationTopLeft, Size size);

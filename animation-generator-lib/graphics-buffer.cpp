@@ -47,6 +47,11 @@ bool GraphicsBuffer::operator==(const GraphicsBuffer& buffer) const
 	return true;
 }
 
+unsigned int GraphicsBuffer::getPixelIndex(BufferPixel px) const
+{
+	return this->size.width * px.i + px.j;
+}
+
 unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset offset) const
 {
 	//tutaj nie trzeba siê odnosiæ do tablicy pikseli, po prostu wyliczyæ indeks na w oparciu o rozmiar bufora i wspó³rzêdn¹ w przestrzeni bufora(BufferPixel)
@@ -61,11 +66,23 @@ unsigned int GraphicsBuffer::getSubpixelIndex(BufferPixel px, SubpixelOffset off
 
 GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pixel sectionBackgroundColour) const
 {
-	// jak ten lewy górny róg ³¹czy siê z tym bufferem?
-	//top left to jest wspó³rzêdna piksela instancji, który bêdzie stanowi³ lewy górny piksel wycinka
-	GraphicsBuffer tmp = GraphicsBuffer(size, sectionBackgroundColour);
-
-	return tmp;
+	if (topLeft.i >= this->size.height || topLeft.j >= this->size.width) {
+		return GraphicsBuffer({ 0, 0 });
+	}
+	Size sectionOverlapSize = size;
+	if (topLeft.j + size.width > this->size.width) {
+		sectionOverlapSize.width = this->size.width - topLeft.j;
+	}
+	if (topLeft.i + size.height > this->size.height) {
+		sectionOverlapSize.height = this->size.height - topLeft.i;
+	}
+	GraphicsBuffer buffer(size, sectionBackgroundColour);
+	for (int i = 0; i < sectionOverlapSize.height; i++) {
+		for (int j = 0; j < sectionOverlapSize.width; j++) {
+			buffer.pixels[buffer.getPixelIndex({ i, j })] = this->pixels[this->getPixelIndex({ topLeft.i + i, topLeft.j + j })];
+		}
+	}
+	return buffer;
 }
 
 std::vector<unsigned char> GraphicsBuffer::getSubpixelValues() const
