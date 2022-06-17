@@ -5,7 +5,7 @@ void BlitTests::initializeUI(wxFrame* parentFrame)
 	wxImage::AddHandler(new wxPNGHandler);
 	wxImage source("tests/blit-tests/testsource.png");
 	wxImage expected("tests/blit-tests/testcase3.bmp");
-	wxImage expected2("tests/blit-tests/testcase4.bmp");
+	wxImage expected2("tests/blit-tests/blittest2.bmp");
 
 
 	GraphicsBuffer sourceBuffer({ static_cast<unsigned int>(source.GetWidth()), static_cast<unsigned int>(source.GetHeight()) });
