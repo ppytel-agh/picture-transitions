@@ -1,41 +1,25 @@
 #include "animation-generator-ui.h"
 
-AnimationGeneratorUI::AnimationGeneratorUI()
+AnimationGeneratorUI::AnimationGeneratorUI(AnimationGeneratorMainFrame& mainFrame): mainFrame(mainFrame)
 {
-	ui = new Frame(NULL);
 }
 
-void AnimationGeneratorUI::addMessage(wxFrame& frame, std::string& text)
+void AnimationGeneratorUI::setStartKeyframePreview(const wxImage&)
 {
-
 }
 
-void AnimationGeneratorUI::setStartKeyframePreview(wxFrame& frame, wxImage& img)
+void AnimationGeneratorUI::setEndKeyframePreview(const wxImage&)
 {
-
 }
 
-void AnimationGeneratorUI::setEndKeyframePreview(wxFrame& frame, wxImage& img)
+void AnimationGeneratorUI::addMessage(std::string)
 {
-
 }
 
-void AnimationGeneratorUI::resetAction(wxFrame& frame)
+void AnimationGeneratorUI::setAnimationFramePreview(const wxImage&)
 {
-
 }
 
-void AnimationGeneratorUI::generateAnimationAction(wxFrame& frame)
+void AnimationGeneratorUI::setAnimationFrameCountSlider(unsigned int)
 {
-
-}
-
-void AnimationGeneratorUI::showPreviewAction(wxFrame& frame)
-{
-
-}
-
-void AnimationGeneratorUI::saveAnimationAction(wxFrame& frame)
-{
-
 }

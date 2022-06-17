@@ -4,23 +4,18 @@
 #include <vector>
 #include <functional>
 #include <wx/wx.h>
+#include "animation-generator-main-frame.h"
 
-struct AnimationGeneratorUIActions {
-
-};
-
-class AnimationGeneratorUI 
+class AnimationGeneratorUI
 {
 public:
-	AnimationGeneratorUI(std::vector<std::string>, AnimationGeneratorUIActions, wxFrame*);
-	void addMessage(wxFrame&, std::string&);
-	void setStartKeyframePreview(wxFrame&, wxImage&);
-	void setEndKeyframePreview(wxFrame&, wxImage&);
-	void resetAction(wxFrame&);
-	void generateAnimationAction(wxFrame&);
-	void showPreviewAction(wxFrame&);
-	void saveAnimationAction(wxFrame&);
+	AnimationGeneratorUI(AnimationGeneratorMainFrame& mainFrame);
+	void setStartKeyframePreview(const wxImage&);
+	void setEndKeyframePreview(const wxImage&);
+	void addMessage(std::string);
+	void setAnimationFramePreview(const wxImage&);
+	void setAnimationFrameCountSlider(unsigned int);
 private:
-	AnimationGeneratorUIActions actions;
+	AnimationGeneratorMainFrame& mainFrame;
 };
 

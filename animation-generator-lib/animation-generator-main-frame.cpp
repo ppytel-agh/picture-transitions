@@ -1,48 +1,65 @@
 #include "animation-generator-main-frame.h"
 
-AnimationGeneratorMainFrame::AnimationGeneratorMainFrame( wxWindow* parent )
-:
-MainFrame( parent )
+AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
+	:
+	MainFrame(parent)
 {
 
 }
 
-void AnimationGeneratorMainFrame::onReset( wxCommandEvent& event )
+AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent, std::vector<std::string> transitionNames, AnimationGeneratorUIActions& actions) : MainFrame(parent), actions(&actions)
 {
-// TODO: Implement onReset
+	this->animationGeneratorUI = new AnimationGeneratorUI(*this);
+	for (int i = 0; i < transitionNames.size(); i++) {
+		this->chooseTransition->SetString(i, transitionNames[i]);
+	}
 }
 
-void AnimationGeneratorMainFrame::onLoadInitFrame( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onReset(wxCommandEvent& event)
 {
-// TODO: Implement onLoadInitFrame
+	// TODO: Implement onReset
 }
 
-void AnimationGeneratorMainFrame::onLoadLastFrame( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 {
-// TODO: Implement onLoadLastFrame
+	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+
+	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
+	{
+		//this->
+	}
 }
 
-void AnimationGeneratorMainFrame::onTransitionChoice( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onLoadLastFrame(wxCommandEvent& event)
 {
-// TODO: Implement onTransitionChoice
+	wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+
+	if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
+	{
+	}
 }
 
-void AnimationGeneratorMainFrame::onFrameRateEnter( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onTransitionChoice(wxCommandEvent& event)
 {
-// TODO: Implement onFrameRateEnter
+	// TODO: Implement onTransitionChoice
 }
 
-void AnimationGeneratorMainFrame::onGenerateFrame( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onFrameRateEnter(wxCommandEvent& event)
 {
-// TODO: Implement onGenerateFrame
+	// TODO: Implement onFrameRateEnter
 }
 
-void AnimationGeneratorMainFrame::onScroll( wxScrollEvent& event )
+void AnimationGeneratorMainFrame::onGenerateFrame(wxCommandEvent& event)
 {
-// TODO: Implement onScroll
+	// TODO: Implement onGenerateFrame
 }
 
-void AnimationGeneratorMainFrame::onAnimationSave( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onScroll(wxScrollEvent& event)
 {
-// TODO: Implement onAnimationSave
+	// TODO: Implement onScroll
+}
+
+void AnimationGeneratorMainFrame::onAnimationSave(wxCommandEvent& event)
+{
+	wxFileDialog WxSaveAnimationDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT));
 }

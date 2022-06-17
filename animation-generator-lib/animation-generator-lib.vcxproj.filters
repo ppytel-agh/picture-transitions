@@ -77,5 +77,8 @@
     <ClInclude Include="animation-generator-ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="animation-generator-ui-actions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
