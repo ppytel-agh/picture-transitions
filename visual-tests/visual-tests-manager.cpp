@@ -9,6 +9,7 @@ VisualTestsManager::VisualTestsManager() {
 		VisualTestRecord{"test blitowania", new BlitTests()},
 		VisualTestRecord{"test konwertera", new ConverterTest()},
 		VisualTestRecord{"test UI", new AnimationGeneratorUITest()},
+		VisualTestRecord{"test generatora animacji", new AnimationGeneratorTest()},
 	};
 
 	this->numberOfTests = testsList.size();
