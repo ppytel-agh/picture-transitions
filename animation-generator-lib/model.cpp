@@ -49,7 +49,7 @@ GraphicsBuffer Model::getEndKeyframe() const
 
 Size Model::getEndKeyframeSize() const
 {
-	if (this->startKeyframe == nullptr) {
+	if (this->endKeyframe == nullptr) {
 		return { 0, 0 };
 	}
 	else {
@@ -59,7 +59,7 @@ Size Model::getEndKeyframeSize() const
 
 void Model::setAnimationFrames(std::vector<GraphicsBuffer>&& newAnimationFrames)
 {
-	this->animationFrames.reset(new std::vector<GraphicsBuffer>(newAnimationFrames));
+	this->animationFrames.reset(new std::vector<GraphicsBuffer>(std::move(newAnimationFrames)));
 }
 
 unsigned int Model::getNumberOfAnimationFrames() const
