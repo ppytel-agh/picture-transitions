@@ -26,7 +26,7 @@ public:
 	* Returns {0,0} is start keyframe is not set
 	* @return size of start keyframe
 	*/
-	std::pair<unsigned int, unsigned int> getStartKeyframeSize() const;
+	Size getStartKeyframeSize() const;
 	/**
 	* model claims ownership of end keyframe buffer
 	* @param nekf new end keyframe
@@ -41,7 +41,7 @@ public:
 	* Returns {0,0} is end keyframe is not set
 	* @return size of end keyframe
 	*/
-	std::pair<unsigned int, unsigned int> getEndKeyframeSize() const;
+	Size getEndKeyframeSize() const;
 	void setAnimationFrames(std::vector<GraphicsBuffer>&&);
 	/**
 	* If animation is not set, then 0 is returned

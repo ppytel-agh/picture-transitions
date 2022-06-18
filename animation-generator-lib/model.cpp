@@ -9,20 +9,20 @@ void Model::reset()
 
 void Model::setStartKeyframe(GraphicsBuffer&& newStartKeyframe)
 {
-	this->startKeyframe = newStartKeyframe;
+	this->startKeyframe.reset(new GraphicsBuffer(std::move(newStartKeyframe)));
 }
 
 GraphicsBuffer Model::getStartKeyframe() const
 {
 	if (this->startKeyframe == nullptr) {
-		return GraphicsBuffer(0, 0);
+		return GraphicsBuffer({ 0, 0 });
 	}
 	else {
 		return GraphicsBuffer(*this->startKeyframe);
 	}
 }
 
-std::pair<unsigned int, unsigned int> Model::getStartKeyframeSize() const
+Size Model::getStartKeyframeSize() const
 {
 	if (this->startKeyframe == nullptr) {
 		return { 0, 0 };
@@ -34,20 +34,20 @@ std::pair<unsigned int, unsigned int> Model::getStartKeyframeSize() const
 
 void Model::setEndKeyframe(GraphicsBuffer&& newEndKeyframe)
 {
-	this->endKeyframe = newEndKeyframe;
+	this->endKeyframe.reset(new GraphicsBuffer(std::move(newEndKeyframe)));
 }
 
 GraphicsBuffer Model::getEndKeyframe() const
 {
-	if (this->startKeyframe == nullptr) {
-		return GraphicsBuffer(0, 0);
+	if (this->endKeyframe == nullptr) {
+		return GraphicsBuffer({ 0, 0 });
 	}
 	else {
 		return GraphicsBuffer(*this->endKeyframe);
 	}
 }
 
-std::pair<unsigned int, unsigned int> Model::getEndKeyframeSize() const
+Size Model::getEndKeyframeSize() const
 {
 	if (this->startKeyframe == nullptr) {
 		return { 0, 0 };
@@ -59,7 +59,7 @@ std::pair<unsigned int, unsigned int> Model::getEndKeyframeSize() const
 
 void Model::setAnimationFrames(std::vector<GraphicsBuffer>&& newAnimationFrames)
 {
-	this->animationFrames = newAnimationFrames;
+	this->animationFrames.reset(new std::vector<GraphicsBuffer>(newAnimationFrames));
 }
 
 unsigned int Model::getNumberOfAnimationFrames() const
@@ -75,10 +75,10 @@ unsigned int Model::getNumberOfAnimationFrames() const
 GraphicsBuffer Model::getAnimationFrame(unsigned int frameIndex) const
 {
 	if (this->animationFrames == nullptr) {
-		return GraphicsBuffer(0, 0);
+		return GraphicsBuffer({ 0, 0 });
 	}
 	else {
-		return GraphicsBuffer(this->animationFrames[frameIndex]);
+		return GraphicsBuffer(( * this->animationFrames)[frameIndex]);
 	}
 }
 
@@ -88,6 +88,6 @@ std::vector<GraphicsBuffer> Model::getAllAnimationFrames() const
 		return std::vector<GraphicsBuffer>();
 	}
 	else {
-		return this->animationFrames;
+		return *this->animationFrames;
 	}
 }
