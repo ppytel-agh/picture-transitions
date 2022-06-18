@@ -30,6 +30,9 @@
     <ClCompile Include="visual-tests-frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\animation-generator-ui-test\animation-generator-ui-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="tests\graphic-buffer\graphic-buffer-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="visual-test-record.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\animation-generator-ui-test\animation-generator-ui-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\graphic-buffer\graphic-buffer-test.h">
