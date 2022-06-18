@@ -33,6 +33,21 @@
     <ClCompile Include="buffer-pixel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphics-buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation-generator-gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation-generator-ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationGeneratorMainFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wxWidgets-buffer-converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,6 +69,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="buffer-pixel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics-buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation-generator-gui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation-generator-ui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation-generator-ui-actions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationGeneratorMainFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wxWidgets-buffer-converter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="model.h">
