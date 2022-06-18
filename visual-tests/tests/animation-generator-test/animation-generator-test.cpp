@@ -8,9 +8,12 @@ void AnimationGeneratorTest::initializeUI(wxFrame* parentFrame)
 	wxPanel* m_panel3;
 	wxTextCtrl* m_textCtrl1;
 	wxButton* m_button1;
+	wxButton* m_button2;
+	wxButton* m_button3;
 	wxScrolledWindow* m_scrolledWindow1;
+	wxStaticText* m_staticText1;
 
-	window = new wxFrame(parentFrame, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(530, 443), wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
+	window = new wxFrame(parentFrame, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(530, 600), wxDEFAULT_FRAME_STYLE | wxTAB_TRAVERSAL);
 
 	window->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
@@ -32,7 +35,7 @@ void AnimationGeneratorTest::initializeUI(wxFrame* parentFrame)
 	m_textCtrl1 = new wxTextCtrl(window, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
 	bSizer1->Add(m_textCtrl1, 0, wxALL | wxEXPAND, 5);
 
-	m_button1 = new wxButton(window, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0);
+	m_button1 = new wxButton(window, wxID_ANY, wxT("Generate"), wxDefaultPosition, wxDefaultSize, 0);
 	bSizer1->Add(m_button1, 0, wxALL, 5);
 
 	m_panel3 = new wxPanel(window, wxID_ANY, wxDefaultPosition, wxSize(240, 135), wxTAB_TRAVERSAL);
@@ -40,6 +43,13 @@ void AnimationGeneratorTest::initializeUI(wxFrame* parentFrame)
 
 	bSizer1->Add(m_panel3, 0, wxALL, 5);
 
+	m_button2 = new wxButton(window, wxID_ANY, wxT("Next"), wxDefaultPosition, wxDefaultSize, 0);
+	bSizer1->Add(m_button2, 0, wxALL, 5);
+	m_button3 = new wxButton(window, wxID_ANY, wxT("Prev"), wxDefaultPosition, wxDefaultSize, 0);
+	bSizer1->Add(m_button3, 0, wxALL, 5);
+
+	m_staticText1 = new wxStaticText(window, wxID_ANY, wxT("frame no: i/n"), wxDefaultPosition, wxDefaultSize, 0);
+	bSizer1->Add(m_staticText1, 0, wxALL, 5);
 
 	window->SetSizer(bSizer1);
 	window->Layout();
@@ -81,24 +91,45 @@ void AnimationGeneratorTest::initializeUI(wxFrame* parentFrame)
 	};
 	MockFiller* mockFiller = new MockFiller();
 
-	std::function<void(std::vector<GraphicsBuffer>)>* generateCallback = new std::function<void(std::vector<GraphicsBuffer>)>{ [=](std::vector<GraphicsBuffer> generatedAnimation) {
-		for (auto frame : generatedAnimation) {
-			/*wxPanel* printPanel = new wxPanel(window, wxID_ANY, wxDefaultPosition, wxSize(240, 135), wxTAB_TRAVERSAL);
-			bSizer3->Add(printPanel, 0, wxALL, 5);*/
-			{
-				wxImage frameImage = WxWidgetsBufferConverter::convertBufferToWxImage(frame);
-				wxBitmap memoryBitmap2(frameImage);
-				wxMemoryDC memDC2;
-				memDC2.SelectObject(memoryBitmap2);
-				wxClientDC dc2(m_panel3);
-				dc2.Blit(0, 0, 240, 135, &memDC2, 0, 0);
-			}
-			//outputPanels->push_back(printPanel);
-}
-			window->Layout();
-	} };
+	std::vector<GraphicsBuffer>** frames = new std::vector<GraphicsBuffer>*;
+	*frames = new std::vector<GraphicsBuffer>;
+	int* frameCounter = new int{};
 
-	std::function<void(wxCommandEvent&)>* generateFun = new std::function<void(wxCommandEvent&)>{ [=] (wxCommandEvent&) {
+	std::function<void()>* printFrame = new std::function<void()>{ [=]() {
+		int frameNo = *frameCounter;
+		GraphicsBuffer frameToPrint = (**frames)[frameNo];
+		{
+			wxImage frameImage = WxWidgetsBufferConverter::convertBufferToWxImage(frameToPrint);
+			wxBitmap memoryBitmap2(frameImage);
+			wxMemoryDC memDC2;
+			memDC2.SelectObject(memoryBitmap2);
+			wxClientDC dc2(m_panel3);
+			dc2.Blit(0, 0, 240, 135, &memDC2, 0, 0);
+		}
+		std::stringstream ss;
+		ss << "frame no : " << (*frameCounter) + 1 << " / " << (**frames).size();
+		m_staticText1->SetLabel(ss.str());
+} };
+
+	std::function<void(wxCommandEvent&)>* prevFrame = new std::function<void(wxCommandEvent&)>{ [=](wxCommandEvent&) {
+			(*frameCounter)--;
+			if (*frameCounter < 0) {
+				*frameCounter = (**frames).size() - 1;
+			}
+			(*printFrame)();
+		}
+	};
+
+	std::function<void(wxCommandEvent&)>* nextFrame = new std::function<void(wxCommandEvent&)>{ [=](wxCommandEvent&) {
+		(*frameCounter)++;
+			if (*frameCounter >= (**frames).size()) {
+				*frameCounter = 0;
+			}
+			(*printFrame)();
+		}
+	};
+
+	std::function<void(wxCommandEvent&)>* generateFun = new std::function<void(wxCommandEvent&)>{ [=](wxCommandEvent&) {
 			std::vector<float> norms;
 			wxString textValue = m_textCtrl1->GetValue();
 			std::string parsedText(textValue);
@@ -112,16 +143,21 @@ void AnimationGeneratorTest::initializeUI(wxFrame* parentFrame)
 				delete panel;
 			}
 			outputPanels->erase(outputPanels->begin(), outputPanels->end());
-			animationGenerator->generateAnimation(
+			std::vector<GraphicsBuffer> generatedAnimation = animationGenerator->generateAnimation(
 				*startKeyframeBuffer,
 				*endKeyframeBuffer,
 				*mockFiller,
 				{240, 135},
 				norms,
-				nullptr,
-				* generateCallback
+				nullptr
 			);
+			delete* frames;
+			*frames = new std::vector<GraphicsBuffer>(generatedAnimation);
+			*frameCounter = 0;
+			(*printFrame)();
+			window->Layout();
 	} };
 	m_button1->Bind(wxEVT_COMMAND_BUTTON_CLICKED, *generateFun);
-	//m_textCtrl1->Bind(wxEVT_COMMAND_TEXT_UPDATED)
+	m_button2->Bind(wxEVT_COMMAND_BUTTON_CLICKED, *nextFrame);
+	m_button3->Bind(wxEVT_COMMAND_BUTTON_CLICKED, *prevFrame);
 }

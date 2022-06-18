@@ -1,6 +1,6 @@
 #include "simple-animation-generator.h"
 
-std::vector<GraphicsBuffer> SimpleAnimationGenerator::generateAnimation(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, AnimationFrameFillerInterface& frameFiller, Size animationFrameSize, std::vector<float> frameNormsSeries, std::function<void(unsigned int, unsigned int)> generatedFrameCallback, std::function<void(std::vector<GraphicsBuffer>)> generatedAnimationCallback, Pixel animationBackgroundColour)
+std::vector<GraphicsBuffer> SimpleAnimationGenerator::generateAnimation(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, AnimationFrameFillerInterface& frameFiller, Size animationFrameSize, std::vector<float> frameNormsSeries, std::function<void(unsigned int, unsigned int)> generatedFrameCallback, Pixel animationBackgroundColour)
 {
 	std::vector<GraphicsBuffer> animationFrames;
 	int numberOfFrames = frameNormsSeries.size();
@@ -12,9 +12,6 @@ std::vector<GraphicsBuffer> SimpleAnimationGenerator::generateAnimation(const Gr
 		if (generatedFrameCallback != nullptr) {
 			generatedFrameCallback(currentAnimationIndex++, numberOfFrames);
 		}
-	}
-	if (generatedAnimationCallback != nullptr) {
-		generatedAnimationCallback(animationFrames);
 	}
 	return animationFrames;
 }
