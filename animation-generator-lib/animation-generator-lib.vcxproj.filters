@@ -42,7 +42,7 @@
     <ClCompile Include="animation-generator-ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animation_generator_main_frame.cpp">
+    <ClCompile Include="AnimationGeneratorMainFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wxWidgets-buffer-converter.cpp">
@@ -80,7 +80,7 @@
     <ClInclude Include="animation-generator-ui-actions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="animation_generator_main_frame.h">
+    <ClInclude Include="AnimationGeneratorMainFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wxWidgets-buffer-converter.h">

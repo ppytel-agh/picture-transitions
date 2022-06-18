@@ -2,7 +2,7 @@
 
 #include "../../abstract-visual-test.h"
 #include <functional>
-#include <animation_generator_main_frame.h>
+#include <AnimationGeneratorMainFrame.h>
 #include <string>
 #include <sstream>
 

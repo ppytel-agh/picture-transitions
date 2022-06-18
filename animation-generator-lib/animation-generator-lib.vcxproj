@@ -149,7 +149,7 @@
     <ClCompile Include="animation-generator-app.cpp" />
     <ClCompile Include="animation-generator-gui.cpp" />
     <ClCompile Include="animation-generator-ui.cpp" />
-    <ClCompile Include="animation_generator_main_frame.cpp" />
+    <ClCompile Include="AnimationGeneratorMainFrame.cpp" />
     <ClCompile Include="buffer-pixel.cpp" />
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
@@ -163,7 +163,7 @@
     <ClInclude Include="animation-generator-gui.h" />
     <ClInclude Include="animation-generator-ui-actions.h" />
     <ClInclude Include="animation-generator-ui.h" />
-    <ClInclude Include="animation_generator_main_frame.h" />
+    <ClInclude Include="AnimationGeneratorMainFrame.h" />
     <ClInclude Include="buffer-pixel.h" />
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
