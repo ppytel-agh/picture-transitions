@@ -17,12 +17,14 @@
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/stattext.h>
+#include <wx/statbox.h>
+#include <wx/scrolwin.h>
 #include <wx/button.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
 #include <wx/choice.h>
-#include <wx/textctrl.h>
+#include <wx/spinctrl.h>
 #include <wx/slider.h>
 #include <wx/frame.h>
 
@@ -38,42 +40,41 @@ class MainFrame : public wxFrame
 
 	protected:
 		wxPanel* separator1;
-		wxPanel* firstImgPreviewPanel;
 		wxStaticText* initFrameSize;
-		wxPanel* secondImgPreviewPanel;
-		wxPanel* separator2;
-		wxPanel* log;
-		wxButton* resetButton;
-		wxPanel* separator3;
 		wxButton* loadInitFrameButton;
-		wxPanel* separator4;
 		wxButton* loadLastFrameButton;
-		wxPanel* separator5;
+		wxButton* resetButton;
 		wxStaticText* choiceText;
+		wxStaticText* m_staticText3;
 		wxChoice* chooseTransition;
-		wxTextCtrl* frameRate;
-		wxPanel* separator6;
+		wxSpinCtrl* frameRate;
 		wxButton* generateFrame;
-		wxPanel* scenePanel;
 		wxPanel* separator7;
-		wxSlider* slider;
 		wxButton* saveAnimation;
 
 		// Virtual event handlers, override them in your derived class
-		virtual void onReset( wxCommandEvent& event ) { event.Skip(); }
 		virtual void onLoadInitFrame( wxCommandEvent& event ) { event.Skip(); }
 		virtual void onLoadLastFrame( wxCommandEvent& event ) { event.Skip(); }
+		virtual void onReset( wxCommandEvent& event ) { event.Skip(); }
 		virtual void onTransitionChoice( wxCommandEvent& event ) { event.Skip(); }
-		virtual void onFrameRateEnter( wxCommandEvent& event ) { event.Skip(); }
+		virtual void onFrameRateEnter( wxSpinEvent& event ) { event.Skip(); }
 		virtual void onGenerateFrame( wxCommandEvent& event ) { event.Skip(); }
 		virtual void onScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void onAnimationSave( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
+		wxPanel* firstImgPreviewPanel;
+		wxStaticText* loadedKeyframeSize;
+		wxPanel* secondImgPreviewPanel;
+		wxScrolledWindow* logScroll;
+		wxStaticBoxSizer* sbSizer1;
+		wxStaticText* messagesLog;
 		wxBoxSizer* transitionDropdownSizer;
+		wxPanel* scenePanel;
+		wxSlider* slider;
 
-		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1280,720 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1280,720 ), long style = wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
 
 		~MainFrame();
 

@@ -11,7 +11,7 @@
 
 MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetSizeHints( wxSize( 1280,720 ), wxDefaultSize );
 	this->SetBackgroundColour( wxColour( 255, 255, 255 ) );
 
 	wxBoxSizer* mainSizer;
@@ -40,12 +40,21 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	menuSizer->Add( firstImgPreviewPanel, 1, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
-	initFrameSize = new wxStaticText( this, wxID_ANY, wxT("Wymiary klatek:"), wxDefaultPosition, wxSize( 240,-1 ), 0 );
+	wxBoxSizer* bSizer9;
+	bSizer9 = new wxBoxSizer( wxHORIZONTAL );
+
+	initFrameSize = new wxStaticText( this, wxID_ANY, wxT("Wymiary klatek:"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
 	initFrameSize->Wrap( -1 );
 	initFrameSize->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
-	initFrameSize->SetMinSize( wxSize( 240,-1 ) );
 
-	menuSizer->Add( initFrameSize, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+	bSizer9->Add( initFrameSize, 1, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+
+	loadedKeyframeSize = new wxStaticText( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT );
+	loadedKeyframeSize->Wrap( -1 );
+	bSizer9->Add( loadedKeyframeSize, 1, wxALL, 5 );
+
+
+	menuSizer->Add( bSizer9, 0, wxEXPAND, 5 );
 
 	secondImgPreviewPanel = new wxPanel( this, wxID_ANY, wxPoint( -1,-1 ), wxSize( 240,135 ), wxTAB_TRAVERSAL );
 	secondImgPreviewPanel->SetBackgroundColour( wxColour( 113, 184, 255 ) );
@@ -54,74 +63,74 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	menuSizer->Add( secondImgPreviewPanel, 1, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
 
-	separator2 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,15 ), wxTAB_TRAVERSAL );
-	separator2->SetBackgroundColour( wxColour( 255, 255, 255 ) );
-	separator2->SetMinSize( wxSize( -1,15 ) );
-	separator2->SetMaxSize( wxSize( -1,15 ) );
-
-	menuSizer->Add( separator2, 1, wxEXPAND | wxALL, 5 );
-
 	wxBoxSizer* logSizer;
 	logSizer = new wxBoxSizer( wxHORIZONTAL );
 
-	log = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,70 ), wxTAB_TRAVERSAL );
-	log->SetBackgroundColour( wxColour( 230, 230, 230 ) );
-	log->SetMinSize( wxSize( -1,70 ) );
-	log->SetMaxSize( wxSize( -1,70 ) );
+	logScroll = new wxScrolledWindow( this, wxID_ANY, wxDefaultPosition, wxSize( -1,100 ), wxHSCROLL|wxVSCROLL );
+	logScroll->SetScrollRate( 5, 5 );
+	logScroll->SetBackgroundColour( wxColour( 230, 230, 230 ) );
 
-	logSizer->Add( log, 1, wxALL, 5 );
+	sbSizer1 = new wxStaticBoxSizer( new wxStaticBox( logScroll, wxID_ANY, wxT("komunikaty") ), wxVERTICAL );
+
+	sbSizer1->SetMinSize( wxSize( -1,60 ) );
+	messagesLog = new wxStaticText( sbSizer1->GetStaticBox(), wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	messagesLog->Wrap( -1 );
+	sbSizer1->Add( messagesLog, 0, wxALL, 5 );
+
+
+	logScroll->SetSizer( sbSizer1 );
+	logScroll->Layout();
+	logSizer->Add( logScroll, 1, wxEXPAND | wxALL, 5 );
+
+
+	menuSizer->Add( logSizer, 0, wxEXPAND, 5 );
+
+	wxBoxSizer* bSizer14;
+	bSizer14 = new wxBoxSizer( wxHORIZONTAL );
+
+	wxBoxSizer* bSizer15;
+	bSizer15 = new wxBoxSizer( wxVERTICAL );
+
+	loadInitFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatke poczatkowa"), wxDefaultPosition, wxDefaultSize, 0 );
+	loadInitFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
+	loadInitFrameButton->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
+
+	bSizer15->Add( loadInitFrameButton, 0, wxALIGN_CENTER, 5 );
+
+	loadLastFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatke koncowa"), wxDefaultPosition, wxDefaultSize, 0 );
+	loadLastFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
+	loadLastFrameButton->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
+
+	bSizer15->Add( loadLastFrameButton, 0, wxALIGN_CENTER, 5 );
+
+
+	bSizer14->Add( bSizer15, 1, wxEXPAND, 5 );
 
 	resetButton = new wxButton( this, wxID_ANY, wxT("RESET"), wxDefaultPosition, wxDefaultSize, 0 );
 	resetButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
-	resetButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
+	resetButton->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
 
-	logSizer->Add( resetButton, 0, wxALL, 5 );
+	bSizer14->Add( resetButton, 0, wxALL, 5 );
 
 
-	menuSizer->Add( logSizer, 1, wxEXPAND, 5 );
-
-	separator3 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,10 ), wxTAB_TRAVERSAL );
-	separator3->SetMinSize( wxSize( -1,10 ) );
-	separator3->SetMaxSize( wxSize( -1,10 ) );
-
-	menuSizer->Add( separator3, 1, wxEXPAND | wxALL, 5 );
-
-	loadInitFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkę początkową"), wxDefaultPosition, wxDefaultSize, 0 );
-	loadInitFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
-	loadInitFrameButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
-
-	menuSizer->Add( loadInitFrameButton, 0, wxALIGN_CENTER, 5 );
-
-	separator4 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,3 ), wxTAB_TRAVERSAL );
-	separator4->SetMinSize( wxSize( -1,3 ) );
-	separator4->SetMaxSize( wxSize( -1,3 ) );
-
-	menuSizer->Add( separator4, 1, wxEXPAND | wxALL, 5 );
-
-	loadLastFrameButton = new wxButton( this, wxID_ANY, wxT("Wczytaj klatkę końcową"), wxDefaultPosition, wxDefaultSize, 0 );
-	loadLastFrameButton->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
-	loadLastFrameButton->SetBackgroundColour( wxColour( 179, 83, 219 ) );
-
-	menuSizer->Add( loadLastFrameButton, 0, wxALIGN_CENTER, 5 );
-
-	separator5 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,10 ), wxTAB_TRAVERSAL );
-	separator5->SetMinSize( wxSize( -1,10 ) );
-	separator5->SetMaxSize( wxSize( -1,10 ) );
-
-	menuSizer->Add( separator5, 1, wxEXPAND | wxALL, 5 );
+	menuSizer->Add( bSizer14, 0, wxEXPAND, 5 );
 
 	wxBoxSizer* textSizer;
 	textSizer = new wxBoxSizer( wxHORIZONTAL );
 
 	textSizer->SetMinSize( wxSize( -1,10 ) );
-	choiceText = new wxStaticText( this, wxID_ANY, wxT("Rodzaj przejścia                 Liczba klatek\n"), wxDefaultPosition, wxSize( -1,15 ), 0 );
+	choiceText = new wxStaticText( this, wxID_ANY, wxT("Rodzaj przejscia"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
 	choiceText->Wrap( -1 );
 	choiceText->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
 
-	textSizer->Add( choiceText, 0, wxALL, 5 );
+	textSizer->Add( choiceText, 1, wxALL, 5 );
+
+	m_staticText3 = new wxStaticText( this, wxID_ANY, wxT("Liczba klatek"), wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT );
+	m_staticText3->Wrap( -1 );
+	textSizer->Add( m_staticText3, 1, wxALL, 5 );
 
 
-	menuSizer->Add( textSizer, 1, wxALL|wxEXPAND, 5 );
+	menuSizer->Add( textSizer, 0, wxALL|wxEXPAND, 5 );
 
 	wxBoxSizer* choiceSizer;
 	choiceSizer = new wxBoxSizer( wxHORIZONTAL );
@@ -140,23 +149,15 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	choiceSizer->Add( transitionDropdownSizer, 1, wxEXPAND, 5 );
 
-	frameRate = new wxTextCtrl( this, wxID_ANY, wxT("3"), wxDefaultPosition, wxDefaultSize, 0 );
-	frameRate->SetBackgroundColour( wxColour( 230, 230, 230 ) );
-
-	choiceSizer->Add( frameRate, 0, wxALL, 5 );
+	frameRate = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10, 0 );
+	choiceSizer->Add( frameRate, 1, wxALL, 5 );
 
 
-	menuSizer->Add( choiceSizer, 1, wxEXPAND, 5 );
+	menuSizer->Add( choiceSizer, 0, wxEXPAND, 5 );
 
-	separator6 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,10 ), wxTAB_TRAVERSAL );
-	separator6->SetMinSize( wxSize( -1,10 ) );
-	separator6->SetMaxSize( wxSize( -1,10 ) );
-
-	menuSizer->Add( separator6, 1, wxEXPAND | wxALL, 5 );
-
-	generateFrame = new wxButton( this, wxID_ANY, wxT("Generuj klatki pośrednie"), wxDefaultPosition, wxDefaultSize, 0 );
+	generateFrame = new wxButton( this, wxID_ANY, wxT("Generuj klatki posrednie"), wxDefaultPosition, wxDefaultSize, 0 );
 	generateFrame->SetFont( wxFont( 10, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas") ) );
-	generateFrame->SetBackgroundColour( wxColour( 179, 83, 219 ) );
+	generateFrame->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
 
 	menuSizer->Add( generateFrame, 0, wxALIGN_CENTER, 5 );
 
@@ -180,13 +181,19 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	sceneSizer->Add( separator7, 1, wxEXPAND | wxALL, 5 );
 
+	wxBoxSizer* bSizer12;
+	bSizer12 = new wxBoxSizer( wxHORIZONTAL );
+
 	slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	sceneSizer->Add( slider, 0, wxEXPAND, 5 );
+	bSizer12->Add( slider, 5, wxEXPAND, 5 );
 
-	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animację"), wxDefaultPosition, wxDefaultSize, 0 );
-	saveAnimation->SetBackgroundColour( wxColour( 179, 83, 219 ) );
+	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animacje"), wxDefaultPosition, wxDefaultSize, 0 );
+	saveAnimation->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_WINDOW ) );
 
-	sceneSizer->Add( saveAnimation, 0, 0, 5 );
+	bSizer12->Add( saveAnimation, 1, wxALIGN_RIGHT, 5 );
+
+
+	sceneSizer->Add( bSizer12, 1, wxEXPAND, 5 );
 
 
 	mainSizer->Add( sceneSizer, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
@@ -198,11 +205,11 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	this->Centre( wxBOTH );
 
 	// Connect Events
-	resetButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onReset ), NULL, this );
 	loadInitFrameButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onLoadInitFrame ), NULL, this );
 	loadLastFrameButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onLoadLastFrame ), NULL, this );
+	resetButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onReset ), NULL, this );
 	chooseTransition->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MainFrame::onTransitionChoice ), NULL, this );
-	frameRate->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
+	frameRate->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
 	slider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	slider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
@@ -219,11 +226,11 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 MainFrame::~MainFrame()
 {
 	// Disconnect Events
-	resetButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onReset ), NULL, this );
 	loadInitFrameButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onLoadInitFrame ), NULL, this );
 	loadLastFrameButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onLoadLastFrame ), NULL, this );
+	resetButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onReset ), NULL, this );
 	chooseTransition->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MainFrame::onTransitionChoice ), NULL, this );
-	frameRate->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
+	frameRate->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
 	slider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	slider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );

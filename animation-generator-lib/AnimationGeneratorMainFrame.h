@@ -1,5 +1,5 @@
-#ifndef __animation_generator_main_frame__
-#define __animation_generator_main_frame__
+#ifndef __AnimationGeneratorMainFrame__
+#define __AnimationGeneratorMainFrame__
 
 /**
 @file
@@ -25,11 +25,11 @@ class AnimationGeneratorMainFrame : public MainFrame
 {
 	protected:
 		// Handlers for MainFrame events.
-		void onReset( wxCommandEvent& event );
 		void onLoadInitFrame( wxCommandEvent& event );
 		void onLoadLastFrame( wxCommandEvent& event );
+		void onReset( wxCommandEvent& event );
 		void onTransitionChoice( wxCommandEvent& event );
-		void onFrameRateEnter( wxCommandEvent& event );
+		void onFrameRateEnter( wxSpinEvent& event );
 		void onGenerateFrame( wxCommandEvent& event );
 		void onScroll( wxScrollEvent& event );
 		void onAnimationSave( wxCommandEvent& event );
@@ -37,11 +37,24 @@ class AnimationGeneratorMainFrame : public MainFrame
 		/** Constructor */
 		AnimationGeneratorMainFrame( wxWindow* parent );
 	//// end generated class members
-	AnimationGeneratorMainFrame(wxWindow*, std::vector<std::string>, AnimationGeneratorUIActions&);
+	AnimationGeneratorMainFrame(wxWindow*, std::vector<std::wstring>, AnimationGeneratorUIActions&);
 private:
 	AnimationGeneratorUI* animationGeneratorUI;
 	AnimationGeneratorUIActions* actions;
+	void setPolishLabels();
+
+
+
+
+
+
+
+
+
+
+
+
 
 };
 
-#endif // __animation_generator_main_frame__
+#endif // __AnimationGeneratorMainFrame__

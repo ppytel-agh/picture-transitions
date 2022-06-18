@@ -1,77 +1,121 @@
 #include "AnimationGeneratorMainFrame.h"
 
-AnimationGeneratorMainFrame::AnimationGeneratorMainFrame( wxWindow* parent )
-:
-MainFrame( parent )
+AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
+	:
+	MainFrame(parent)
 {
-
+	this->setPolishLabels();
 }
 
-void AnimationGeneratorMainFrame::onReset( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 {
-// TODO: Implement onReset
+	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Wybierz klatke poczatkowa"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+
+	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
+	{
+		if (this->actions != nullptr) {
+			std::string filePath = WxOpenFirstFrameDialog->GetPath();
+			this->actions->setStartKeyframeAction(*this->animationGeneratorUI, filePath);
+		}
+	}
 }
 
-void AnimationGeneratorMainFrame::onLoadInitFrame( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onLoadLastFrame(wxCommandEvent& event)
 {
-wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+	wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Wybierz klatke koncowa"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
 
-if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
-{
-//this->
-}
-}
-
-void AnimationGeneratorMainFrame::onLoadLastFrame( wxCommandEvent& event )
-{
-wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
-
-if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
-{
-}
+	if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
+	{
+		if (this->actions != nullptr) {
+			std::string filePath = WxOpenLastFrameDialog->GetPath();
+			this->actions->setEndKeyframeAction(*this->animationGeneratorUI, filePath);
+		}
+	}
 }
 
-void AnimationGeneratorMainFrame::onTransitionChoice( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onReset(wxCommandEvent& event)
 {
-// TODO: Implement onTransitionChoice
+	wxMessageDialog* dial = new wxMessageDialog(NULL, L"Zresetowac sesje?", _("Potwierdz reset sesji"), wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+	auto dialResult = dial->ShowModal();
+	if (dialResult == wxID_YES) {
+		this->firstImgPreviewPanel->ClearBackground();
+		this->secondImgPreviewPanel->ClearBackground();
+		this->scenePanel->ClearBackground();
+		this->slider->SetRange(1, 1);
+		this->messagesLog->SetLabel("");
+		this->loadedKeyframeSize->SetLabel("");
+		this->Layout();
+		if (this->actions != nullptr) {
+			AnimationGeneratorUI& uiRef = *this->animationGeneratorUI;
+			std::function<void(AnimationGeneratorUI&)> resetAction = this->actions->resetAction;
+			resetAction(uiRef);
+		}
+	}
 }
 
-void AnimationGeneratorMainFrame::onFrameRateEnter( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onTransitionChoice(wxCommandEvent& event)
 {
-// TODO: Implement onFrameRateEnter
+	// TODO: Implement onTransitionChoice
 }
 
-void AnimationGeneratorMainFrame::onGenerateFrame( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onFrameRateEnter(wxSpinEvent& event)
 {
-// TODO: Implement onGenerateFrame
+	// TODO: Implement onFrameRateEnter
 }
 
-void AnimationGeneratorMainFrame::onScroll( wxScrollEvent& event )
+void AnimationGeneratorMainFrame::onGenerateFrame(wxCommandEvent& event)
 {
-// TODO: Implement onScroll
+	int selectedTransitionId = this->chooseTransition->GetSelection();
+	int numberOfFrames = this->frameRate->GetValue();
+	if (this->actions != nullptr) {
+		this->actions->generateAnimationAction(*this->animationGeneratorUI, selectedTransitionId, numberOfFrames);
+	}
 }
 
-void AnimationGeneratorMainFrame::onAnimationSave( wxCommandEvent& event )
+void AnimationGeneratorMainFrame::onScroll(wxScrollEvent& event)
 {
-wxFileDialog WxSaveAnimationDialog(new wxFileDialog(this, _("Choose a file"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_SAVE | wxFD_OVERWRITE_PROMPT));
+	int selectedFrameNumber = this->slider->GetValue();
+	int numberOfFrames = this->slider->GetMax();
+	if (this->actions != nullptr) {
+		this->actions->showPreviewAction(*this->animationGeneratorUI, selectedFrameNumber, numberOfFrames);
+	}
+}
+
+void AnimationGeneratorMainFrame::onAnimationSave(wxCommandEvent& event)
+{
+	wxDirDialog* WxSaveAnimationDialog(new wxDirDialog(this, _("Wybierz katalog zapisu animacji")));
+	if (WxSaveAnimationDialog->ShowModal() == wxID_OK)
+	{
+		if (this->actions != nullptr) {
+			std::string saveDir = WxSaveAnimationDialog->GetPath();
+			this->actions->saveAnimationAction(*this->animationGeneratorUI, saveDir);
+		}
+	}
 }
 
 
-AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent, std::vector<std::string> transitionNames, AnimationGeneratorUIActions& actions) : MainFrame(parent), actions(&actions)
+void AnimationGeneratorMainFrame::setPolishLabels()
 {
+	/*this->loadInitFrameButton->SetLabel(wxT("Wczytaj klatkę początkową"));
+	this->loadLastFrameButton->SetLabel(wxT("Wczytaj klatkę końcową"));*/
+}
+
+AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent, std::vector<std::wstring> transitionNames, AnimationGeneratorUIActions& actions) : MainFrame(parent), actions(&actions)
+{
+
 	this->animationGeneratorUI = new AnimationGeneratorUI(*this);
 
-	//wxString* chooseTransitionChoices = static_cast<wxString*>(transitionames.data());
-	//int chooseTransitionNChoices = sizeof(chooseTransitionChoices) / sizeof(wxString);
 	delete this->chooseTransition;
 	wxString* choices = new wxString[transitionNames.size()];
 	for (int i = 0; i < transitionNames.size(); i++) {
-		choices[i] = wxString::FromAscii(transitionNames[i].c_str());
+		choices[i] = transitionNames[i].c_str();
 	}
 	this->chooseTransition = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, transitionNames.size(), choices, 0);
 	this->chooseTransition->SetSelection(0);
 	this->chooseTransition->SetFont(wxFont(9, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Consolas")));
 	this->chooseTransition->SetBackgroundColour(wxColour(230, 230, 230));
-
 	this->transitionDropdownSizer->Add(this->chooseTransition, 0, wxALL, 5);
+
+
+	this->setPolishLabels();
 }

@@ -3,7 +3,7 @@
 bool AnimationGeneratorApp::OnInit()
 {
 	AnimationGeneratorUIActions actions{};
-	this->mainFrame = new AnimationGeneratorMainFrame(nullptr, { "dupa" }, actions);
+	this->mainFrame = new AnimationGeneratorMainFrame(nullptr, { L"placeholder ¹¿" }, actions);
 	this->mainFrame->Show(true);
 	SetTopWindow(this->mainFrame);
 	return true;
@@ -11,6 +11,5 @@ bool AnimationGeneratorApp::OnInit()
 
 int AnimationGeneratorApp::OnExit()
 {
-	delete this->mainFrame;
 	return 0;
 }
