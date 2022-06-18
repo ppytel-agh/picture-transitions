@@ -54,6 +54,9 @@
     <ClCompile Include="simple-animation-generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transitions-manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple-animation-generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="transitions-manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
