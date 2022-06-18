@@ -48,6 +48,9 @@
     <ClCompile Include="tests\animation-generator-test\animation-generator-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="anim-generator-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="visual-tests-app.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\animation-generator-test\animation-generator-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="anim-generator-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

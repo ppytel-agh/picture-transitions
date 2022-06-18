@@ -1,6 +1,6 @@
 #include "generate-animation-simple.h"
 
-GenerateAnimationSimple::GenerateAnimationSimple(GenerateAnimationInterface& animGen, Model& model, TransitionsManager& transitionsMgr) : animationGenerator(animGen), model(model), transitionsManager(transitionsMgr)
+GenerateAnimationSimple::GenerateAnimationSimple(GenerateAnimationInterface& animGen, Model& model, TransitionsManager& transitionsMgr, AnimationGeneratorUI& ui) : animationGenerator(animGen), model(model), transitionsManager(transitionsMgr)
 {
 }
 
@@ -16,19 +16,22 @@ void GenerateAnimationSimple::operator()(AnimationGeneratorUI& ui, unsigned int 
 		GraphicsBuffer endKeyframe = this->model.getEndKeyframe();
 		AnimationFrameFillerInterface* filler = this->transitionsManager.getTransitionFiller(transitionId);
 		if (filler != nullptr) {
-			AnimationFrameFillerInterface& fillerRef = &(*filler);
+			auto fillerObject = *filler;
+			Size framesSize = startKeyframe.getSize();
+			std::vector<GraphicsBuffer> animationFrames = this->animationGenerator.generateAnimation(
+				startKeyframe,
+				endKeyframe,
+				fillerObject,
+				framesSize,
+				norms,
+				nullptr
+			);
+			this->model.setAnimationFrames(std::move(animationFrames));
+			if (animationFrames.size() > 0) {
+				ui.setAnimationFrameCountSlider(animationFrames.size());
+				ui.setAnimationFramePreview(WxWidgetsBufferConverter::convertBufferToWxImage(animationFrames[0]));
+			}
 		}
-		this->animationGenerator.generateAnimation(
-			startKeyframe,
-			endKeyframe,
-			this->model.getEndKeyframe(), this->transitionsManager.getTransitionFiller(transitionId), startKeyframe.getSize(), [](unsigned int, unsigned int) {
-			//for now unnecessary
-			}, [&](std::vector<GraphicsBuffer> frames) {
-			this->model.setAnimationFrames(std::move(frames));
-			ui.changeSliderRange(numberOfFrames);
-			GraphicsBuffer firstAnimationFrame = this->model.getAnimationFrame(0);
-			ui.setAnimationFramePreview(WxWidgetsBufferConverter::toWxImage(firstAnimationFram));
-		})
 	}
 }
 
