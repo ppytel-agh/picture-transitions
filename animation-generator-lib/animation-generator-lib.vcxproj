@@ -155,6 +155,7 @@
     <ClCompile Include="buffer-space-normalizer.cpp" />
     <ClCompile Include="graphics-buffer.cpp" />
     <ClCompile Include="misc.cpp" />
+    <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
     <ClCompile Include="wxWidgets-buffer-converter.cpp" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="buffer-space-normalizer.h" />
     <ClInclude Include="graphics-buffer.h" />
     <ClInclude Include="misc.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />
     <ClInclude Include="wxWidgets-buffer-converter.h" />
   </ItemGroup>
