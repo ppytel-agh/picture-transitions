@@ -158,8 +158,10 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
     <ClCompile Include="wxWidgets-buffer-converter.cpp" />
+    <ClCompile Include="simple-animation-generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation-frame-filler-interface.h" />
     <ClInclude Include="animation-generator-app.h" />
     <ClInclude Include="animation-generator-gui.h" />
     <ClInclude Include="animation-generator-ui-actions.h" />
@@ -169,10 +171,12 @@
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
     <ClInclude Include="graphics-buffer.h" />
+    <ClInclude Include="generate-animation-interface.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />
     <ClInclude Include="wxWidgets-buffer-converter.h" />
+    <ClInclude Include="simple-animation-generator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
