@@ -1,10 +1,10 @@
 #include "transitions-manager.h"
 
-TransitionsManager::TransitionsManager(std::vector<std::pair<std::wstring, AnimationFrameFillerInterface*>> transitions)
+TransitionsManager::TransitionsManager(std::vector<std::pair<std::wstring, AnimationFrameFillerInterface&>> transitions)
 {
     for (auto transitionPair : transitions) {
         this->transitionNames.push_back(transitionPair.first);
-        this->transitionFillers.push_back(transitionPair.second);
+        this->transitionFillers.push_back(std::ref(transitionPair.second));
     }
 }
 
@@ -18,12 +18,23 @@ bool TransitionsManager::transitionExists(unsigned int transitionId) const
     return transitionId < this->transitionFillers.size();
 }
 
-AnimationFrameFillerInterface* TransitionsManager::getTransitionFiller(unsigned int transitionId) const
+bool TransitionsManager::fillerIsEmpty(AnimationFrameFillerInterface& fillerToCheck)
+{
+    try {
+        EmptyTransitionFiller& emptyFiller = dynamic_cast<EmptyTransitionFiller&>(fillerToCheck);
+        return true;
+    }
+    catch (const std::bad_cast& e) {
+        return false;
+    }
+}
+
+AnimationFrameFillerInterface& TransitionsManager::getTransitionFiller(unsigned int transitionId)
 {
     if (this->transitionExists(transitionId)) {
         return this->transitionFillers[transitionId];
     }
     else {
-        return nullptr;
+        return this->emptyFiller;
     }
 }
