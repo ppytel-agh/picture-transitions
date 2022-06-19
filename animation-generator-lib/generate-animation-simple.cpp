@@ -24,11 +24,11 @@ void GenerateAnimationSimple::operator()(AnimationGeneratorUI& ui, unsigned int 
 			norms,
 			nullptr
 		);
-		this->model.setAnimationFrames(std::move(animationFrames));
 		if (animationFrames.size() > 0) {
 			ui.setAnimationFrameCountSlider(animationFrames.size());
 			ui.setAnimationFramePreview(WxWidgetsBufferConverter::convertBufferToWxImage(animationFrames[0]));
 		}
+		this->model.setAnimationFrames(std::move(animationFrames));
 	}
 }
 
