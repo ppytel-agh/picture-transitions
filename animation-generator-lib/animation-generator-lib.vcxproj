@@ -153,7 +153,9 @@
     <ClCompile Include="buffer-pixel.cpp" />
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
+    <ClCompile Include="FramePreviewAction.cpp" />
     <ClCompile Include="graphics-buffer.cpp" />
+    <ClCompile Include="generate-animation-simple.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
@@ -171,8 +173,10 @@
     <ClInclude Include="buffer-pixel.h" />
     <ClInclude Include="buffer-point.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
+    <ClInclude Include="FramePreviewAction.h" />
     <ClInclude Include="graphics-buffer.h" />
     <ClInclude Include="generate-animation-interface.h" />
+    <ClInclude Include="generate-animation-simple.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />

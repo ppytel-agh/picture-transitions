@@ -38,6 +38,7 @@ class AnimationGeneratorMainFrame : public MainFrame
 		AnimationGeneratorMainFrame( wxWindow* parent );
 	//// end generated class members
 	AnimationGeneratorMainFrame(wxWindow*, std::vector<std::wstring>, AnimationGeneratorUIActions&);
+	AnimationGeneratorUI* getUI();
 private:
 	AnimationGeneratorUI* animationGeneratorUI;
 	AnimationGeneratorUIActions* actions;

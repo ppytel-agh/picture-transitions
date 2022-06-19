@@ -10,6 +10,7 @@
 #include "tests/converter-test/converter-test.h"
 #include "tests/animation-generator-ui-test/animation-generator-ui-test.h"
 #include "tests/animation-generator-test/animation-generator-test.h"
+#include "generate-animation-test.h"
 
 class VisualTestsManager {
 public:
