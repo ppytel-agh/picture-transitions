@@ -1,6 +1,6 @@
-#include "anim-generator-test.h"
+#include "generate-animation-test.h"
 
-void AnimGeneratorTest::initializeUI(wxFrame* parentFrame)
+void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 {
 	class MockFiller : public AnimationFrameFillerInterface {
 	public:

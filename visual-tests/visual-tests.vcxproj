@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="anim-generator-test.cpp" />
+    <ClCompile Include="generate-animation-test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests\animation-generator-test\animation-generator-test.cpp" />
     <ClCompile Include="tests\animation-generator-ui-test\animation-generator-ui-test.cpp" />
@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="abstract-visual-test.h" />
-    <ClInclude Include="anim-generator-test.h" />
+    <ClInclude Include="generate-animation-test.h" />
     <ClInclude Include="tests\animation-generator-test\animation-generator-test.h" />
     <ClInclude Include="tests\animation-generator-ui-test\animation-generator-ui-test.h" />
     <ClInclude Include="tests\blit-tests\blit-tests.h" />

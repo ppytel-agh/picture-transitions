@@ -5,7 +5,7 @@
 #include <generate-animation-simple.h>
 #include <model.h>
 
-class AnimGeneratorTest : public AbstractVisualTest {
+class GenerateAnimationTest : public AbstractVisualTest {
 public:
 
 
