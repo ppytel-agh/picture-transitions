@@ -11,7 +11,7 @@
 
 class GenerateAnimationSimple {
 public:
-	GenerateAnimationSimple(GenerateAnimationInterface&, Model&, TransitionsManager&, AnimationGeneratorUI&);
+	GenerateAnimationSimple(GenerateAnimationInterface&, Model&, TransitionsManager&);
 	void operator()(AnimationGeneratorUI& ui, unsigned int transitionId, unsigned int numberOfFrames);
 private:
 	GenerateAnimationInterface& animationGenerator;

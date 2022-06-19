@@ -14,17 +14,33 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	};
 
 	wxImage::AddHandler(new wxPNGHandler());
-	SimpleAnimationGenerator* animationGenerator = new SimpleAnimationGenerator();
+	wxImage startKeyframe("./tests/animation-generator-ui-test/startkeyframe.png");
+	wxImage endKeyframe("./tests/animation-generator-ui-test/endkeyframe.png");
+
 	Model* model = new Model();
+	model->setStartKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(startKeyframe));
+	model->setEndKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(endKeyframe));
+
+	SimpleAnimationGenerator* animationGenerator = new SimpleAnimationGenerator();
+	MockFiller* mockFiller1 = new MockFiller(0);
+	MockFiller* mockFiller2 = new MockFiller(-50);
+	MockFiller* mockFiller3 = new MockFiller(25);
 	TransitionsManager* transitionsManager = new TransitionsManager(
 		{
-			{L"przejœcie A", new MockFiller(0)},
-			{L"przejœcie B", new MockFiller(-50)},
-			{L"przejœcie C", new MockFiller(25)}
+			{L"przejœcie A", *mockFiller1},
+			{L"przejœcie B", *mockFiller2},
+			{L"przejœcie C", *mockFiller3}
 		}
 	);
-	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(std::ref( * animationGenerator), std::ref(*model), std::ref(*transitionsManager));
+	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(*animationGenerator, *model, * transitionsManager);
+	FramePreviewAction* framePreview = new FramePreviewAction(*model);
 	AnimationGeneratorUIActions* testActions = new AnimationGeneratorUIActions{};
 	testActions->generateAnimationAction = *generateAnimation;
+	testActions->showPreviewAction = *framePreview;
 
+	AnimationGeneratorMainFrame* mainFrame = new AnimationGeneratorMainFrame(parentFrame, transitionsManager->getTransitionNames(), *testActions);
+	mainFrame->Show();
+
+	mainFrame->getUI()->setStartKeyframePreview(startKeyframe);
+	mainFrame->getUI()->setEndKeyframePreview(endKeyframe);
 }

@@ -4,6 +4,8 @@
 #include <simple-animation-generator.h>
 #include <generate-animation-simple.h>
 #include <model.h>
+#include <AnimationGeneratorMainFrame.h>
+#include <FramePreviewAction.h>
 
 class GenerateAnimationTest : public AbstractVisualTest {
 public:
