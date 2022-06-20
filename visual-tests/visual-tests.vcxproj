@@ -155,6 +155,7 @@
     <ClCompile Include="tests\converter-test\converter-test.cpp" />
     <ClCompile Include="tests\example-test\example-test.cpp" />
     <ClCompile Include="tests\graphic-buffer\graphic-buffer-test.cpp" />
+    <ClCompile Include="tests\normalized-blit-test.cpp" />
     <ClCompile Include="tests\sections-test\sections-test.cpp" />
     <ClCompile Include="visual-tests-app.cpp" />
     <ClCompile Include="visual-tests-frame.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="tests\graphic-buffer\graphic-buffer-test.h" />
     <ClInclude Include="tests\graphic-buffer\sourcebmp.h" />
     <ClInclude Include="tests\graphic-buffer\testcase1bmp.h" />
+    <ClInclude Include="tests\normalized-blit-test.h" />
     <ClInclude Include="tests\sections-test\sections-test.h" />
     <ClInclude Include="visual-test-record.h" />
     <ClInclude Include="visual-tests-app.h" />
