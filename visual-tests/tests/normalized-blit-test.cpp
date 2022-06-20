@@ -73,7 +73,11 @@ void NormalizedBlitTest::initializeUI(wxFrame* parentFrame)
 	wxImage::AddHandler(new wxPNGHandler());
 	wxImage startKeyframe("tests/animation-generator-ui-test/startkeyframe.png");
 	GraphicsBuffer* sourceBuffer = new GraphicsBuffer(WxWidgetsBufferConverter::convertWxImageToBuffer(startKeyframe));
-	sourceBuffer->blit(GraphicsBuffer({ 2, 2 }, { 255, 0, 0 }), { 0, 0 }, { 67, 120 }, { 2, 2 });//red 
+
+	//sourceBuffer = new GraphicsBuffer(sourceBuffer->createSection({ 0, 0 }, { 150, 100 }));
+	BufferSpaceNormalizer sourceNormalizer(sourceBuffer->getSize().width, sourceBuffer->getSize().height);
+
+	sourceBuffer->blit(GraphicsBuffer({ 2, 2 }, { 255, 0, 0 }), { 0, 0 }, sourceNormalizer.pointToPixel({0.0f, 0.0f}), {2, 2});//red dot in center of source
 	startKeyframe = WxWidgetsBufferConverter::convertBufferToWxImage(*sourceBuffer);
 	wxImage endKeyframe("tests/animation-generator-ui-test/endkeyframe.png");
 	{
