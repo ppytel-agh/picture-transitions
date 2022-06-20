@@ -11,6 +11,7 @@ VisualTestsManager::VisualTestsManager() {
 		VisualTestRecord{"test UI", new AnimationGeneratorUITest()},
 		VisualTestRecord{"test generatora animacji", new AnimationGeneratorTest()},
 		VisualTestRecord{"test generowania animacji", new GenerateAnimationTest()},
+		VisualTestRecord{"test znormalizowanego blitu", new NormalizedBlitTest()},
 	};
 
 	this->numberOfTests = testsList.size();

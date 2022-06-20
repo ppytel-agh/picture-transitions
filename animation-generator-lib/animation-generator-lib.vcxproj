@@ -159,6 +159,7 @@
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
+    <ClCompile Include="normalized-blit.cpp" />
     <ClCompile Include="transitions-manager.cpp" />
     <ClCompile Include="wxWidgets-buffer-converter.cpp" />
     <ClCompile Include="simple-animation-generator.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="misc.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />
+    <ClInclude Include="normalized-blit.h" />
     <ClInclude Include="transitions-manager.h" />
     <ClInclude Include="wxWidgets-buffer-converter.h" />
     <ClInclude Include="simple-animation-generator.h" />

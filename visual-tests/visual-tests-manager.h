@@ -11,6 +11,7 @@
 #include "tests/animation-generator-ui-test/animation-generator-ui-test.h"
 #include "tests/animation-generator-test/animation-generator-test.h"
 #include "generate-animation-test.h"
+#include "tests/normalized-blit-test.h"
 
 class VisualTestsManager {
 public:
