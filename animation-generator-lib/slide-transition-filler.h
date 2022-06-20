@@ -3,13 +3,13 @@
 #include "animation-frame-filler-interface.h"
 #include "normalized-blit.h"
 
-class SliderTransitionFiller : public AnimationFrameFillerInterface {
+class SlideTransitionFiller : public AnimationFrameFillerInterface {
 public:
 	/**
 	* @param horizontal if false then vertical
 	* @param negativeToPositive if false then positiveToNegative
 	*/
-	SliderTransitionFiller(bool horizontal, bool negativeToPositive);
+	SlideTransitionFiller(bool horizontal, bool negativeToPositive);
 	// Inherited via AnimationFrameFillerInterface
 	virtual void fillAnimationFrame(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, GraphicsBuffer& filledFrame, float frameNorm) override;
 private:

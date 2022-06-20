@@ -1,10 +1,10 @@
 #include "slide-transition-filler.h"
 
-SliderTransitionFiller::SliderTransitionFiller(bool horizontal, bool negativeToPositive): horizontal(horizontal), negativeToPositive(negativeToPositive)
+SlideTransitionFiller::SlideTransitionFiller(bool horizontal, bool negativeToPositive): horizontal(horizontal), negativeToPositive(negativeToPositive)
 {
 }
 
-void SliderTransitionFiller::fillAnimationFrame(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, GraphicsBuffer& filledFrame, float frameNorm)
+void SlideTransitionFiller::fillAnimationFrame(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, GraphicsBuffer& filledFrame, float frameNorm)
 {
 	BufferPoint copyPosition{};
 	if (horizontal) {
