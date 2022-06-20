@@ -41,7 +41,7 @@ void drawInCenterOfPanel2(wxWindow* panel, const wxImage& scaledImage, int panel
 	dc.Blit(xOffset, yOffset, imageWidth, imageHeight, &memDC, 0, 0);
 }
 
-BufferBlenderTests::BufferBlenderTests() : destinationBuffer(nullptr), sourceBufferOriginal(nullptr), sourceBufferScaled(nullptr), blendBuffer(nullptr), destinationProportionVal(1.0f), blender({})
+BufferBlenderTests::BufferBlenderTests() : destinationBuffer(nullptr), sourceBufferOriginal(nullptr), sourceBufferScaled(nullptr), blendBuffer(nullptr), destinationProportionVal(1.0f), scaleVal(1.0f), blender({})
 {
 }
 
