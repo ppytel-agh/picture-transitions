@@ -81,6 +81,9 @@
     <ClCompile Include="central-scaling-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="letter-rotation-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="central-scaling-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="letter-rotation-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -160,6 +160,7 @@
     <ClCompile Include="FramePreviewAction.cpp" />
     <ClCompile Include="graphics-buffer.cpp" />
     <ClCompile Include="generate-animation-simple.cpp" />
+    <ClCompile Include="letter-rotation-transition-filler.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="graphics-buffer.h" />
     <ClInclude Include="generate-animation-interface.h" />
     <ClInclude Include="generate-animation-simple.h" />
+    <ClInclude Include="letter-rotation-transition-filler.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />

@@ -3,6 +3,7 @@
 #include <slide-transition-filler.h>
 #include <brightness-change-transition-filler.h>
 #include <central-scaling-transition-filler.h>
+#include <letter-rotation-transition-filler.h>
 
 void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 {
@@ -36,6 +37,8 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	BrightnessChangeTransitionFiller* brightnessChangeTransition = new BrightnessChangeTransitionFiller();
 	CentralScalingTransitionFiller* boxIn = new CentralScalingTransitionFiller(false);
 	CentralScalingTransitionFiller* boxOut = new CentralScalingTransitionFiller(true);
+	LetterRotationTransitionFiller* verticalAxisRotation = new LetterRotationTransitionFiller(true);
+	LetterRotationTransitionFiller* horizontalAxisRotation = new LetterRotationTransitionFiller(false);
 	TransitionsManager* transitionsManager = new TransitionsManager(
 		{
 			{L"przejœcie A", *mockFiller1},
@@ -47,7 +50,9 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 			{L"wjazd z góry", *ttb},
 			{L"zmiana jasnoœci", *brightnessChangeTransition},
 			{L"boks wchodz¹cy" , *boxIn},
-			{L"boks wychodz¹cy" , *boxOut}
+			{L"boks wychodz¹cy" , *boxOut},
+			{L"obrót wokó³ osi Y", *verticalAxisRotation},
+			{L"obrót wokó³ osi X", *horizontalAxisRotation}
 		}
 	);
 	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(*animationGenerator, *model, *transitionsManager);
