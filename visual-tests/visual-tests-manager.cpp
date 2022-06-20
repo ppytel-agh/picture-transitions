@@ -2,6 +2,7 @@
 #include "visual-test-record.h"
 
 #include "tests/scaler-test.h"
+#include "tests/buffer-blender-tests.h"
 
 VisualTestsManager::VisualTestsManager() {
 	std::initializer_list<VisualTestRecord> testsList{
@@ -15,6 +16,7 @@ VisualTestsManager::VisualTestsManager() {
 		VisualTestRecord{"test generowania animacji", new GenerateAnimationTest()},
 		VisualTestRecord{"test znormalizowanego blitu", new NormalizedBlitTest()},
 		VisualTestRecord{"test skalowania", new ScalerTest()},
+		VisualTestRecord{"test blendowania", new BufferBlenderTests()},
 	};
 
 	this->numberOfTests = testsList.size();

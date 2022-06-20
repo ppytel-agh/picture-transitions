@@ -156,6 +156,7 @@
     <ClCompile Include="buffer-point.cpp" />
     <ClCompile Include="buffer-scaler.cpp" />
     <ClCompile Include="buffer-space-normalizer.cpp" />
+    <ClCompile Include="buffer-blender.cpp" />
     <ClCompile Include="central-scaling-transition-filler.cpp" />
     <ClCompile Include="FramePreviewAction.cpp" />
     <ClCompile Include="graphics-buffer.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="buffer-scaler.h" />
     <ClInclude Include="buffer-space-normalizer.h" />
     <ClInclude Include="buffer-brightness-changer.h" />
+    <ClInclude Include="buffer-blender.h" />
     <ClInclude Include="central-scaling-transition-filler.h" />
     <ClInclude Include="FramePreviewAction.h" />
     <ClInclude Include="graphics-buffer.h" />
