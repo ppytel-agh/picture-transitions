@@ -180,6 +180,7 @@
     </ClCompile>
     <ClCompile Include="transitions-manager-tests.cpp" />
     <ClCompile Include="unit-tests.cpp" />
+    <ClCompile Include="wx-widgets-converter-tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

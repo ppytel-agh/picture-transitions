@@ -15,6 +15,9 @@ GraphicsBuffer WxWidgetsBufferConverter::convertWxImageToBuffer(const wxImage& w
 
 wxImage WxWidgetsBufferConverter::convertBufferToWxImage(const GraphicsBuffer& buffer)
 {
+    if (buffer.isEmpty()) {
+        return wxImage(1, 1);
+    }
     Size bufferSize = buffer.getSize();
     wxImage wxIm(bufferSize.width, bufferSize.height);
     std::vector<unsigned char> subpixels = buffer.getSubpixelValues();
