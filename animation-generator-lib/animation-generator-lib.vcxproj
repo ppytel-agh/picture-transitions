@@ -150,6 +150,7 @@
     <ClCompile Include="animation-generator-gui.cpp" />
     <ClCompile Include="animation-generator-ui.cpp" />
     <ClCompile Include="AnimationGeneratorMainFrame.cpp" />
+    <ClCompile Include="blend-transition-filler.cpp" />
     <ClCompile Include="brightness-change-transition-filler.cpp" />
     <ClCompile Include="buffer-brightness-changer.cpp" />
     <ClCompile Include="buffer-pixel.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="animation-generator-ui-actions.h" />
     <ClInclude Include="animation-generator-ui.h" />
     <ClInclude Include="AnimationGeneratorMainFrame.h" />
+    <ClInclude Include="blend-transition-filler.h" />
     <ClInclude Include="brightness-change-transition-filler.h" />
     <ClInclude Include="buffer-pixel.h" />
     <ClInclude Include="buffer-point.h" />

@@ -87,6 +87,9 @@
     <ClCompile Include="buffer-blender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blend-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -168,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="buffer-blender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blend-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

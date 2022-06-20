@@ -4,6 +4,7 @@
 #include <brightness-change-transition-filler.h>
 #include <central-scaling-transition-filler.h>
 #include <letter-rotation-transition-filler.h>
+#include <blend-transition-filler.h>
 
 void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 {
@@ -39,6 +40,7 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	CentralScalingTransitionFiller* boxOut = new CentralScalingTransitionFiller(true);
 	LetterRotationTransitionFiller* verticalAxisRotation = new LetterRotationTransitionFiller(true);
 	LetterRotationTransitionFiller* horizontalAxisRotation = new LetterRotationTransitionFiller(false);
+	BlendTransitionFiller* blendingTransition = new BlendTransitionFiller();
 	TransitionsManager* transitionsManager = new TransitionsManager(
 		{
 			{L"przejœcie A", *mockFiller1},
@@ -52,7 +54,8 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 			{L"boks wchodz¹cy" , *boxIn},
 			{L"boks wychodz¹cy" , *boxOut},
 			{L"obrót wokó³ osi Y", *verticalAxisRotation},
-			{L"obrót wokó³ osi X", *horizontalAxisRotation}
+			{L"obrót wokó³ osi X", *horizontalAxisRotation},
+			{L"alpha blending", *blendingTransition}
 		}
 	);
 	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(*animationGenerator, *model, *transitionsManager);
