@@ -54,6 +54,9 @@
     <ClCompile Include="tests\normalized-blit-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests\scaler-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="visual-tests-app.h">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\normalized-blit-test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\scaler-test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

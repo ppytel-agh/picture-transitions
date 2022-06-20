@@ -75,6 +75,9 @@
     <ClCompile Include="brightness-change-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="buffer-scaler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="brightness-change-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer-scaler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

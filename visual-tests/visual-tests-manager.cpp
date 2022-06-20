@@ -1,6 +1,8 @@
 #include "visual-tests-manager.h"
 #include "visual-test-record.h"
 
+#include "tests/scaler-test.h"
+
 VisualTestsManager::VisualTestsManager() {
 	std::initializer_list<VisualTestRecord> testsList{
 		VisualTestRecord{"przyk³adowy test", new ExampleTest()},
@@ -12,6 +14,7 @@ VisualTestsManager::VisualTestsManager() {
 		VisualTestRecord{"test generatora animacji", new AnimationGeneratorTest()},
 		VisualTestRecord{"test generowania animacji", new GenerateAnimationTest()},
 		VisualTestRecord{"test znormalizowanego blitu", new NormalizedBlitTest()},
+		VisualTestRecord{"test skalowania", new ScalerTest()},
 	};
 
 	this->numberOfTests = testsList.size();
