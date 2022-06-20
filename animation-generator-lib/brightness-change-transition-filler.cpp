@@ -11,5 +11,5 @@ void BrightnessChangeTransitionFiller::fillAnimationFrame(const GraphicsBuffer& 
 		this->normalizedBlit.blitTo(endKeyframe, filledFrame, { 0.0f, 0.0f });
 		brightnessNorm = (frameNorm - 0.5f) * 2.0f;
 	}
-	this->brightnessChanger.changeBufferBrightness(filledFrame, frameNorm);
+	this->brightnessChanger.changeBufferBrightness(filledFrame, brightnessNorm);
 }

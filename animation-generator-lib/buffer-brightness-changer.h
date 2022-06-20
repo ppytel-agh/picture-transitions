@@ -4,5 +4,9 @@
 
 class BufferBrightnessChanger {
 public:
-	void changeBufferBrightness(GraphicsBuffer&, float brightnessNorm);
+	/**
+	* @param buffer modified buffer
+	* @brightnessNorm \in [0,1] 0 - dark, 1 - normal colors
+	*/
+	void changeBufferBrightness(GraphicsBuffer& buffer, float brightnessNorm);
 };
