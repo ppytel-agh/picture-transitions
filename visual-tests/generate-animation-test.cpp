@@ -1,5 +1,7 @@
 #include "generate-animation-test.h"
 
+#include <slide-transition-filler.h>
+
 void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 {
 	class MockFiller : public AnimationFrameFillerInterface {
@@ -25,11 +27,19 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	MockFiller* mockFiller1 = new MockFiller(0);
 	MockFiller* mockFiller2 = new MockFiller(-50);
 	MockFiller* mockFiller3 = new MockFiller(25);
+	SlideTransitionFiller* ltr = new SlideTransitionFiller(true, true);
+	SlideTransitionFiller* rtl = new SlideTransitionFiller(true, false);
+	SlideTransitionFiller* btt = new SlideTransitionFiller(false, true);
+	SlideTransitionFiller* ttb = new SlideTransitionFiller(false, false);
 	TransitionsManager* transitionsManager = new TransitionsManager(
 		{
 			{L"przejœcie A", *mockFiller1},
 			{L"przejœcie B", *mockFiller2},
-			{L"przejœcie C", *mockFiller3}
+			{L"przejœcie C", *mockFiller3},
+			{L"wjazd z lewej", *ltr},
+			{L"wjazd z prawej", *rtl},
+			{L"wjazd z do³u", *btt},
+			{L"wjazd z góry", *ttb}
 		}
 	);
 	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(*animationGenerator, *model, * transitionsManager);

@@ -66,6 +66,9 @@
     <ClCompile Include="normalized-blit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="slide-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="normalized-blit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="slide-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
