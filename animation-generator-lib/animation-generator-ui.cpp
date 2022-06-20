@@ -4,26 +4,54 @@ AnimationGeneratorUI::AnimationGeneratorUI(AnimationGeneratorMainFrame& mainFram
 {
 }
 
+void scaleToFit(wxImage& image, unsigned short width, unsigned short height) {
+	float destinationRatio = float(width) / float(height);
+	int imageWidth = image.GetWidth();
+	int imageHeight = image.GetHeight();
+	float imageRatio = float(imageWidth) / float(imageHeight);
+	int newWidth = width;
+	int newHeight = height;
+	if (imageRatio > destinationRatio) {
+		float scaleRatio = float(width) / float(imageWidth);
+		newHeight = imageHeight * scaleRatio;
+	}
+	else if (imageRatio < destinationRatio) {
+		float scaleRatio = float(height) / float(imageHeight);
+		newWidth = imageWidth * scaleRatio;
+	}
+	image.Rescale(newWidth, newHeight);
+}
+
+void drawInCenterOfPanel(wxWindow* panel, const wxImage& scaledImage, int panelWidth, int panelHeight) {
+	int imageWidth = scaledImage.GetWidth();
+	int imageHeight = scaledImage.GetHeight();
+	int xOffset = 0;
+	int yOffset = 0;
+	if (imageWidth < panelWidth) {
+		xOffset = (panelWidth - imageWidth) / 2;
+	}
+	if (imageHeight < panelHeight) {
+		yOffset = (panelHeight - imageHeight) / 2;
+	}
+	wxBitmap memoryBitmap(scaledImage);
+	wxMemoryDC memDC;
+	memDC.SelectObject(memoryBitmap);
+	wxClientDC dc(panel);
+	dc.Blit(xOffset, yOffset, imageWidth, imageHeight, &memDC, 0, 0);
+}
+
 void AnimationGeneratorUI::setStartKeyframePreview(const wxImage& preview)
 {
 	wxImage previewCopy(preview);
-	previewCopy.Rescale(240, 135);
-	wxBitmap memoryBitmap(previewCopy);
-	wxMemoryDC memDC;
-	memDC.SelectObject(memoryBitmap);
-	wxClientDC dc(this->mainFrame.firstImgPreviewPanel);
-	dc.Blit(0, 0, 240, 135, &memDC, 0, 0);
+	scaleToFit(previewCopy, 240, 135);
+	drawInCenterOfPanel(this->mainFrame.firstImgPreviewPanel, previewCopy, 240, 135);
 }
 
 void AnimationGeneratorUI::setEndKeyframePreview(const wxImage& preview)
 {
 	wxImage previewCopy(preview);
-	previewCopy.Rescale(240, 135);
-	wxBitmap memoryBitmap(previewCopy);
-	wxMemoryDC memDC;
-	memDC.SelectObject(memoryBitmap);
-	wxClientDC dc(this->mainFrame.secondImgPreviewPanel);
-	dc.Blit(0, 0, 240, 135, &memDC, 0, 0);
+	scaleToFit(previewCopy, 240, 135);
+	drawInCenterOfPanel(this->mainFrame.secondImgPreviewPanel, previewCopy, 240, 135);
 }
 
 void AnimationGeneratorUI::addMessage(std::string message)
@@ -40,12 +68,8 @@ void AnimationGeneratorUI::addMessage(std::string message)
 void AnimationGeneratorUI::setAnimationFramePreview(const wxImage& preview)
 {
 	wxImage previewCopy(preview);
-	previewCopy.Rescale(960, 540);
-	wxBitmap memoryBitmap(previewCopy);
-	wxMemoryDC memDC;
-	memDC.SelectObject(memoryBitmap);
-	wxClientDC dc(this->mainFrame.scenePanel);
-	dc.Blit(0, 0, 960, 540, &memDC, 0, 0);
+	scaleToFit(previewCopy, 960, 540);
+	drawInCenterOfPanel(this->mainFrame.scenePanel, previewCopy, 960, 540);
 }
 
 void AnimationGeneratorUI::setAnimationFrameCountSlider(unsigned int newMaxVal)

@@ -5,7 +5,8 @@
 void AnimationGeneratorUITest::initializeUI(wxFrame* parentFrame)
 {
 	wxImage::AddHandler(new wxPNGHandler());
-	
+	wxImage::AddHandler(new wxJPEGHandler());
+
 	std::function<void(AnimationGeneratorUI&)>* resetAction = new std::function<void(AnimationGeneratorUI&)>{
 		 [](AnimationGeneratorUI& ui) {
 			ui.addMessage("reset");
@@ -16,7 +17,7 @@ void AnimationGeneratorUITest::initializeUI(wxFrame* parentFrame)
 		std::stringstream ss;
 		ss << "set " << keyframePath << " as start keyframe";
 		ui.addMessage(ss.str());
-		wxImage keyframePlaceholder("./tests/animation-generator-ui-test/startkeyframe.png");
+		wxImage keyframePlaceholder("./tests/animation-generator-ui-test/zaba-mag.png");
 		ui.setStartKeyframePreview(keyframePlaceholder);
 		ui.setKeyframesSize(240, 135);
 	}
@@ -26,7 +27,7 @@ void AnimationGeneratorUITest::initializeUI(wxFrame* parentFrame)
 		std::stringstream ss;
 		ss << "set " << keyframePath << " as end keyframe";
 		ui.addMessage(ss.str());
-		wxImage keyframePlaceholder("tests/animation-generator-ui-test/endkeyframe.png");
+		wxImage keyframePlaceholder("tests/animation-generator-ui-test/sztuczna-linia-dluga.png");
 		ui.setEndKeyframePreview(keyframePlaceholder);
 		ui.setKeyframesSize(240, 135);
 	}
@@ -36,7 +37,8 @@ void AnimationGeneratorUITest::initializeUI(wxFrame* parentFrame)
 		std::stringstream ss;
 		ss << "generated " << numberOfFrames << " frame animation of type " << transitionId;
 		ui.addMessage(ss.str());
-		wxImage framePlaceholder("tests/animation-generator-ui-test/interframe.png");
+		//wxImage framePlaceholder("tests/animation-generator-ui-test/sztuczna-linia-dluga.png");
+		wxImage framePlaceholder("tests/animation-generator-ui-test/cloud-computing.jpg");
 		ui.setAnimationFramePreview(framePlaceholder);
 		ui.setAnimationFrameCountSlider(numberOfFrames);
 	}
