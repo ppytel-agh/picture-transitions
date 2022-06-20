@@ -14,8 +14,10 @@ void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
 	{
 		if (this->actions != nullptr) {
-			std::string filePath = WxOpenFirstFrameDialog->GetPath();
-			this->actions->setStartKeyframeAction(*this->animationGeneratorUI, filePath);
+			if (this->actions->setStartKeyframeAction != nullptr) {
+				std::string filePath = WxOpenFirstFrameDialog->GetPath();
+				this->actions->setStartKeyframeAction(*this->animationGeneratorUI, filePath);
+			}
 		}
 	}
 }
@@ -27,8 +29,10 @@ void AnimationGeneratorMainFrame::onLoadLastFrame(wxCommandEvent& event)
 	if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
 	{
 		if (this->actions != nullptr) {
-			std::string filePath = WxOpenLastFrameDialog->GetPath();
-			this->actions->setEndKeyframeAction(*this->animationGeneratorUI, filePath);
+			if (this->actions->setEndKeyframeAction != nullptr) {
+				std::string filePath = WxOpenLastFrameDialog->GetPath();
+				this->actions->setEndKeyframeAction(*this->animationGeneratorUI, filePath);
+			}
 		}
 	}
 }
@@ -46,9 +50,11 @@ void AnimationGeneratorMainFrame::onReset(wxCommandEvent& event)
 		this->loadedKeyframeSize->SetLabel("");
 		this->Layout();
 		if (this->actions != nullptr) {
-			AnimationGeneratorUI& uiRef = *this->animationGeneratorUI;
-			std::function<void(AnimationGeneratorUI&)> resetAction = this->actions->resetAction;
-			resetAction(uiRef);
+			if (this->actions->resetAction != nullptr) {
+				AnimationGeneratorUI& uiRef = *this->animationGeneratorUI;
+				std::function<void(AnimationGeneratorUI&)> resetAction = this->actions->resetAction;
+				resetAction(uiRef);
+			}
 		}
 	}
 }
@@ -68,7 +74,9 @@ void AnimationGeneratorMainFrame::onGenerateFrame(wxCommandEvent& event)
 	int selectedTransitionId = this->chooseTransition->GetSelection();
 	int numberOfFrames = this->frameRate->GetValue();
 	if (this->actions != nullptr) {
-		this->actions->generateAnimationAction(*this->animationGeneratorUI, selectedTransitionId, numberOfFrames);
+		if (this->actions->generateAnimationAction != nullptr) {
+			this->actions->generateAnimationAction(*this->animationGeneratorUI, selectedTransitionId, numberOfFrames);
+		}
 	}
 }
 
@@ -77,7 +85,9 @@ void AnimationGeneratorMainFrame::onScroll(wxScrollEvent& event)
 	int selectedFrameNumber = this->slider->GetValue();
 	int numberOfFrames = this->slider->GetMax();
 	if (this->actions != nullptr) {
-		this->actions->showPreviewAction(*this->animationGeneratorUI, selectedFrameNumber, numberOfFrames);
+		if (this->actions->showPreviewAction != nullptr) {
+			this->actions->showPreviewAction(*this->animationGeneratorUI, selectedFrameNumber, numberOfFrames);
+		}
 	}
 }
 
@@ -87,8 +97,10 @@ void AnimationGeneratorMainFrame::onAnimationSave(wxCommandEvent& event)
 	if (WxSaveAnimationDialog->ShowModal() == wxID_OK)
 	{
 		if (this->actions != nullptr) {
-			std::string saveDir = WxSaveAnimationDialog->GetPath();
-			this->actions->saveAnimationAction(*this->animationGeneratorUI, saveDir);
+			if (this->actions->saveAnimationAction != nullptr) {
+				std::string saveDir = WxSaveAnimationDialog->GetPath();
+				this->actions->saveAnimationAction(*this->animationGeneratorUI, saveDir);
+			}
 		}
 	}
 }
@@ -120,6 +132,7 @@ AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent, std::
 	this->setPolishLabels();
 }
 
-AnimationGeneratorUI* AnimationGeneratorMainFrame::getUI() {
+AnimationGeneratorUI* AnimationGeneratorMainFrame::getUI()
+{
 	return this->animationGeneratorUI;
 }

@@ -11,7 +11,7 @@
 
 MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxSize( 1280,720 ), wxDefaultSize );
+	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
 	this->SetBackgroundColour( wxColour( 255, 255, 255 ) );
 
 	wxBoxSizer* mainSizer;
@@ -149,7 +149,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	choiceSizer->Add( transitionDropdownSizer, 1, wxEXPAND, 5 );
 
-	frameRate = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10, 0 );
+	frameRate = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 2, 240, 3 );
 	choiceSizer->Add( frameRate, 1, wxALL, 5 );
 
 
@@ -162,7 +162,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	menuSizer->Add( generateFrame, 0, wxALIGN_CENTER, 5 );
 
 
-	mainSizer->Add( menuSizer, 1, wxALIGN_LEFT|wxEXPAND, 5 );
+	mainSizer->Add( menuSizer, 0, wxALIGN_LEFT|wxEXPAND, 5 );
 
 	wxBoxSizer* sceneSizer;
 	sceneSizer = new wxBoxSizer( wxVERTICAL );
@@ -173,7 +173,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	scenePanel->SetMinSize( wxSize( 960,540 ) );
 	scenePanel->SetMaxSize( wxSize( 960,540 ) );
 
-	sceneSizer->Add( scenePanel, 1, wxALL, 5 );
+	sceneSizer->Add( scenePanel, 0, wxALL, 5 );
 
 	separator7 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( -1,40 ), wxTAB_TRAVERSAL );
 	separator7->SetMinSize( wxSize( -1,40 ) );
@@ -184,7 +184,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxHORIZONTAL );
 
-	slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	slider = new wxSlider( this, wxID_ANY, 1, 1, 2, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	bSizer12->Add( slider, 5, wxEXPAND, 5 );
 
 	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animacje"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -196,7 +196,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	sceneSizer->Add( bSizer12, 1, wxEXPAND, 5 );
 
 
-	mainSizer->Add( sceneSizer, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
+	mainSizer->Add( sceneSizer, 0, wxALIGN_RIGHT|wxEXPAND, 5 );
 
 
 	this->SetSizer( mainSizer );

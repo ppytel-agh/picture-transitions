@@ -23,19 +23,19 @@ class AnimationGeneratorMainFrame;
 /** Implementing MainFrame */
 class AnimationGeneratorMainFrame : public MainFrame
 {
-	protected:
-		// Handlers for MainFrame events.
-		void onLoadInitFrame( wxCommandEvent& event );
-		void onLoadLastFrame( wxCommandEvent& event );
-		void onReset( wxCommandEvent& event );
-		void onTransitionChoice( wxCommandEvent& event );
-		void onFrameRateEnter( wxSpinEvent& event );
-		void onGenerateFrame( wxCommandEvent& event );
-		void onScroll( wxScrollEvent& event );
-		void onAnimationSave( wxCommandEvent& event );
-	public:
-		/** Constructor */
-		AnimationGeneratorMainFrame( wxWindow* parent );
+protected:
+	// Handlers for MainFrame events.
+	void onLoadInitFrame(wxCommandEvent& event);
+	void onLoadLastFrame(wxCommandEvent& event);
+	void onReset(wxCommandEvent& event);
+	void onTransitionChoice(wxCommandEvent& event);
+	void onFrameRateEnter(wxSpinEvent& event);
+	void onGenerateFrame(wxCommandEvent& event);
+	void onScroll(wxScrollEvent& event);
+	void onAnimationSave(wxCommandEvent& event);
+public:
+	/** Constructor */
+	AnimationGeneratorMainFrame(wxWindow* parent);
 	//// end generated class members
 	AnimationGeneratorMainFrame(wxWindow*, std::vector<std::wstring>, AnimationGeneratorUIActions&);
 	AnimationGeneratorUI* getUI();
@@ -43,19 +43,6 @@ private:
 	AnimationGeneratorUI* animationGeneratorUI;
 	AnimationGeneratorUIActions* actions;
 	void setPolishLabels();
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 #endif // __AnimationGeneratorMainFrame__
