@@ -2,11 +2,19 @@
 
 GraphicsBuffer BufferScaler::scaleBuffer(const GraphicsBuffer& scaledBuffer, float scaleX, float scaleY)
 {
-    Size bufferSize = scaledBuffer.getSize();
-   /* bufferSize.width *= fabs(scaleX);
-    bufferSize.height *= fabs(scaleY);
-    GraphicsBuffer scaledBuffer = GraphicsBuffer(bufferSize);*/
+    Size scaling = scaledBuffer.getSize();
+    scaling.width *= fabs(scaleX);
+    scaling.height *= fabs(scaleY);
+    if (scaling.width < 1 || scaling.height < 1) {
+        return GraphicsBuffer({});
+    }
     wxImage imageForRescaling = WxWidgetsBufferConverter::convertBufferToWxImage(scaledBuffer);
-    imageForRescaling.Rescale(bufferSize.width * scaleX, bufferSize.height * scaleY);
+    if (scaleX < 0.0f) {
+        imageForRescaling = imageForRescaling.Mirror(true);
+    }
+    if (scaleY < 0.0f) {
+        imageForRescaling = imageForRescaling.Mirror(false);
+    }
+    imageForRescaling.Rescale(scaling.width, scaling.height);
     return WxWidgetsBufferConverter::convertWxImageToBuffer(imageForRescaling);
 }

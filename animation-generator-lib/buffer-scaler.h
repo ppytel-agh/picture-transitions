@@ -8,7 +8,8 @@ class BufferScaler {
 public:
 	/**
 	* Creates rescaled copy of buffer\n
-	* scale value in (0, 1) makes buffer smaller, scale bigger than 1 enlarges buffer
+	* scale value in (0, 1) makes buffer smaller, scale bigger than 1 enlarges buffer\n
+	* warning! returned buffer may be empty if scale is close to 0
 	* @param scaleX if negative then image is flipped in Y axis
 	* @param scaleY if negative then image is flipped in X axis
 	*/

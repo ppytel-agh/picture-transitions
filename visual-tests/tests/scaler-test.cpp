@@ -32,11 +32,24 @@ void ScalerTest::initializeUI(wxFrame* parentFrame)
 	xSlider = new wxSlider(frame, wxID_ANY, 100, -200, 200, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL);
 	bSizer3->Add(xSlider, 1, wxALL | wxEXPAND, 5);
 
-	xPos = new wxStaticText(frame, wxID_ANY, wxT("scale: 1.0"), wxDefaultPosition, wxDefaultSize, 0);
+	xPos = new wxStaticText(frame, wxID_ANY, wxT("scaleX: 1.0"), wxDefaultPosition, wxDefaultSize, 0);
 	xPos->Wrap(-1);
 	bSizer3->Add(xPos, 0, wxALL, 5);
 
 	bSizer1->Add(bSizer3, 0, wxEXPAND, 5);
+
+	wxBoxSizer* bSizer4;
+	bSizer4 = new wxBoxSizer(wxHORIZONTAL);
+
+	ySlider = new wxSlider(frame, wxID_ANY, 100, -200, 200, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL);
+	bSizer4->Add(ySlider, 1, wxALL, 5);
+
+	yPos = new wxStaticText(frame, wxID_ANY, wxT("scaleY: 1.0f"), wxDefaultPosition, wxDefaultSize, 0);
+	yPos->Wrap(-1);
+	bSizer4->Add(yPos, 0, wxALL, 5);
+
+
+	bSizer1->Add(bSizer4, 0, wxEXPAND, 5);
 
 	m_panel3 = new wxPanel(frame, wxID_ANY, wxDefaultPosition, wxSize(480, 270), wxTAB_TRAVERSAL);
 	bSizer1->Add(m_panel3, 0, wxALIGN_CENTER | wxALL, 5);
@@ -60,27 +73,45 @@ void ScalerTest::initializeUI(wxFrame* parentFrame)
 		dc.Blit(0, 0, 240, 135, &memDC, 0, 0);
 	}
 
-	float* scale = new float{ 1.0f };
+	float* scaleX = new float{ 1.0f };
+	float* scaleY = new float{ 1.0f };
 
+	std::function<void()>* rescaleAndDraw = new std::function<void()>{
+		[=]() {
+			BufferScaler scaler;
+			GraphicsBuffer scaledBuffer = scaler.scaleBuffer(*sourceBuffer, *scaleX, *scaleY);
+			if (!scaledBuffer.isEmpty()) {
+				wxImage scaledBufferImage = WxWidgetsBufferConverter::convertBufferToWxImage(scaledBuffer);
+				m_panel3->ClearBackground();
+				wxBitmap memoryBitmap(scaledBufferImage);
+				wxMemoryDC memDC;
+				memDC.SelectObject(memoryBitmap);
+				wxClientDC dc(m_panel3);
+				dc.Blit(0, 0, 480, 270, &memDC, 0, 0);
+			}
+		}
+	};
 	std::function<void(wxScrollEvent&)>* xScrollFunction = new std::function<void(wxScrollEvent&)>{
 		[=](wxScrollEvent&) {
 			int sliderVal = xSlider->GetValue();
-			*scale = float(sliderVal) / 100.0f;
+			*scaleX = float(sliderVal) / 100.0f;
 			std::stringstream newLabel;
-			newLabel << "scale: " << *scale;
+			newLabel << "scale: " << *scaleX;
 			xPos->SetLabel(newLabel.str());
-
-			BufferScaler scaler;
-			GraphicsBuffer scaledBuffer = scaler.scaleBuffer(*sourceBuffer, *scale, *scale);
-			wxImage scaledBufferImage = WxWidgetsBufferConverter::convertBufferToWxImage(scaledBuffer);
-			m_panel3->ClearBackground();
-			wxBitmap memoryBitmap(scaledBufferImage);
-			wxMemoryDC memDC;
-			memDC.SelectObject(memoryBitmap);
-			wxClientDC dc(m_panel3);
-			dc.Blit(0, 0, 480, 270, &memDC, 0, 0);
+			(*rescaleAndDraw)();
+		}
+	};
+	std::function<void(wxScrollEvent&)>* yScrollFunction = new std::function<void(wxScrollEvent&)>{
+		[=](wxScrollEvent&) {
+			int sliderVal = ySlider->GetValue();
+			*scaleY = float(sliderVal) / 100.0f;
+			std::stringstream newLabel;
+			newLabel << "scale: " << *scaleY;
+			yPos->SetLabel(newLabel.str());
+			(*rescaleAndDraw)();
 		}
 	};
 	// Connect Events
 	xSlider->Bind(wxEVT_SCROLL_CHANGED, *xScrollFunction);
+	ySlider->Bind(wxEVT_SCROLL_CHANGED, *yScrollFunction);
 }
