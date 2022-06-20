@@ -120,6 +120,7 @@ AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent, std::
 	this->setPolishLabels();
 }
 
-AnimationGeneratorUI* AnimationGeneratorMainFrame::getUI() {
+AnimationGeneratorUI* AnimationGeneratorMainFrame::getUI()
+{
 	return this->animationGeneratorUI;
 }
