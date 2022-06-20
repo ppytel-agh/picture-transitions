@@ -184,7 +184,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxHORIZONTAL );
 
-	slider = new wxSlider( this, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	slider = new wxSlider( this, wxID_ANY, 1, 1, 2, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
 	bSizer12->Add( slider, 5, wxEXPAND, 5 );
 
 	saveAnimation = new wxButton( this, wxID_ANY, wxT("Zapisz animacje"), wxDefaultPosition, wxDefaultSize, 0 );
