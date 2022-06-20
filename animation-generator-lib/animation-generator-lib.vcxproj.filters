@@ -84,6 +84,9 @@
     <ClCompile Include="letter-rotation-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="buffer-blender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="letter-rotation-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer-blender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
