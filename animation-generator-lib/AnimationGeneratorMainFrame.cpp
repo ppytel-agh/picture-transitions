@@ -9,7 +9,7 @@ AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
 
 void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 {
-	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Wybierz klatke poczatkowa"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Wybierz klatke poczatkowa"), _(" "), _(""), _("Plik graficzny(*.png, *.jpg, *.bmp)|*.png;*.jpg;*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
 
 	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
 	{
@@ -24,7 +24,7 @@ void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 
 void AnimationGeneratorMainFrame::onLoadLastFrame(wxCommandEvent& event)
 {
-	wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Wybierz klatke koncowa"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
+	wxFileDialog* WxOpenLastFrameDialog(new wxFileDialog(this, _("Wybierz klatke koncowa"), _(" "), _(""), _("Plik graficzny(*.png, *.jpg, *.bmp)|*.png;*.jpg;*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
 
 	if (WxOpenLastFrameDialog->ShowModal() == wxID_OK)
 	{
