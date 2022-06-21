@@ -175,6 +175,7 @@
     <ClCompile Include="slide-transition-filler.cpp" />
     <ClCompile Include="transitions-manager.cpp" />
     <ClCompile Include="transitions-repo.cpp" />
+    <ClCompile Include="ui-actions-set.cpp" />
     <ClCompile Include="wxWidgets-buffer-converter.cpp" />
     <ClCompile Include="simple-animation-generator.cpp" />
   </ItemGroup>
@@ -211,6 +212,7 @@
     <ClInclude Include="slide-transition-filler.h" />
     <ClInclude Include="transitions-manager.h" />
     <ClInclude Include="transitions-repo.h" />
+    <ClInclude Include="ui-actions-set.h" />
     <ClInclude Include="wxWidgets-buffer-converter.h" />
     <ClInclude Include="simple-animation-generator.h" />
   </ItemGroup>
