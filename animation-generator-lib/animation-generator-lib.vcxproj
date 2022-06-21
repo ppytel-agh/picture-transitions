@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="abstract-load-keyframe-action.cpp" />
     <ClCompile Include="animation-generator-app.cpp" />
     <ClCompile Include="animation-generator-gui.cpp" />
     <ClCompile Include="animation-generator-ui.cpp" />
@@ -163,6 +164,8 @@
     <ClCompile Include="graphics-buffer.cpp" />
     <ClCompile Include="generate-animation-simple.cpp" />
     <ClCompile Include="letter-rotation-transition-filler.cpp" />
+    <ClCompile Include="load-end-keyframe-action.cpp" />
+    <ClCompile Include="load-start-keyframe-action.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="simple-animation-generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="abstract-load-keyframe-action.h" />
     <ClInclude Include="animation-frame-filler-interface.h" />
     <ClInclude Include="animation-generator-app.h" />
     <ClInclude Include="animation-generator-gui.h" />
@@ -193,6 +197,8 @@
     <ClInclude Include="generate-animation-interface.h" />
     <ClInclude Include="generate-animation-simple.h" />
     <ClInclude Include="letter-rotation-transition-filler.h" />
+    <ClInclude Include="load-end-keyframe-action.h" />
+    <ClInclude Include="load-start-keyframe-action.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />

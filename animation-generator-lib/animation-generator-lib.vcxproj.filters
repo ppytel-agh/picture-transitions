@@ -90,6 +90,15 @@
     <ClCompile Include="blend-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="abstract-load-keyframe-action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="load-start-keyframe-action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="load-end-keyframe-action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -174,6 +183,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blend-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="abstract-load-keyframe-action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="load-start-keyframe-action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="load-end-keyframe-action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
