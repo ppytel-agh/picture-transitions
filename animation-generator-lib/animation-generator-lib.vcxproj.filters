@@ -102,6 +102,15 @@
     <ClCompile Include="save-animation-action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="reset-action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transitions-repo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui-actions-set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -198,6 +207,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="save-animation-action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reset-action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="transitions-repo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui-actions-set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
