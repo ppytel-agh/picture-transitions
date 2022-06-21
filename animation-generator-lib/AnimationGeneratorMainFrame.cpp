@@ -1,6 +1,4 @@
 #include "AnimationGeneratorMainFrame.h"
-#include "graphics-buffer.h"
-#include "model.h"
 
 AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
 	:
@@ -95,28 +93,18 @@ void AnimationGeneratorMainFrame::onScroll(wxScrollEvent& event)
 
 void AnimationGeneratorMainFrame::onAnimationSave(wxCommandEvent& event)
 {
-	Model model;
-	wxImage::AddHandler(new wxJPEGHandler);
-
 	wxDirDialog* WxSaveAnimationDialog(new wxDirDialog(this, _("Wybierz katalog zapisu animacji")));
-
 	if (WxSaveAnimationDialog->ShowModal() == wxID_OK)
 	{
 		if (this->actions != nullptr) {
-			wxString saveDir = WxSaveAnimationDialog->GetPath();
-			// this->actions->saveAnimationAction(*this->animationGeneratorUI, saveDir);
-
-			for (unsigned int i = 0; i < model.getNumberOfAnimationFrames(); i++)
-			{
-				GraphicsBuffer buffer = model.getAnimationFrame(i);
-				std::vector<unsigned char> bmp = buffer.getSubpixelValues();
-				wxSize imgSize = wxSize(960, 540);
-				wxImage img = wxImage(imgSize, bmp.data());
-				img.SaveFile(saveDir, wxBITMAP_TYPE_JPEG);
+			if (this->actions->saveAnimationAction != nullptr) {
+				std::string saveDir = WxSaveAnimationDialog->GetPath();
+				this->actions->saveAnimationAction(*this->animationGeneratorUI, saveDir);
 			}
 		}
 	}
 }
+
 
 void AnimationGeneratorMainFrame::setPolishLabels()
 {

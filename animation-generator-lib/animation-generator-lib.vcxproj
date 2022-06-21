@@ -170,6 +170,7 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="norm-calc.cpp" />
     <ClCompile Include="normalized-blit.cpp" />
+    <ClCompile Include="save-animation-action.cpp" />
     <ClCompile Include="slide-transition-filler.cpp" />
     <ClCompile Include="transitions-manager.cpp" />
     <ClCompile Include="wxWidgets-buffer-converter.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="norm-calc.h" />
     <ClInclude Include="normalized-blit.h" />
+    <ClInclude Include="save-animation-action.h" />
     <ClInclude Include="slide-transition-filler.h" />
     <ClInclude Include="transitions-manager.h" />
     <ClInclude Include="wxWidgets-buffer-converter.h" />
