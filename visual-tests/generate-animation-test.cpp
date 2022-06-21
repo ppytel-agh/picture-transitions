@@ -24,13 +24,13 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 		int offset;
 	};
 
-	/*wxImage::AddHandler(new wxPNGHandler());
+	wxImage::AddHandler(new wxPNGHandler());
 	wxImage startKeyframe("./tests/animation-generator-ui-test/startkeyframe.png");
-	wxImage endKeyframe("./tests/animation-generator-ui-test/endkeyframe.png");*/
+	wxImage endKeyframe("./tests/animation-generator-ui-test/endkeyframe.png");
 
 	Model* model = new Model();
-	/*model->setStartKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(startKeyframe));
-	model->setEndKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(endKeyframe));*/
+	model->setStartKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(startKeyframe));
+	model->setEndKeyframe(WxWidgetsBufferConverter::convertWxImageToBuffer(endKeyframe));
 
 	SimpleAnimationGenerator* animationGenerator = new SimpleAnimationGenerator();
 	MockFiller* mockFiller1 = new MockFiller(0);
@@ -65,19 +65,19 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	);
 	GenerateAnimationSimple* generateAnimation = new GenerateAnimationSimple(*animationGenerator, *model, *transitionsManager);
 	FramePreviewAction* framePreview = new FramePreviewAction(*model);
-	LoadStartKeyframeAction* loadStartKeyframe = new LoadStartKeyframeAction(*model);
-	LoadEndKeyframeAction* loadEndKeyframe = new LoadEndKeyframeAction(*model);
+	//LoadStartKeyframeAction* loadStartKeyframe = new LoadStartKeyframeAction(*model);
+	//LoadEndKeyframeAction* loadEndKeyframe = new LoadEndKeyframeAction(*model);
 	SaveAnimationAction* saveAction = new SaveAnimationAction(*model);
 	AnimationGeneratorUIActions* testActions = new AnimationGeneratorUIActions{};
 	testActions->generateAnimationAction = *generateAnimation;
 	testActions->showPreviewAction = *framePreview;
-	testActions->setStartKeyframeAction = *loadStartKeyframe;
-	testActions->setEndKeyframeAction = *loadEndKeyframe;
+	//testActions->setStartKeyframeAction = *loadStartKeyframe;
+	//testActions->setEndKeyframeAction = *loadEndKeyframe;
 	testActions->saveAnimationAction = *saveAction;
 
 	AnimationGeneratorMainFrame* mainFrame = new AnimationGeneratorMainFrame(parentFrame, transitionsManager->getTransitionNames(), *testActions);
 	mainFrame->Show();
 
-	/*mainFrame->getUI()->setStartKeyframePreview(startKeyframe);
-	mainFrame->getUI()->setEndKeyframePreview(endKeyframe);*/
+	mainFrame->getUI()->setStartKeyframePreview(startKeyframe);
+	mainFrame->getUI()->setEndKeyframePreview(endKeyframe);
 }
