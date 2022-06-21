@@ -102,6 +102,9 @@
     <ClCompile Include="save-animation-action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="reset-action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -198,6 +201,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="save-animation-action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reset-action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
