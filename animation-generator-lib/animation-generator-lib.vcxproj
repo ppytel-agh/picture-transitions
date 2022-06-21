@@ -75,8 +75,8 @@
     <LibraryPath>$(WXWIN)/lib/vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;C:\wxWidgets-3.1.5\include\msvc;C:\wxWidgets-3.1.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(WXWIN)/vc_x64_lib;$(WXWIN)/lib/vc_x64_lib;C:\wxWidgets-3.1.5\lib\vc_x64_lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;$(WXWIN)/include/msvc;$(WXWIN)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(WXWIN)/vc_x64_lib;$(WXWIN)/lib/vc_x64_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(WXWIN)/include/msvc;$(WXWIN)/include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
