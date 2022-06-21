@@ -6,6 +6,7 @@ SlideTransitionFiller::SlideTransitionFiller(bool horizontal, bool negativeToPos
 
 void SlideTransitionFiller::fillAnimationFrame(const GraphicsBuffer& startKeyframe, const GraphicsBuffer& endKeyframe, GraphicsBuffer& filledFrame, float frameNorm)
 {
+	this->blitOp.blitTo(startKeyframe, filledFrame, { 0.0f, 0.0f });
 	BufferPoint copyPosition{};
 	if (horizontal) {
 		if (negativeToPositive) {
