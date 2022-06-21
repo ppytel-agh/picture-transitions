@@ -23,9 +23,6 @@ class AnimationGeneratorMainFrame;
 /** Implementing MainFrame */
 class AnimationGeneratorMainFrame : public MainFrame
 {
-	wxImage startFrame;
-	wxImage endFrame;
-
 protected:
 	// Handlers for MainFrame events.
 	void onLoadInitFrame(wxCommandEvent& event);

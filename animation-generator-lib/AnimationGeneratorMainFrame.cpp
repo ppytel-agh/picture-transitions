@@ -1,29 +1,22 @@
 #include "AnimationGeneratorMainFrame.h"
 
 AnimationGeneratorMainFrame::AnimationGeneratorMainFrame(wxWindow* parent)
-	: MainFrame(parent)
+	:
+	MainFrame(parent)
 {
 	this->setPolishLabels();
 }
 
 void AnimationGeneratorMainFrame::onLoadInitFrame(wxCommandEvent& event)
 {
-	wxImage::AddHandler(new wxPNGHandler);
-	wxImage::AddHandler(new wxJPEGHandler);
-
 	wxFileDialog* WxOpenFirstFrameDialog(new wxFileDialog(this, _("Wybierz klatke poczatkowa"), _(" "), _(""), _("JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|Bitmap (*.bmp)|*.bmp"), wxFD_OPEN | wxFD_FILE_MUST_EXIST));
 
 	if (WxOpenFirstFrameDialog->ShowModal() == wxID_OK)
 	{
 		if (this->actions != nullptr) {
 			if (this->actions->setStartKeyframeAction != nullptr) {
-				wxString filePath = WxOpenFirstFrameDialog->GetPath();
-				// this->actions->setStartKeyframeAction(*this->animationGeneratorUI, filePath);
-
-				startFrame.LoadFile(filePath, wxBITMAP_TYPE_ANY);
-
-				animationGeneratorUI->setAnimationFramePreview(startFrame);
-				animationGeneratorUI->setStartKeyframePreview(startFrame);
+				std::string filePath = WxOpenFirstFrameDialog->GetPath();
+				this->actions->setStartKeyframeAction(*this->animationGeneratorUI, filePath);
 			}
 		}
 	}
@@ -37,12 +30,8 @@ void AnimationGeneratorMainFrame::onLoadLastFrame(wxCommandEvent& event)
 	{
 		if (this->actions != nullptr) {
 			if (this->actions->setEndKeyframeAction != nullptr) {
-				wxString filePath = WxOpenLastFrameDialog->GetPath();
-				// this->actions->setEndKeyframeAction(*this->animationGeneratorUI, filePath);
-
-				endFrame.LoadFile(filePath, wxBITMAP_TYPE_ANY);
-
-				animationGeneratorUI->setEndKeyframePreview(endFrame);
+				std::string filePath = WxOpenLastFrameDialog->GetPath();
+				this->actions->setEndKeyframeAction(*this->animationGeneratorUI, filePath);
 			}
 		}
 	}
