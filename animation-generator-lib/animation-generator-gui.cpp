@@ -211,14 +211,6 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	chooseTransition->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MainFrame::onTransitionChoice ), NULL, this );
 	frameRate->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	saveAnimation->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onAnimationSave ), NULL, this );
 }
@@ -232,14 +224,6 @@ MainFrame::~MainFrame()
 	chooseTransition->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( MainFrame::onTransitionChoice ), NULL, this );
 	frameRate->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
-	slider->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	saveAnimation->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onAnimationSave ), NULL, this );
 
