@@ -9,6 +9,8 @@
 #include <load-start-keyframe-action.h>
 #include <load-end-keyframe-action.h>
 
+#include <save-animation-action.h>
+
 void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 {
 	class MockFiller : public AnimationFrameFillerInterface {
@@ -65,11 +67,13 @@ void GenerateAnimationTest::initializeUI(wxFrame* parentFrame)
 	FramePreviewAction* framePreview = new FramePreviewAction(*model);
 	LoadStartKeyframeAction* loadStartKeyframe = new LoadStartKeyframeAction(*model);
 	LoadEndKeyframeAction* loadEndKeyframe = new LoadEndKeyframeAction(*model);
+	SaveAnimationAction* saveAction = new SaveAnimationAction(*model);
 	AnimationGeneratorUIActions* testActions = new AnimationGeneratorUIActions{};
 	testActions->generateAnimationAction = *generateAnimation;
 	testActions->showPreviewAction = *framePreview;
 	testActions->setStartKeyframeAction = *loadStartKeyframe;
 	testActions->setEndKeyframeAction = *loadEndKeyframe;
+	testActions->saveAnimationAction = *saveAction;
 
 	AnimationGeneratorMainFrame* mainFrame = new AnimationGeneratorMainFrame(parentFrame, transitionsManager->getTransitionNames(), *testActions);
 	mainFrame->Show();
