@@ -114,6 +114,9 @@
     <ClCompile Include="blur-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ring-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="window-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,6 +228,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blur-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ring-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="window-transition-filler.h">
