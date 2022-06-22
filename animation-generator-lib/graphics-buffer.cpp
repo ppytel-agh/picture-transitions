@@ -1,10 +1,13 @@
 #include "graphics-buffer.h"
 
-GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour) : size{ size }, pixels{ std::make_unique<Pixel[]>(size.getNumberOfPixels()) }
+GraphicsBuffer::GraphicsBuffer(Size size, Pixel initialColour) : size{ size }
 {
-	for (unsigned int i = 0; i < size.getNumberOfPixels(); i++)
-	{
-		this->pixels[i] = initialColour;
+	if (this->size.width > 0 && this->size.height > 0) {
+		this->pixels = std::make_unique<Pixel[]>(size.getNumberOfPixels());
+		for (unsigned int i = 0; i < size.getNumberOfPixels(); i++)
+		{
+			this->pixels[i] = initialColour;
+		}
 	}
 }
 
@@ -83,9 +86,11 @@ GraphicsBuffer GraphicsBuffer::createSection(BufferPixel topLeft, Size size, Pix
 		destionationStart.i = -topLeft.i;
 	}
 	GraphicsBuffer buffer(size, sectionBackgroundColour);
-	for (int i = destionationStart.i; i < sectionOverlapSize.height; i++) {
-		for (int j = destionationStart.j; j < sectionOverlapSize.width; j++) {
-			buffer.pixels[buffer.getPixelIndex({ i, j })] = this->pixels[this->getPixelIndex({ topLeft.i + i, topLeft.j + j })];
+	if (!buffer.isEmpty()) {
+		for (int i = destionationStart.i; i < sectionOverlapSize.height; i++) {
+			for (int j = destionationStart.j; j < sectionOverlapSize.width; j++) {
+				buffer.pixels[buffer.getPixelIndex({ i, j })] = this->pixels[this->getPixelIndex({ topLeft.i + i, topLeft.j + j })];
+			}
 		}
 	}
 	return buffer;

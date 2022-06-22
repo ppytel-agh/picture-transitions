@@ -117,6 +117,9 @@
     <ClCompile Include="ring-transition-filler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="window-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -228,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ring-transition-filler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="window-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

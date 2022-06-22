@@ -9,6 +9,7 @@
 #include "blend-transition-filler.h"
 #include "blur-transition-filler.h"
 #include "ring-transition-filler.h"
+#include "window-transition-filler.h"
 
 class TransitionsRepo {
 public:

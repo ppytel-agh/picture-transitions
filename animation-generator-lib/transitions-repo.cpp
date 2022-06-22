@@ -14,7 +14,8 @@ TransitionsRepo::TransitionsRepo()
  new LetterRotationTransitionFiller(false),
  new BlendTransitionFiller(),
  new BlurTransitionFiller(),
- new RingTransitionFiller()
+ new RingTransitionFiller(),
+ new WindowTransitionFiller()
 	};
 	this->availableTransitions = new TransitionsManager(
 		{
@@ -29,7 +30,8 @@ TransitionsRepo::TransitionsRepo()
 			{L"obrót wokó³ osi X", *(*this->fillers)[8]},
 			{L"alpha blending", *(*this->fillers)[9]},
 			{L"blurring", *(*this->fillers)[10]},
-			{L"ring", *(*this->fillers)[11]}
+			{L"ring", *(*this->fillers)[11]},
+			{L"okiennica",*(*this->fillers)[12]}
 		}
 	);
 }
