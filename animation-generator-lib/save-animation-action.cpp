@@ -14,5 +14,5 @@ void SaveAnimationAction::operator()(AnimationGeneratorUI& ui, std::string saveD
 		ss << saveDir << "/" << (i + 1) << ".jpg";
 		frameImage.SaveFile(ss.str(), wxBITMAP_TYPE_JPEG);
 	}
-	ui.addMessage("zapisano animacjê na dysk");
+	ui.addMessage("zapisano animacje na dysk");
 }

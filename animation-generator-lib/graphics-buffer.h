@@ -19,6 +19,9 @@ struct Size {
 	unsigned int getNumberOfPixels() const {
 		return this->width * this->height;
 	}
+	bool operator==(const Size& s2) {
+		return this->width == s2.width && this->height == s2.height;
+	}
 };
 
 enum SubpixelOffset {
