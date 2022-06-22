@@ -8,6 +8,7 @@
 #include "brightness-change-transition-filler.h"
 #include "blend-transition-filler.h"
 #include "blur-transition-filler.h"
+#include "window-transition-filler.h"
 
 class TransitionsRepo {
 public:
