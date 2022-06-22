@@ -29,9 +29,9 @@ TransitionsRepo::TransitionsRepo()
 			{L"obrót wokó³ osi Y", *(*this->fillers)[7]},
 			{L"obrót wokó³ osi X", *(*this->fillers)[8]},
 			{L"alpha blending", *(*this->fillers)[9]},
+			{L"okiennica",*(*this->fillers)[12]},
 			{L"blurring", *(*this->fillers)[10]},
-			{L"ring", *(*this->fillers)[11]},
-			{L"okiennica",*(*this->fillers)[12]}
+			{L"ring", *(*this->fillers)[11]}
 		}
 	);
 }
