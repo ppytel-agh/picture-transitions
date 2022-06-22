@@ -111,6 +111,9 @@
     <ClCompile Include="ui-actions-set.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blur-transition-filler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation-generator-app.h">
@@ -216,6 +219,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui-actions-set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blur-transition-filler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

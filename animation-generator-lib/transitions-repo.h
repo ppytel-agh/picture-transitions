@@ -7,6 +7,7 @@
 #include "letter-rotation-transition-filler.h"
 #include "brightness-change-transition-filler.h"
 #include "blend-transition-filler.h"
+#include "blur-transition-filler.h"
 
 class TransitionsRepo {
 public:
