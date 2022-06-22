@@ -212,6 +212,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	frameRate->Connect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
 	slider->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
+	slider->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	saveAnimation->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onAnimationSave ), NULL, this );
 }
 
@@ -225,6 +226,7 @@ MainFrame::~MainFrame()
 	frameRate->Disconnect( wxEVT_COMMAND_SPINCTRL_UPDATED, wxSpinEventHandler( MainFrame::onFrameRateEnter ), NULL, this );
 	generateFrame->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onGenerateFrame ), NULL, this );
 	slider->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
+	slider->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( MainFrame::onScroll ), NULL, this );
 	saveAnimation->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::onAnimationSave ), NULL, this );
 
 }

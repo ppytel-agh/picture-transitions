@@ -1325,6 +1325,7 @@
                                         <property name="window_name"></property>
                                         <property name="window_style"></property>
                                         <event name="OnScrollChanged">onScroll</event>
+                                        <event name="OnScrollThumbTrack">onScroll</event>
                                     </object>
                                 </object>
                                 <object class="sizeritem" expanded="0">
