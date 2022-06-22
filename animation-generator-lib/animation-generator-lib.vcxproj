@@ -172,6 +172,7 @@
     <ClCompile Include="norm-calc.cpp" />
     <ClCompile Include="normalized-blit.cpp" />
     <ClCompile Include="reset-action.cpp" />
+    <ClCompile Include="ring-transition-filler.cpp" />
     <ClCompile Include="save-animation-action.cpp" />
     <ClCompile Include="slide-transition-filler.cpp" />
     <ClCompile Include="transitions-manager.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="norm-calc.h" />
     <ClInclude Include="normalized-blit.h" />
     <ClInclude Include="reset-action.h" />
+    <ClInclude Include="ring-transition-filler.h" />
     <ClInclude Include="save-animation-action.h" />
     <ClInclude Include="slide-transition-filler.h" />
     <ClInclude Include="transitions-manager.h" />
